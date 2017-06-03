@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C002D6C61EE323F500505137 /* OpenFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C002D6C51EE323F500505137 /* OpenFileViewController.swift */; };
+		C002D6C81EE3241500505137 /* ManualInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C002D6C71EE3241500505137 /* ManualInputViewController.swift */; };
+		C002D6CA1EE3242F00505137 /* FileDialogTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C002D6C91EE3242F00505137 /* FileDialogTableViewController.swift */; };
+		C002D6CC1EE3259500505137 /* ImportMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C002D6CB1EE3259500505137 /* ImportMainViewController.swift */; };
 		C00A523F1EE2B0F6009B3075 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00A523E1EE2B0F6009B3075 /* AppDelegate.swift */; };
 		C00A52411EE2B0F6009B3075 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00A52401EE2B0F6009B3075 /* ViewController.swift */; };
 		C00A52441EE2B0F6009B3075 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C00A52421EE2B0F6009B3075 /* Main.storyboard */; };
@@ -43,6 +47,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C002D6C51EE323F500505137 /* OpenFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenFileViewController.swift; sourceTree = "<group>"; };
+		C002D6C71EE3241500505137 /* ManualInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualInputViewController.swift; sourceTree = "<group>"; };
+		C002D6C91EE3242F00505137 /* FileDialogTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDialogTableViewController.swift; sourceTree = "<group>"; };
+		C002D6CB1EE3259500505137 /* ImportMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportMainViewController.swift; sourceTree = "<group>"; };
 		C00A523B1EE2B0F6009B3075 /* FlipDecks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlipDecks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C00A523E1EE2B0F6009B3075 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C00A52401EE2B0F6009B3075 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +135,10 @@
 				C00A52761EE2C83B009B3075 /* StatisticsPerUnit.storyboard */,
 				C00A52721EE2C767009B3075 /* StatisticsMainStoryboard.storyboard */,
 				C00A526E1EE2C4F3009B3075 /* ImportStoryboard.storyboard */,
+				C002D6CB1EE3259500505137 /* ImportMainViewController.swift */,
+				C002D6C51EE323F500505137 /* OpenFileViewController.swift */,
+				C002D6C71EE3241500505137 /* ManualInputViewController.swift */,
+				C002D6C91EE3242F00505137 /* FileDialogTableViewController.swift */,
 				C00A52451EE2B0F6009B3075 /* Assets.xcassets */,
 				C00A52471EE2B0F6009B3075 /* LaunchScreen.storyboard */,
 				C00A524A1EE2B0F6009B3075 /* Info.plist */,
@@ -295,8 +307,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C002D6C61EE323F500505137 /* OpenFileViewController.swift in Sources */,
 				C00A52411EE2B0F6009B3075 /* ViewController.swift in Sources */,
 				C00A523F1EE2B0F6009B3075 /* AppDelegate.swift in Sources */,
+				C002D6CA1EE3242F00505137 /* FileDialogTableViewController.swift in Sources */,
+				C002D6CC1EE3259500505137 /* ImportMainViewController.swift in Sources */,
+				C002D6C81EE3241500505137 /* ManualInputViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
