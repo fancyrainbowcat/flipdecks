@@ -14,6 +14,15 @@
 		C00A52491EE2B0F6009B3075 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C00A52471EE2B0F6009B3075 /* LaunchScreen.storyboard */; };
 		C00A52541EE2B0F6009B3075 /* FlipDecksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00A52531EE2B0F6009B3075 /* FlipDecksTests.swift */; };
 		C00A525F1EE2B0F6009B3075 /* FlipDecksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00A525E1EE2B0F6009B3075 /* FlipDecksUITests.swift */; };
+		C00A526F1EE2C4F3009B3075 /* ImportStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C00A526E1EE2C4F3009B3075 /* ImportStoryboard.storyboard */; };
+		C00A52731EE2C767009B3075 /* StatisticsMainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C00A52721EE2C767009B3075 /* StatisticsMainStoryboard.storyboard */; };
+		C00A52751EE2C7D8009B3075 /* StatisticsPerLanguage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C00A52741EE2C7D8009B3075 /* StatisticsPerLanguage.storyboard */; };
+		C00A52771EE2C83B009B3075 /* StatisticsPerUnit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C00A52761EE2C83B009B3075 /* StatisticsPerUnit.storyboard */; };
+		C00A52791EE2C88C009B3075 /* ModusClassicTypeStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C00A52781EE2C88C009B3075 /* ModusClassicTypeStoryboard.storyboard */; };
+		C00A527B1EE2C8CC009B3075 /* ModusClassicFlipStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C00A527A1EE2C8CC009B3075 /* ModusClassicFlipStoryboard.storyboard */; };
+		C00A527D1EE2C916009B3075 /* ModusQuizStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C00A527C1EE2C916009B3075 /* ModusQuizStoryboard.storyboard */; };
+		C00A527F1EE2C963009B3075 /* ExportStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C00A527E1EE2C963009B3075 /* ExportStoryboard.storyboard */; };
+		C00A52811EE2C9B5009B3075 /* ModusMemoryStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C00A52801EE2C9B5009B3075 /* ModusMemoryStoryboard.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +56,15 @@
 		C00A525A1EE2B0F6009B3075 /* FlipDecksUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlipDecksUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C00A525E1EE2B0F6009B3075 /* FlipDecksUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipDecksUITests.swift; sourceTree = "<group>"; };
 		C00A52601EE2B0F6009B3075 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C00A526E1EE2C4F3009B3075 /* ImportStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ImportStoryboard.storyboard; sourceTree = "<group>"; };
+		C00A52721EE2C767009B3075 /* StatisticsMainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StatisticsMainStoryboard.storyboard; sourceTree = "<group>"; };
+		C00A52741EE2C7D8009B3075 /* StatisticsPerLanguage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = StatisticsPerLanguage.storyboard; path = ../StatisticsPerLanguage.storyboard; sourceTree = "<group>"; };
+		C00A52761EE2C83B009B3075 /* StatisticsPerUnit.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StatisticsPerUnit.storyboard; sourceTree = "<group>"; };
+		C00A52781EE2C88C009B3075 /* ModusClassicTypeStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ModusClassicTypeStoryboard.storyboard; sourceTree = "<group>"; };
+		C00A527A1EE2C8CC009B3075 /* ModusClassicFlipStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ModusClassicFlipStoryboard.storyboard; sourceTree = "<group>"; };
+		C00A527C1EE2C916009B3075 /* ModusQuizStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ModusQuizStoryboard.storyboard; sourceTree = "<group>"; };
+		C00A527E1EE2C963009B3075 /* ExportStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ExportStoryboard.storyboard; sourceTree = "<group>"; };
+		C00A52801EE2C9B5009B3075 /* ModusMemoryStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ModusMemoryStoryboard.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,9 +115,18 @@
 		C00A523D1EE2B0F6009B3075 /* FlipDecks */ = {
 			isa = PBXGroup;
 			children = (
+				C00A52741EE2C7D8009B3075 /* StatisticsPerLanguage.storyboard */,
 				C00A523E1EE2B0F6009B3075 /* AppDelegate.swift */,
 				C00A52401EE2B0F6009B3075 /* ViewController.swift */,
 				C00A52421EE2B0F6009B3075 /* Main.storyboard */,
+				C00A52801EE2C9B5009B3075 /* ModusMemoryStoryboard.storyboard */,
+				C00A527E1EE2C963009B3075 /* ExportStoryboard.storyboard */,
+				C00A527C1EE2C916009B3075 /* ModusQuizStoryboard.storyboard */,
+				C00A527A1EE2C8CC009B3075 /* ModusClassicFlipStoryboard.storyboard */,
+				C00A52781EE2C88C009B3075 /* ModusClassicTypeStoryboard.storyboard */,
+				C00A52761EE2C83B009B3075 /* StatisticsPerUnit.storyboard */,
+				C00A52721EE2C767009B3075 /* StatisticsMainStoryboard.storyboard */,
+				C00A526E1EE2C4F3009B3075 /* ImportStoryboard.storyboard */,
 				C00A52451EE2B0F6009B3075 /* Assets.xcassets */,
 				C00A52471EE2B0F6009B3075 /* LaunchScreen.storyboard */,
 				C00A524A1EE2B0F6009B3075 /* Info.plist */,
@@ -232,8 +259,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C00A527F1EE2C963009B3075 /* ExportStoryboard.storyboard in Resources */,
+				C00A52731EE2C767009B3075 /* StatisticsMainStoryboard.storyboard in Resources */,
+				C00A527D1EE2C916009B3075 /* ModusQuizStoryboard.storyboard in Resources */,
+				C00A52791EE2C88C009B3075 /* ModusClassicTypeStoryboard.storyboard in Resources */,
+				C00A52771EE2C83B009B3075 /* StatisticsPerUnit.storyboard in Resources */,
 				C00A52491EE2B0F6009B3075 /* LaunchScreen.storyboard in Resources */,
+				C00A527B1EE2C8CC009B3075 /* ModusClassicFlipStoryboard.storyboard in Resources */,
+				C00A52751EE2C7D8009B3075 /* StatisticsPerLanguage.storyboard in Resources */,
 				C00A52461EE2B0F6009B3075 /* Assets.xcassets in Resources */,
+				C00A526F1EE2C4F3009B3075 /* ImportStoryboard.storyboard in Resources */,
+				C00A52811EE2C9B5009B3075 /* ModusMemoryStoryboard.storyboard in Resources */,
 				C00A52441EE2B0F6009B3075 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -507,6 +543,7 @@
 				C00A52651EE2B0F6009B3075 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C00A52661EE2B0F6009B3075 /* Build configuration list for PBXNativeTarget "FlipDecksTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +552,7 @@
 				C00A52681EE2B0F6009B3075 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C00A52691EE2B0F6009B3075 /* Build configuration list for PBXNativeTarget "FlipDecksUITests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +561,7 @@
 				C00A526B1EE2B0F6009B3075 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
