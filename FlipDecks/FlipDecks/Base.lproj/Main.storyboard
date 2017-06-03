@@ -33,6 +33,7 @@
                                     <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="77Q-x9-3J0">
                                         <rect key="frame" x="16" y="7" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                         <state key="normal" title="Info"/>
                                     </button>
                                 </barButtonItem>
@@ -40,6 +41,7 @@
                                     <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hTF-K0-Eql">
                                         <rect key="frame" x="56" y="11.5" width="105" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <state key="normal" title="Show Statistics"/>
                                         <connections>
                                             <segue destination="Qmc-Gu-wTR" kind="presentation" id="f38-7q-nTT"/>
@@ -50,9 +52,32 @@
                                     <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="zzi-77-Vi1">
                                         <rect key="frame" x="171" y="7" width="46" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <state key="normal" title="Import"/>
                                         <connections>
                                             <segue destination="DfZ-Ca-py6" kind="presentation" id="5YJ-uv-h4T"/>
+                                        </connections>
+                                    </button>
+                                </barButtonItem>
+                                <barButtonItem style="plain" id="Gv8-1R-Dk5">
+                                    <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lld-nH-PFA">
+                                        <rect key="frame" x="227" y="9.5" width="93" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <state key="normal" title="&gt;Language&lt;"/>
+                                        <connections>
+                                            <segue destination="fjj-4Q-4j8" kind="presentation" id="H4l-pw-Oup"/>
+                                        </connections>
+                                    </button>
+                                </barButtonItem>
+                                <barButtonItem style="plain" id="Ciy-gj-cDX">
+                                    <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jiy-iH-q4H">
+                                        <rect key="frame" x="330" y="11.5" width="40" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                        <state key="normal" title="&gt;UNIT&lt;"/>
+                                        <connections>
+                                            <segue destination="1yc-w1-MJt" kind="presentation" id="y61-p9-2Y0"/>
                                         </connections>
                                     </button>
                                 </barButtonItem>
@@ -328,4 +353,8 @@
             <point key="canvasLocation" x="1084" y="139"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="H4l-pw-Oup"/>
+        <segue reference="y61-p9-2Y0"/>
+    </inferredMetricsTieBreakers>
 </document>
