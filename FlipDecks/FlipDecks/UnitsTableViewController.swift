@@ -17,7 +17,6 @@ class UnitsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = languageName
-        getListOfUnits()
     }
 
     func getListOfUnits() {
@@ -39,6 +38,11 @@ class UnitsTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    //refresh data when view is appearing
+    override func viewWillAppear(_ animated: Bool) {
+        getListOfUnits()
+        self.tableView.reloadData()
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -62,6 +66,7 @@ class UnitsTableViewController: UITableViewController {
             let navigationController = segue.destination as! UINavigationController
             let controller = navigationController.viewControllers.first as! ModusViewController
             controller.unitName = selectedUnit.getName()
+            controller.languageName = self.languageName
         }
     }
 

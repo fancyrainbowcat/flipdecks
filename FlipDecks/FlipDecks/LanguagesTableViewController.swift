@@ -14,7 +14,6 @@ class LanguagesTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getListOfLanguages()
     }
 
     func getListOfLanguages() {
@@ -24,11 +23,20 @@ class LanguagesTableViewController: UITableViewController {
             let allDicts = try FileManager.default.contentsOfDirectory(atPath: directoryURL.path)
             for dict in allDicts {
                 let newLanguage = Language(name: dict)
-                self.listOfLanguages.append(newLanguage)
+                let checkLanguageExists = listOfLanguages.contains(where: { $0.getName() == newLanguage.getName() })
+                if (checkLanguageExists == false) {
+                    self.listOfLanguages.append(newLanguage)
+                }
             }
         } catch {
             print("There are no languages yet")
         }
+    }
+    
+    //refresh data when view is appearing
+    override func viewWillAppear(_ animated: Bool) {
+        getListOfLanguages()
+        self.tableView.reloadData()
     }
     
     //show available files in tableView
@@ -56,7 +64,7 @@ class LanguagesTableViewController: UITableViewController {
     @IBAction func cancelToLanguageTableViewController(segue:UIStoryboardSegue) {
     
     }
-
+    
     //give language to UnitsTableViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "languageToUnit" {

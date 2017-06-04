@@ -11,10 +11,11 @@ import UIKit
 class ModusViewController: UIViewController {
 
     var unitName = ""
+    var languageName = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = unitName
+        self.title = "\(languageName) - \(unitName)"
 
 
         // Do any additional setup after loading the view.
