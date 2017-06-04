@@ -57,4 +57,16 @@ class LanguagesTableViewController: UITableViewController {
     
     }
 
+    //give language to UnitsTableViewController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "languageToUnit" {
+            let cell = sender as! UITableViewCell
+            let indexPath = self.tableView.indexPath(for:cell)!
+            let selectedLanguage = listOfLanguages[indexPath.row]
+            
+            let navigationController = segue.destination as! UINavigationController
+            let controller = navigationController.viewControllers.first as! UnitsTableViewController
+            controller.languageName = selectedLanguage.getName()
+        }
+    }
 }

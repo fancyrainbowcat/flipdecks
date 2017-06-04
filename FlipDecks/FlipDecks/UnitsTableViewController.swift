@@ -11,24 +11,27 @@ import UIKit
 class UnitsTableViewController: UITableViewController {
 
     var listOfUnits = [Deck]()
-    var languageName = "TestLanguage"
+    var languageName = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getListOfUnits()
+        self.title = languageName
     }
 
     func getListOfUnits() {
-        let directoryURL = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true).appendingPathComponent(languageName, isDirectory:true)
+        if (self.languageName != "") {
+            let directoryURL = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true).appendingPathComponent(self.languageName, isDirectory:true)
         
-        do {
-            let allDicts = try FileManager.default.contentsOfDirectory(atPath: directoryURL.path)
-            for dict in allDicts {
-                let newUnit = Deck(name: dict)
-                self.listOfUnits.append(newUnit)
+            do {
+                let allDicts = try FileManager.default.contentsOfDirectory(atPath: directoryURL.path)
+                for dict in allDicts {
+                    let newUnit = Deck(name: dict)
+                    self.listOfUnits.append(newUnit)
+                }
+            } catch {
+                print("There are no units yet")
             }
-        } catch {
-            print("There are no units yet")
         }
     }
     
@@ -56,7 +59,18 @@ class UnitsTableViewController: UITableViewController {
     @IBAction func cancelToUnitsTableViewController(segue:UIStoryboardSegue) {
         
     }
-
-
+    
+    //give language to UnitsTableViewController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "unitToModus" {
+            let cell = sender as! UITableViewCell
+            let indexPath = self.tableView.indexPath(for:cell)!
+            let selectedUnit = listOfUnits[indexPath.row]
+            
+            let navigationController = segue.destination as! UINavigationController
+            let controller = navigationController.viewControllers.first as! ModusViewController
+            controller.unitName = selectedUnit.getName()
+        }
+    }
 
 }

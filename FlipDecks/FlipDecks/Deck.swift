@@ -23,25 +23,24 @@ class Deck {
         {
             do
             {
-                print("Mein File Path: \(filePath)")
                 let contents = try String(contentsOfFile: filePath)
                 let lines = contents.components(separatedBy: "\n")
                 
                 for line in lines {
                     let elements = line.components(separatedBy: ";")
                     let newCard = Card(question: elements[0], answer: elements[1])
-                    print("Added new card: \(newCard.getQuestion) with answer \(newCard.getAnswer)")
+                    print("Deck.swift: Added new card: \(newCard.getQuestion) with answer \(newCard.getAnswer)")
                     self.listOfCards.append(newCard)
                 }
             }
             catch
             {
-                print("Contents could not be loaded")
+                print("Deck.swift: Contents could not be loaded")
             }
         }
         else
         {
-            print("File not found")
+            print("Deck.swift: File not found")
         }
     }
     

@@ -83,7 +83,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="kUA-Y8-xdY" kind="presentation" id="Nzq-pd-u2c"/>
+                                    <segue destination="kUA-Y8-xdY" kind="presentation" identifier="languageToUnit" id="Nzq-pd-u2c"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -106,7 +106,7 @@
             </objects>
             <point key="canvasLocation" x="1740" y="572"/>
         </scene>
-        <!--English - My Lections-->
+        <!--Units Table View Controller-->
         <scene sceneID="Pkx-ol-BPm">
             <objects>
                 <tableViewController id="fjj-4Q-4j8" customClass="UnitsTableViewController" customModule="FlipDecks" customModuleProvider="target" sceneMemberID="viewController">
@@ -144,7 +144,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="LGg-ZD-xgS" kind="presentation" id="DhF-6v-jD2"/>
+                                    <segue destination="LGg-ZD-xgS" kind="presentation" identifier="unitToModus" id="DhF-6v-jD2"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -153,7 +153,7 @@
                             <outlet property="delegate" destination="fjj-4Q-4j8" id="zia-1h-vTO"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="English - My Lections" id="8FX-HE-lZ2">
+                    <navigationItem key="navigationItem" id="8FX-HE-lZ2">
                         <barButtonItem key="rightBarButtonItem" title="Item" systemItem="cancel" id="P0W-KV-Usg">
                             <connections>
                                 <segue destination="heW-96-tzL" kind="unwind" unwindAction="cancelToLanguageTableViewControllerWithSegue:" id="Zz6-vc-tZT"/>
@@ -206,10 +206,10 @@
             </objects>
             <point key="canvasLocation" x="5631" y="323"/>
         </scene>
-        <!--View Controller-->
+        <!--Modus View Controller-->
         <scene sceneID="ORW-19-jMv">
             <objects>
-                <viewController id="1yc-w1-MJt" sceneMemberID="viewController">
+                <viewController id="1yc-w1-MJt" customClass="ModusViewController" customModule="FlipDecks" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UkH-tx-pby"/>
                         <viewControllerLayoutGuide type="bottom" id="LPy-R7-sZV"/>
@@ -317,6 +317,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Lrf-gd-avi">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HHl-IV-cry" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="kUA-Y8-xdY" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Mzx-TG-80U">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -326,7 +327,6 @@
                         <segue destination="fjj-4Q-4j8" kind="relationship" relationship="rootViewController" id="Fhk-ZA-UDl"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HHl-IV-cry" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2612" y="134"/>
         </scene>

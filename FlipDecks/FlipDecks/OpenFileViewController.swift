@@ -14,6 +14,8 @@ class OpenFileViewController: UIViewController {
     @IBOutlet weak var fileNameField: UITextField!
     @IBOutlet weak var browseButton: UIButton!
     @IBOutlet weak var loadedLabel: UILabel!
+    @IBOutlet weak var languageNameField: UITextField!
+    
     var selectedFile : String = ""
     
     override func viewDidLoad() {
@@ -61,63 +63,93 @@ class OpenFileViewController: UIViewController {
     }
     
     @IBAction func readFromFile() {
-        let directoryURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("FlipDecks", isDirectory: true)
-        let filename = fileNameField.text
-        var fileURL:URL = directoryURL
-        var valid = false
-        
-        //if it is a valid txt file
-        if (filename!.contains(".txt") || filename!.contains(".csv")) {
-            fileURL = directoryURL.appendingPathComponent(filename!)
-            valid = true
-        }
-        //test for invalid file format
-        else if (filename!.contains(".")) {
-            print("File Ending is not valid, please use .txt files")
-        }
-        //missing file ending
+        //no language is given
+        if(languageNameField.text == "") {
+            loadedLabel.text = "Please enter language name"
+            loadedLabel.textColor = UIColor.red
+        } //language is valid
         else {
-            do {
-                let allFiles = try FileManager.default.contentsOfDirectory(atPath: directoryURL.path)
-                for file in allFiles {
-                    if file.contains(filename!) {
-                        if (file.contains(".txt") || file.contains(".csv")) {
-                            fileURL = directoryURL.appendingPathComponent(file)
-                            valid = true
+            let directoryURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("FlipDecks", isDirectory: true)
+            let filename = fileNameField.text
+            var fileURL:URL = directoryURL
+            let languageName = languageNameField.text
+            var valid = false
+        
+            //if it is a valid txt file
+            if (filename!.contains(".txt") || filename!.contains(".csv")) {
+                fileURL = directoryURL.appendingPathComponent(filename!)
+                valid = true
+            }
+            //test for invalid file format
+            else if (filename!.contains(".")) {
+                print("File Ending is not valid, please use .txt files")
+            }
+            //missing file ending
+            else {
+                do {
+                    let allFiles = try FileManager.default.contentsOfDirectory(atPath: directoryURL.path)
+                    for file in allFiles {
+                        if file.contains(filename!) {
+                            if (file.contains(".txt") || file.contains(".csv")) {
+                                fileURL = directoryURL.appendingPathComponent(file)
+                                valid = true
+                            }
                         }
                     }
                 }
-            }
-            catch {
-                print("File does not exist")
+                catch {
+                    print("File does not exist")
                 
+                }
             }
-        }
-        print("Log directoryURL: \(directoryURL)")
+            print("Log directoryURL: \(directoryURL)")
         
-        if (valid == true) {
-            var contentOfFile = ""
-            do {
-                contentOfFile = try String(contentsOf: fileURL)
-                print("Contents of file: \(contentOfFile)")
-                loadedLabel.text = "File successfully loaded"
-                loadedLabel.textColor = UIColor.green
-            } catch let error as NSError {
-                print("Failed to read file")
-                print(error)
-                loadedLabel.text = "File could not be loaded"
+            if (valid == true) {
+                var contentOfFile = ""
+                do {
+                    let checkResult = checkForLanguageExistence(languageName: languageName!)
+                    if (checkResult != "not found") {
+                        //do something
+                        contentOfFile = try String(contentsOf: fileURL)
+                        print("Contents of file: \(contentOfFile)")
+                    }
+                    
+                    
+                    loadedLabel.text = "File successfully loaded"
+                    loadedLabel.textColor = UIColor.green
+                } catch let error as NSError {
+                    print("Failed to read file")
+                    print(error)
+                    loadedLabel.text = "File could not be loaded"
+                    loadedLabel.textColor = UIColor.red
+                }
+            } else {
+                loadedLabel.text = "File is not valid"
                 loadedLabel.textColor = UIColor.red
             }
-        } else {
-            loadedLabel.text = "File is not valid"
-            loadedLabel.textColor = UIColor.red
-        }
         
-        fileNameField.text = ""
-        okButton.isEnabled = false
-        okButton.layer.borderColor = UIColor.lightGray.cgColor
+            fileNameField.text = ""
+            okButton.isEnabled = false
+            okButton.layer.borderColor = UIColor.lightGray.cgColor
+        }
     }
     
-    
+    //checks if language is already existent
+    func checkForLanguageExistence(languageName : String) -> String {
+        let allLanguagesURL = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true)
+        
+        do {
+            let allDicts = try FileManager.default.contentsOfDirectory(atPath: allLanguagesURL.path)
+            for dict in allDicts {
+                if dict.lowercased() == languageName.lowercased() {
+                    return dict
+                }
+            }
+        } catch {
+            print("There are no languages yet")
+        }
+        
+        return "not found"
+    }
 }
 

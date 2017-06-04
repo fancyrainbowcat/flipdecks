@@ -30,7 +30,7 @@ class Language {
                 self.listOfDecks.append(newDeck)
             }
         } catch {
-            print("There are no files for this language yet")
+            print("Language.swift: There are no files for this language yet")
         }
     }
     
