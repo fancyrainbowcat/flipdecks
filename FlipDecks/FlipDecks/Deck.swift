@@ -10,38 +10,41 @@ import Foundation
 
 class Deck {
     var name = ""
+    var fileEnding = ""
     var listOfCards = [Card]()
+    var languageName = ""
     
-    init(name: String) {
+    init(name: String, languageName: String, fileEnding: String) {
         self.name = name
+        self.fileEnding = fileEnding
+        self.languageName = languageName
         initializeDeck()
     }
     
     //initializes the deck with information from given file (only txt files are valid)
     func initializeDeck() {
-        if let filePath = Bundle.main.path(forResource: self.name, ofType: "txt")
+        let fileName = self.name + fileEnding
+        let filePath = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true).appendingPathComponent(self.languageName, isDirectory: true).appendingPathComponent(fileName)
+    
+        do
         {
-            do
-            {
-                let contents = try String(contentsOfFile: filePath)
-                let lines = contents.components(separatedBy: "\n")
-                
-                for line in lines {
+            let contents = try String(contentsOfFile: filePath.path)
+            let lines = contents.components(separatedBy: "\n")
+            
+            for line in lines {
+                if line != "" {
                     let elements = line.components(separatedBy: ";")
                     let newCard = Card(question: elements[0], answer: elements[1])
-                    print("Deck.swift: Added new card: \(newCard.getQuestion) with answer \(newCard.getAnswer)")
+                    print("Deck.swift: Added new card: \(newCard.getQuestion()) with answer \(newCard.getAnswer())")
                     self.listOfCards.append(newCard)
                 }
             }
-            catch
-            {
-                print("Deck.swift: Contents could not be loaded")
-            }
         }
-        else
+        catch
         {
-            print("Deck.swift: File not found")
+            print("Deck.swift: Contents could not be loaded")
         }
+        
     }
     
     //returns count of all cards

@@ -19,14 +19,14 @@ class Language {
     
     //gets all decks for this language from folder
     func initializeLanguage() {
-        let directoryURL = Bundle.main.bundleURL.appendingPathComponent(self.name, isDirectory: true)
-        
+        let directoryURL = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory:true).appendingPathComponent(self.name, isDirectory: true)
         do {
             let allFiles = try FileManager.default.contentsOfDirectory(atPath: directoryURL.path)
             for file in allFiles {
                 let index = file.index(file.endIndex, offsetBy: -4)
                 let fileWithoutEnding = file.substring(to: index)
-                let newDeck = Deck(name: fileWithoutEnding)
+                let fileEnding = file.substring(from: index)
+                let newDeck = Deck(name: fileWithoutEnding, languageName: self.name, fileEnding: fileEnding)
                 self.listOfDecks.append(newDeck)
             }
         } catch {
@@ -60,6 +60,10 @@ class Language {
             }
         }
         return notFinishedDecks
+    }
+    
+    func returnAllDecks() -> [Deck] {
+        return listOfDecks
     }
     
     func getName() -> String {

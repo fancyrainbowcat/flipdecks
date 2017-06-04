@@ -10,28 +10,20 @@ import UIKit
 
 class UnitsTableViewController: UITableViewController {
 
+    var currentLanguage : Language?
     var listOfUnits = [Deck]()
     var languageName = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getListOfUnits()
         self.title = languageName
+        getListOfUnits()
     }
 
     func getListOfUnits() {
         if (self.languageName != "") {
-            let directoryURL = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true).appendingPathComponent(self.languageName, isDirectory:true)
-        
-            do {
-                let allFiles = try FileManager.default.contentsOfDirectory(atPath: directoryURL.path)
-                for file in allFiles {
-                    let newUnit = Deck(name: file)
-                    self.listOfUnits.append(newUnit)
-                }
-            } catch {
-                print("There are no units yet")
-            }
+            currentLanguage = Language(name: languageName)
+            self.listOfUnits = (currentLanguage?.returnAllDecks())!
         }
     }
     
