@@ -27,6 +27,7 @@
 		C00A527D1EE2C916009B3075 /* ModusQuizStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C00A527C1EE2C916009B3075 /* ModusQuizStoryboard.storyboard */; };
 		C00A527F1EE2C963009B3075 /* ExportStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C00A527E1EE2C963009B3075 /* ExportStoryboard.storyboard */; };
 		C00A52811EE2C9B5009B3075 /* ModusMemoryStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C00A52801EE2C9B5009B3075 /* ModusMemoryStoryboard.storyboard */; };
+		C04EF0E91EE3FB62001641BB /* LanguagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04EF0E81EE3FB62001641BB /* LanguagesTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		C00A527C1EE2C916009B3075 /* ModusQuizStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ModusQuizStoryboard.storyboard; sourceTree = "<group>"; };
 		C00A527E1EE2C963009B3075 /* ExportStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ExportStoryboard.storyboard; sourceTree = "<group>"; };
 		C00A52801EE2C9B5009B3075 /* ModusMemoryStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ModusMemoryStoryboard.storyboard; sourceTree = "<group>"; };
+		C04EF0E81EE3FB62001641BB /* LanguagesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguagesTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 				C00A523E1EE2B0F6009B3075 /* AppDelegate.swift */,
 				C00A52401EE2B0F6009B3075 /* ViewController.swift */,
 				C00A52421EE2B0F6009B3075 /* Main.storyboard */,
+				C04EF0E81EE3FB62001641BB /* LanguagesTableViewController.swift */,
 				C00A52801EE2C9B5009B3075 /* ModusMemoryStoryboard.storyboard */,
 				C00A527E1EE2C963009B3075 /* ExportStoryboard.storyboard */,
 				C00A527C1EE2C916009B3075 /* ModusQuizStoryboard.storyboard */,
@@ -307,6 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C04EF0E91EE3FB62001641BB /* LanguagesTableViewController.swift in Sources */,
 				C002D6C61EE323F500505137 /* OpenFileViewController.swift in Sources */,
 				C00A52411EE2B0F6009B3075 /* ViewController.swift in Sources */,
 				C00A523F1EE2B0F6009B3075 /* AppDelegate.swift in Sources */,

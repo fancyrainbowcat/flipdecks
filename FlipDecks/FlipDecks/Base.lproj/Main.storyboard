@@ -20,7 +20,7 @@
         <!--My Languages-->
         <scene sceneID="RTz-jf-3N6">
             <objects>
-                <tableViewController id="O26-CO-VuD" sceneMemberID="viewController">
+                <tableViewController id="O26-CO-VuD" customClass="LanguagesTableViewController" customModule="FlipDecks" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="99" sectionHeaderHeight="28" sectionFooterHeight="28" id="A64-HX-34s">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
