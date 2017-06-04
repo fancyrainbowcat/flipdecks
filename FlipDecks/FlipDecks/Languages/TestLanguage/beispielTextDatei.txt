@@ -1,2 +1,0 @@
-FrageText1;AntwortText1;0;0
-FrageText2;AntwortText2;0;0

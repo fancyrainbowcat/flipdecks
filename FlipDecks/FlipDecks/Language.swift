@@ -29,11 +29,14 @@ class Language {
             //loop over all files in this directory and append it as decks into listOfDecks (without fileEnding)
             let allFiles = try FileManager.default.contentsOfDirectory(atPath: directoryURL.path)
             for file in allFiles {
-                let index = file.index(file.endIndex, offsetBy: -4)
-                let fileWithoutEnding = file.substring(to: index)
-                let fileEnding = file.substring(from: index)
-                let newDeck = Deck(name: fileWithoutEnding, languageName: self.name, fileEnding: fileEnding)
-                self.listOfDecks.append(newDeck)
+                //if it is really a file
+                if file.contains(".") {
+                    let index = file.index(file.endIndex, offsetBy: -4)
+                    let fileWithoutEnding = file.substring(to: index)
+                    let fileEnding = file.substring(from: index)
+                    let newDeck = Deck(name: fileWithoutEnding, languageName: self.name, fileEnding: fileEnding)
+                    self.listOfDecks.append(newDeck)
+                }
             }
         } //should not be reached since we will create sample data
         catch {

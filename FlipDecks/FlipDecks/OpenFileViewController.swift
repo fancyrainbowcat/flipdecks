@@ -96,11 +96,16 @@ class OpenFileViewController: UIViewController {
         
         //content that will be written into internal storage
         var newContent = ""
+        var fileWithoutEnding = ""
         
-        //this will remove the file ending
-        let index = filename.index(filename.endIndex, offsetBy: -4)
-        let fileWithoutEnding = filename.substring(to: index)
-        
+        //this will remove the file ending but only if there is a fileEnding
+        if (filename.contains(".")) {
+            let index = filename.index(filename.endIndex, offsetBy: -4)
+            fileWithoutEnding = filename.substring(to: index)
+        } else {
+            fileWithoutEnding = filename
+        }
+            
         //path to internal file "Languages/languageName/fileName.txt" > internal files will always be .txt files
         let deckPath = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true).appendingPathComponent(languageName, isDirectory: true).appendingPathComponent(fileWithoutEnding).appendingPathExtension("txt")
         
