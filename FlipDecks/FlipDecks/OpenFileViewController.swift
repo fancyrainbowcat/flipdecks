@@ -61,31 +61,46 @@ class OpenFileViewController: UIViewController {
     }
     
     @IBAction func readFromFile() {
-        let filename = fileNameField.text
-        var fileURL:URL
-        //test ob Datei existiert
-        
         let directoryURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("FlipDecks", isDirectory: true)
-        if (filename!.contains(".")) {
+        let filename = fileNameField.text
+        var fileURL:URL = directoryURL
+        var valid = false
+        
+        //if it is a valid txt file
+        if (filename!.contains(".txt")) {
             fileURL = directoryURL.appendingPathComponent(filename!)
-        } else {
+            valid = true
+        }
+        //test for invalid file format
+        else if (filename!.contains(".")) {
+            print("File Ending is not valid, please use .txt files")
+        }
+        //missing file ending
+        else {
             fileURL = directoryURL.appendingPathComponent(filename!).appendingPathExtension("txt")
+            valid = true
         }
         
-        print("Log fileURL: \(directoryURL)")
+        print("Log directoryURL: \(directoryURL)")
         
-        var contentOfFile = ""
-        do {
-            contentOfFile = try String(contentsOf: fileURL)
-            print("Contents of file: \(contentOfFile)")
-            loadedLabel.text = "File successfully loaded"
-            loadedLabel.textColor = UIColor.green
-        } catch let error as NSError {
-            print("Failed to read file")
-            print(error)
-            loadedLabel.text = "File could not be loaded"
-            loadedLabel.textColor = UIColor.red
+        if (valid == true) {
+            var contentOfFile = ""
+            do {
+                contentOfFile = try String(contentsOf: fileURL)
+                print("Contents of file: \(contentOfFile)")
+                loadedLabel.text = "File successfully loaded"
+                loadedLabel.textColor = UIColor.green
+            } catch let error as NSError {
+                print("Failed to read file")
+                print(error)
+                loadedLabel.text = "File could not be loaded"
+                loadedLabel.textColor = UIColor.red
+            }
         }
+        
+        fileNameField.text = ""
+        okButton.isEnabled = false
+        okButton.layer.borderColor = UIColor.lightGray.cgColor
     }
     
     

@@ -27,7 +27,12 @@ class FileDialogTableViewController: UITableViewController {
     //saves content of FlipDecks directory in string array files
     func listDirectoryContent() {
         do {
-            files = try FileManager.default.contentsOfDirectory(atPath: directoryURL.path)
+            let allFiles = try FileManager.default.contentsOfDirectory(atPath: directoryURL.path)
+            for file in allFiles {
+                if file.contains(".txt") {
+                    files.append(file)
+                }
+            }
         } catch {
             do {
                 try FileManager.default.createDirectory(atPath: directoryURL.path, withIntermediateDirectories: true, attributes: nil)
