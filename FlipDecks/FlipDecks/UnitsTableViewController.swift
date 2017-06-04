@@ -24,9 +24,9 @@ class UnitsTableViewController: UITableViewController {
             let directoryURL = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true).appendingPathComponent(self.languageName, isDirectory:true)
         
             do {
-                let allDicts = try FileManager.default.contentsOfDirectory(atPath: directoryURL.path)
-                for dict in allDicts {
-                    let newUnit = Deck(name: dict)
+                let allFiles = try FileManager.default.contentsOfDirectory(atPath: directoryURL.path)
+                for file in allFiles {
+                    let newUnit = Deck(name: file)
                     self.listOfUnits.append(newUnit)
                 }
             } catch {

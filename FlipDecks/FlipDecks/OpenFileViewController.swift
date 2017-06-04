@@ -109,6 +109,8 @@ class OpenFileViewController: UIViewController {
                 do {
                     let checkResult = checkForLanguageExistence(languageName: languageName!)
                     if (checkResult != "not found") {
+                        fileURL = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true).appendingPathComponent(checkResult, isDirectory: true)
+                       
                         //do something
                         contentOfFile = try String(contentsOf: fileURL)
                         print("Contents of file: \(contentOfFile)")
