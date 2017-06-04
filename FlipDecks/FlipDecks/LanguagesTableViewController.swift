@@ -8,6 +8,7 @@
 
 import UIKit
 
+//View Controller for all available languages
 class LanguagesTableViewController: UITableViewController {
 
     var listOfLanguages = [Language]()
@@ -16,6 +17,7 @@ class LanguagesTableViewController: UITableViewController {
         super.viewDidLoad()
     }
 
+    //gets list of all languages
     func getListOfLanguages() {
         let directoryURL = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true)
         
@@ -48,19 +50,19 @@ class LanguagesTableViewController: UITableViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
-
+    //number of sections
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
+    //count of rows
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listOfLanguages.count
     }
 
-
+    //functionality for cancel button segue
     @IBAction func cancelToLanguageTableViewController(segue:UIStoryboardSegue) {
     
     }

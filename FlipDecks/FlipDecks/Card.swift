@@ -8,12 +8,14 @@
 
 import Foundation
 
+//Class Card (part of Deck)
 class Card {
     var question = ""
     var answer = ""
     var correctCount = 0
     var incorrectCount = 0
     
+    //new card
     init(question: String, answer: String, correctCount : Int, incorrectCount : Int) {
         self.question = question
         self.answer = answer

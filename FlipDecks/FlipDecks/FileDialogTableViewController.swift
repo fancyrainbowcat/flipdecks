@@ -8,6 +8,7 @@
 
 import UIKit
 
+//View Controller for file dialog
 class FileDialogTableViewController: UITableViewController {
     
     var files : [String] = []
@@ -17,7 +18,6 @@ class FileDialogTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.listDirectoryContent()
-
     }
     
     override func didReceiveMemoryWarning() {
@@ -68,11 +68,9 @@ class FileDialogTableViewController: UITableViewController {
         selectedFile = files[indexPath.row]
     }
     
+    //give selected file to OpenFileViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let openFileDestination = segue.destination as? OpenFileViewController
         openFileDestination?.selectedFile = self.selectedFile
-        
     }
-
-    
 }

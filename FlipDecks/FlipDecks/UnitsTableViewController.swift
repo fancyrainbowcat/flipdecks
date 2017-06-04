@@ -8,17 +8,20 @@
 
 import UIKit
 
+//TableViewController that contains all units for one language
 class UnitsTableViewController: UITableViewController {
 
     var currentLanguage : Language?
     var listOfUnits = [Deck]()
     var languageName = ""
     
+    //set title of ViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = languageName
     }
 
+    //get all Units for ViewController
     func getListOfUnits() {
         if (self.languageName != "") {
             currentLanguage = Language(name: languageName)
@@ -35,7 +38,6 @@ class UnitsTableViewController: UITableViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     //refresh data when view is appearing
@@ -44,19 +46,22 @@ class UnitsTableViewController: UITableViewController {
         self.tableView.reloadData()
     }
 
+    //number of sections
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
+    //number of rows
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listOfUnits.count
     }
     
+    //functionality for cancel button segue
     @IBAction func cancelToUnitsTableViewController(segue:UIStoryboardSegue) {
         
     }
     
-    //give language to UnitsTableViewController
+    //give language and unit to ModusViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "unitToModus" {
             let cell = sender as! UITableViewCell

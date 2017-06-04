@@ -8,12 +8,14 @@
 
 import Foundation
 
+//Class Deck/unit -> part of Language
 class Deck {
     var name = ""
     var fileEnding = ""
     var listOfCards = [Card]()
     var languageName = ""
     
+    //new Deck
     init(name: String, languageName: String, fileEnding: String) {
         self.name = name
         self.fileEnding = fileEnding
@@ -84,6 +86,7 @@ class Deck {
         return notFinishedCards
     }
     
+    //returns name of deck/ unit
     func getName() -> String {
         return self.name
     }

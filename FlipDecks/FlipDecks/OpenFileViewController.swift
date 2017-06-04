@@ -8,16 +8,20 @@
 
 import UIKit
 
+//View Controller for the opening of a file
 class OpenFileViewController: UIViewController {
     
+    //all IBOutlets
     @IBOutlet weak var okButton: UIButton!
     @IBOutlet weak var fileNameField: UITextField!
     @IBOutlet weak var browseButton: UIButton!
     @IBOutlet weak var loadedLabel: UILabel!
     @IBOutlet weak var languageNameField: UITextField!
     
+    //contains the currently selected file
     var selectedFile : String = ""
     
+    //change buttons and add event listener
     override func viewDidLoad() {
         super.viewDidLoad()
         okButton.isEnabled = false
@@ -30,15 +34,17 @@ class OpenFileViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
+    //function for event listener on fileNameField
     @IBAction func editingChanged(_ fileNameField: UITextField) {
+        //when the field is not empty okButton should be enabled
         if(fileNameField.text != "") {
             okButton.isEnabled = true
             okButton.layer.borderColor = UIColor.blue.cgColor
             loadedLabel.text = ""
-        } else {
+        } //when the field is empty okButton should be disabled
+        else {
             okButton.isEnabled = false
             loadedLabel.text = ""
             okButton.layer.borderColor = UIColor.lightGray.cgColor
@@ -53,7 +59,6 @@ class OpenFileViewController: UIViewController {
         okButton.layer.borderColor = UIColor.lightGray.cgColor
         loadedLabel.text = ""
     }
-    
     
     //use selected file done button action
     @IBAction func useFile(segue:UIStoryboardSegue) {
@@ -80,6 +85,7 @@ class OpenFileViewController: UIViewController {
         return "not found"
     }
     
+    //load data from file in documents folder into internal storage
     func loadData(filename : String, languageName : String, fileURL : URL) {
         var contentOfFile = ""
         var newContent = ""
@@ -111,7 +117,7 @@ class OpenFileViewController: UIViewController {
         }
     }
     
-    //reads from file and creates new internal file
+    //read from file
     @IBAction func readFromFile() {
         //no language is given
         if(languageNameField.text == "") {

@@ -8,10 +8,12 @@
 
 import Foundation
 
+//Class Language -> part of list of languages in LanguagesTablesViewController
 class Language {
     var name = "" 
     var listOfDecks = [Deck]()
     
+    //new Language
     init(name: String) {
         self.name = name
         initializeLanguage()
@@ -62,10 +64,12 @@ class Language {
         return notFinishedDecks
     }
     
+    //returns all decks for this language
     func returnAllDecks() -> [Deck] {
         return listOfDecks
     }
     
+    //returns name of language
     func getName() -> String {
         return self.name
     }
