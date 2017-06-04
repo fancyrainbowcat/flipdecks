@@ -62,6 +62,56 @@ class OpenFileViewController: UIViewController {
         okButton.layer.borderColor = UIColor.blue.cgColor
     }
     
+    //checks if language is already existent
+    func checkForLanguageExistence(languageName : String) -> String {
+        let allLanguagesURL = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true)
+        
+        do {
+            let allDicts = try FileManager.default.contentsOfDirectory(atPath: allLanguagesURL.path)
+            for dict in allDicts {
+                if dict.lowercased() == languageName.lowercased() {
+                    return dict
+                }
+            }
+        } catch {
+            print("There are no languages yet")
+        }
+        
+        return "not found"
+    }
+    
+    func loadData(filename : String, languageName : String, fileURL : URL) {
+        var contentOfFile = ""
+        var newContent = ""
+        let index = filename.index(filename.endIndex, offsetBy: -4)
+        let fileWithoutEnding = filename.substring(to: index)
+        
+        let deckPath = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true).appendingPathComponent(languageName, isDirectory: true).appendingPathComponent(fileWithoutEnding).appendingPathExtension("txt")
+        print("Log deckPath: \(deckPath)")
+        
+        do {
+            contentOfFile = try String(contentsOf: fileURL)
+            let lines = contentOfFile.components(separatedBy: "\n")
+            
+            for line in lines {
+                if line != "" {
+                    var newLine = line
+                    newLine = newLine.appending(";0;0\n")
+                    newContent.append(newLine)
+                }
+            }
+            let contentData = newContent.data(using: .utf8)
+            FileManager.default.createFile(atPath: deckPath.path, contents: contentData, attributes: nil)
+            loadedLabel.text = "File successfully loaded"
+            loadedLabel.textColor = UIColor.green
+        } catch {
+            print("Failed to read file")
+            loadedLabel.text = "File could not be loaded"
+            loadedLabel.textColor = UIColor.red
+        }
+    }
+    
+    //reads from file and creates new internal file
     @IBAction func readFromFile() {
         //no language is given
         if(languageNameField.text == "") {
@@ -102,28 +152,21 @@ class OpenFileViewController: UIViewController {
                 
                 }
             }
-            print("Log directoryURL: \(directoryURL)")
+            
+            let allLanguagesURL = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true).appendingPathComponent(languageName!, isDirectory: true)
+            print("Log allLanguagesURL: \(allLanguagesURL)")
         
             if (valid == true) {
-                var contentOfFile = ""
-                do {
-                    let checkResult = checkForLanguageExistence(languageName: languageName!)
-                    if (checkResult != "not found") {
-                        fileURL = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true).appendingPathComponent(checkResult, isDirectory: true)
-                       
-                        //do something
-                        contentOfFile = try String(contentsOf: fileURL)
-                        print("Contents of file: \(contentOfFile)")
+                let checkResult = checkForLanguageExistence(languageName: languageName!)
+                if (checkResult != "not found") {
+                    loadData(filename: filename!, languageName: checkResult, fileURL: fileURL)
+                } else {
+                    do {
+                        try FileManager.default.createDirectory(atPath: allLanguagesURL.path, withIntermediateDirectories: true, attributes: nil)
+                        loadData(filename: filename!, languageName: languageName!, fileURL: fileURL)
+                    } catch  {
+                        print("Could not create directory")
                     }
-                    
-                    
-                    loadedLabel.text = "File successfully loaded"
-                    loadedLabel.textColor = UIColor.green
-                } catch let error as NSError {
-                    print("Failed to read file")
-                    print(error)
-                    loadedLabel.text = "File could not be loaded"
-                    loadedLabel.textColor = UIColor.red
                 }
             } else {
                 loadedLabel.text = "File is not valid"
@@ -136,22 +179,6 @@ class OpenFileViewController: UIViewController {
         }
     }
     
-    //checks if language is already existent
-    func checkForLanguageExistence(languageName : String) -> String {
-        let allLanguagesURL = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true)
-        
-        do {
-            let allDicts = try FileManager.default.contentsOfDirectory(atPath: allLanguagesURL.path)
-            for dict in allDicts {
-                if dict.lowercased() == languageName.lowercased() {
-                    return dict
-                }
-            }
-        } catch {
-            print("There are no languages yet")
-        }
-        
-        return "not found"
-    }
+
 }
 

@@ -28,6 +28,7 @@ class FileDialogTableViewController: UITableViewController {
     func listDirectoryContent() {
         do {
             let allFiles = try FileManager.default.contentsOfDirectory(atPath: directoryURL.path)
+            print("Log fileURL: \(directoryURL)")
             for file in allFiles {
                 if (file.contains(".txt") || file.contains(".csv")) {
                     files.append(file)

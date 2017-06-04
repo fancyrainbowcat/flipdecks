@@ -14,11 +14,11 @@ class Card {
     var correctCount = 0
     var incorrectCount = 0
     
-    init(question: String, answer: String) {
+    init(question: String, answer: String, correctCount : Int, incorrectCount : Int) {
         self.question = question
         self.answer = answer
-        self.correctCount = 0
-        self.incorrectCount = 0
+        self.correctCount = correctCount
+        self.incorrectCount = incorrectCount
     }
     
     //returns question of card

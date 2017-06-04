@@ -34,7 +34,7 @@ class Deck {
             for line in lines {
                 if line != "" {
                     let elements = line.components(separatedBy: ";")
-                    let newCard = Card(question: elements[0], answer: elements[1])
+                    let newCard = Card(question: elements[0], answer: elements[1], correctCount: Int(elements[2])!, incorrectCount: Int(elements[3])!)
                     print("Deck.swift: Added new card: \(newCard.getQuestion()) with answer \(newCard.getAnswer())")
                     self.listOfCards.append(newCard)
                 }
