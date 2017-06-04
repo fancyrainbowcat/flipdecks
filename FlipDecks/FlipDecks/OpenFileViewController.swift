@@ -180,6 +180,7 @@ class OpenFileViewController: UIViewController {
             }
         
             fileNameField.text = ""
+            languageNameField.text = ""
             okButton.isEnabled = false
             okButton.layer.borderColor = UIColor.lightGray.cgColor
         }
