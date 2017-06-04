@@ -59,32 +59,10 @@
                                         </connections>
                                     </button>
                                 </barButtonItem>
-                                <barButtonItem style="plain" id="Gv8-1R-Dk5">
-                                    <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lld-nH-PFA">
-                                        <rect key="frame" x="227" y="9.5" width="93" height="25"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                        <state key="normal" title="&gt;Language&lt;"/>
-                                        <connections>
-                                            <segue destination="fjj-4Q-4j8" kind="presentation" id="H4l-pw-Oup"/>
-                                        </connections>
-                                    </button>
-                                </barButtonItem>
-                                <barButtonItem style="plain" id="Ciy-gj-cDX">
-                                    <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jiy-iH-q4H">
-                                        <rect key="frame" x="330" y="11.5" width="40" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                        <state key="normal" title="&gt;UNIT&lt;"/>
-                                        <connections>
-                                            <segue destination="1yc-w1-MJt" kind="presentation" id="y61-p9-2Y0"/>
-                                        </connections>
-                                    </button>
-                                </barButtonItem>
                             </items>
                         </toolbar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="99" id="kEZ-Cx-pnU">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="languageCell" rowHeight="99" id="kEZ-Cx-pnU">
                                 <rect key="frame" x="0.0" y="28" width="375" height="99"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kEZ-Cx-pnU" id="WWt-0n-J61">
@@ -95,16 +73,18 @@
                                             <rect key="frame" x="112" y="69" width="150" height="2"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </progressView>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rGe-NI-kWo">
-                                            <rect key="frame" x="153" y="18" width="68" height="30"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="arl-zD-bhE">
+                                            <rect key="frame" x="0.0" y="21" width="375" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Language"/>
-                                            <connections>
-                                                <segue destination="kUA-Y8-xdY" kind="presentation" id="FaY-Qz-9nG"/>
-                                            </connections>
-                                        </button>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="kUA-Y8-xdY" kind="presentation" id="Nzq-pd-u2c"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -129,7 +109,7 @@
         <!--English - My Lections-->
         <scene sceneID="Pkx-ol-BPm">
             <objects>
-                <tableViewController id="fjj-4Q-4j8" sceneMemberID="viewController">
+                <tableViewController id="fjj-4Q-4j8" customClass="UnitsTableViewController" customModule="FlipDecks" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="125" sectionHeaderHeight="28" sectionFooterHeight="28" id="0mh-9T-nz9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -143,7 +123,7 @@
                             </connections>
                         </button>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="125" id="W2A-wX-wgs">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="unitCell" rowHeight="125" id="W2A-wX-wgs">
                                 <rect key="frame" x="0.0" y="28" width="375" height="125"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W2A-wX-wgs" id="AB1-gs-dp0">
@@ -154,16 +134,18 @@
                                             <rect key="frame" x="112" y="78" width="150" height="2"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </progressView>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yhY-91-kWD">
-                                            <rect key="frame" x="168" y="23" width="39" height="30"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fr6-YO-nMu">
+                                            <rect key="frame" x="8" y="33" width="367" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Unit 1"/>
-                                            <connections>
-                                                <segue destination="LGg-ZD-xgS" kind="presentation" id="RMq-GK-tez"/>
-                                            </connections>
-                                        </button>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="LGg-ZD-xgS" kind="presentation" id="DhF-6v-jD2"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -171,9 +153,16 @@
                             <outlet property="delegate" destination="fjj-4Q-4j8" id="zia-1h-vTO"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="English - My Lections" id="8FX-HE-lZ2"/>
+                    <navigationItem key="navigationItem" title="English - My Lections" id="8FX-HE-lZ2">
+                        <barButtonItem key="rightBarButtonItem" title="Item" systemItem="cancel" id="P0W-KV-Usg">
+                            <connections>
+                                <segue destination="heW-96-tzL" kind="unwind" unwindAction="cancelToLanguageTableViewControllerWithSegue:" id="Zz6-vc-tZT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NeI-np-hFt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="heW-96-tzL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3565.5999999999999" y="138.98050974512745"/>
         </scene>
@@ -281,10 +270,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="ZvX-03-fiX">
-                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="Iff-ys-6K9"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="Iff-ys-6K9">
+                            <connections>
+                                <segue destination="EfP-76-ROi" kind="unwind" unwindAction="cancelToUnitsTableViewControllerWithSegue:" id="8A2-5y-rfh"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bZg-ek-NNZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="EfP-76-ROi" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="5016.8000000000002" y="134.48275862068968"/>
         </scene>
@@ -334,7 +328,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HHl-IV-cry" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2614" y="139"/>
+            <point key="canvasLocation" x="2612" y="134"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6fD-GF-h5W">
@@ -353,8 +347,4 @@
             <point key="canvasLocation" x="1084" y="139"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="H4l-pw-Oup"/>
-        <segue reference="y61-p9-2Y0"/>
-    </inferredMetricsTieBreakers>
 </document>

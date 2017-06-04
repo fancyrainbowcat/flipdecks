@@ -1,5 +1,5 @@
 //
-//  LanguagesTableViewController.swift
+//  UnitsTableViewController.swift
 //  FlipDecks
 //
 //  Created by Nicola Greth on 04.06.17.
@@ -8,33 +8,34 @@
 
 import UIKit
 
-class LanguagesTableViewController: UITableViewController {
+class UnitsTableViewController: UITableViewController {
 
-    var listOfLanguages = [Language]()
+    var listOfUnits = [Deck]()
+    var languageName = "TestLanguage"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getListOfLanguages()
+        getListOfUnits()
     }
 
-    func getListOfLanguages() {
-        let directoryURL = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true)
+    func getListOfUnits() {
+        let directoryURL = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true).appendingPathComponent(languageName, isDirectory:true)
         
         do {
             let allDicts = try FileManager.default.contentsOfDirectory(atPath: directoryURL.path)
             for dict in allDicts {
-                let newLanguage = Language(name: dict)
-                self.listOfLanguages.append(newLanguage)
+                let newUnit = Deck(name: dict)
+                self.listOfUnits.append(newUnit)
             }
         } catch {
-            print("There are no languages yet")
+            print("There are no units yet")
         }
     }
     
     //show available files in tableView
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "languageCell", for: indexPath)
-        cell.textLabel?.text = listOfLanguages[indexPath.row].getName()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "unitCell", for: indexPath)
+        cell.textLabel?.text = listOfUnits[indexPath.row].getName()
         return cell
     }
     
@@ -49,12 +50,13 @@ class LanguagesTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listOfLanguages.count
+        return listOfUnits.count
     }
-
-
-    @IBAction func cancelToLanguageTableViewController(segue:UIStoryboardSegue) {
     
+    @IBAction func cancelToUnitsTableViewController(segue:UIStoryboardSegue) {
+        
     }
+
+
 
 }

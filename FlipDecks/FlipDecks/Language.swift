@@ -1,0 +1,68 @@
+//
+//  Language.swift
+//  FlipDecks
+//
+//  Created by Nicola Greth on 04.06.17.
+//  Copyright © 2017 Nicola Greth. All rights reserved.
+//
+
+import Foundation
+
+class Language {
+    var name = "" 
+    var listOfDecks = [Deck]()
+    
+    init(name: String) {
+        self.name = name
+        initializeLanguage()
+    }
+    
+    //gets all decks for this language from folder
+    func initializeLanguage() {
+        let directoryURL = Bundle.main.bundleURL.appendingPathComponent(self.name, isDirectory: true)
+        
+        do {
+            let allFiles = try FileManager.default.contentsOfDirectory(atPath: directoryURL.path)
+            for file in allFiles {
+                let index = file.index(file.endIndex, offsetBy: -4)
+                let fileWithoutEnding = file.substring(to: index)
+                let newDeck = Deck(name: fileWithoutEnding)
+                self.listOfDecks.append(newDeck)
+            }
+        } catch {
+            print("There are no files for this language yet")
+        }
+    }
+    
+    //returns count of all decks
+    func getCountOfDecks() -> Int {
+        return listOfDecks.count
+    }
+    
+    //return count of all finished decks
+    func getCountOfFinishedDecks() -> Int {
+        var countFinishedDecks = 0
+        
+        for deck in self.listOfDecks {
+            if deck.getFinishedStatus() == true {
+                countFinishedDecks += 1
+            }
+        }
+        return countFinishedDecks
+    }
+    
+    //returns all not-finished decks
+    func returnAllNotFinishedDecks() -> [Deck] {
+        var notFinishedDecks = [Deck]()
+        for deck in self.listOfDecks {
+            if deck.getFinishedStatus() == false {
+                notFinishedDecks.append(deck)
+            }
+        }
+        return notFinishedDecks
+    }
+    
+    func getName() -> String {
+        return self.name
+    }
+}

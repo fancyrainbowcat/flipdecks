@@ -67,7 +67,7 @@ class OpenFileViewController: UIViewController {
         var valid = false
         
         //if it is a valid txt file
-        if (filename!.contains(".txt")) {
+        if (filename!.contains(".txt") || filename!.contains(".csv")) {
             fileURL = directoryURL.appendingPathComponent(filename!)
             valid = true
         }
@@ -77,10 +77,22 @@ class OpenFileViewController: UIViewController {
         }
         //missing file ending
         else {
-            fileURL = directoryURL.appendingPathComponent(filename!).appendingPathExtension("txt")
-            valid = true
+            do {
+                let allFiles = try FileManager.default.contentsOfDirectory(atPath: directoryURL.path)
+                for file in allFiles {
+                    if file.contains(filename!) {
+                        if (file.contains(".txt") || file.contains(".csv")) {
+                            fileURL = directoryURL.appendingPathComponent(file)
+                            valid = true
+                        }
+                    }
+                }
+            }
+            catch {
+                print("File does not exist")
+                
+            }
         }
-        
         print("Log directoryURL: \(directoryURL)")
         
         if (valid == true) {
@@ -96,6 +108,9 @@ class OpenFileViewController: UIViewController {
                 loadedLabel.text = "File could not be loaded"
                 loadedLabel.textColor = UIColor.red
             }
+        } else {
+            loadedLabel.text = "File is not valid"
+            loadedLabel.textColor = UIColor.red
         }
         
         fileNameField.text = ""

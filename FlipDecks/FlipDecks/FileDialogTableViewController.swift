@@ -29,10 +29,11 @@ class FileDialogTableViewController: UITableViewController {
         do {
             let allFiles = try FileManager.default.contentsOfDirectory(atPath: directoryURL.path)
             for file in allFiles {
-                if file.contains(".txt") {
+                if (file.contains(".txt") || file.contains(".csv")) {
                     files.append(file)
                 }
             }
+            files = files.sorted()
         } catch {
             do {
                 try FileManager.default.createDirectory(atPath: directoryURL.path, withIntermediateDirectories: true, attributes: nil)

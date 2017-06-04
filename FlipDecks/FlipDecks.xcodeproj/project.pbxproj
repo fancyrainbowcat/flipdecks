@@ -28,6 +28,11 @@
 		C00A527F1EE2C963009B3075 /* ExportStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C00A527E1EE2C963009B3075 /* ExportStoryboard.storyboard */; };
 		C00A52811EE2C9B5009B3075 /* ModusMemoryStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C00A52801EE2C9B5009B3075 /* ModusMemoryStoryboard.storyboard */; };
 		C04EF0E91EE3FB62001641BB /* LanguagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04EF0E81EE3FB62001641BB /* LanguagesTableViewController.swift */; };
+		C0E61CA61EE404A200FA962C /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E61CA51EE404A200FA962C /* Card.swift */; };
+		C0E61CA81EE404AD00FA962C /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E61CA71EE404AD00FA962C /* Deck.swift */; };
+		C0E61CAA1EE40E6500FA962C /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E61CA91EE40E6500FA962C /* Language.swift */; };
+		C0E61CB41EE4199F00FA962C /* Languages in Resources */ = {isa = PBXBuildFile; fileRef = C0E61CB31EE4199F00FA962C /* Languages */; };
+		C0E61CB81EE41A7500FA962C /* UnitsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E61CB71EE41A7500FA962C /* UnitsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +80,11 @@
 		C00A527E1EE2C963009B3075 /* ExportStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ExportStoryboard.storyboard; sourceTree = "<group>"; };
 		C00A52801EE2C9B5009B3075 /* ModusMemoryStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ModusMemoryStoryboard.storyboard; sourceTree = "<group>"; };
 		C04EF0E81EE3FB62001641BB /* LanguagesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguagesTableViewController.swift; sourceTree = "<group>"; };
+		C0E61CA51EE404A200FA962C /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		C0E61CA71EE404AD00FA962C /* Deck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
+		C0E61CA91EE40E6500FA962C /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		C0E61CB31EE4199F00FA962C /* Languages */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Languages; sourceTree = "<group>"; };
+		C0E61CB71EE41A7500FA962C /* UnitsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +139,7 @@
 				C00A523E1EE2B0F6009B3075 /* AppDelegate.swift */,
 				C00A52401EE2B0F6009B3075 /* ViewController.swift */,
 				C00A52421EE2B0F6009B3075 /* Main.storyboard */,
+				C0E61CB71EE41A7500FA962C /* UnitsTableViewController.swift */,
 				C04EF0E81EE3FB62001641BB /* LanguagesTableViewController.swift */,
 				C00A52801EE2C9B5009B3075 /* ModusMemoryStoryboard.storyboard */,
 				C00A527E1EE2C963009B3075 /* ExportStoryboard.storyboard */,
@@ -136,12 +147,16 @@
 				C00A527A1EE2C8CC009B3075 /* ModusClassicFlipStoryboard.storyboard */,
 				C00A52781EE2C88C009B3075 /* ModusClassicTypeStoryboard.storyboard */,
 				C00A52761EE2C83B009B3075 /* StatisticsPerUnit.storyboard */,
+				C0E61CB31EE4199F00FA962C /* Languages */,
 				C00A52721EE2C767009B3075 /* StatisticsMainStoryboard.storyboard */,
 				C00A526E1EE2C4F3009B3075 /* ImportStoryboard.storyboard */,
 				C002D6CB1EE3259500505137 /* ImportMainViewController.swift */,
 				C002D6C51EE323F500505137 /* OpenFileViewController.swift */,
 				C002D6C71EE3241500505137 /* ManualInputViewController.swift */,
 				C002D6C91EE3242F00505137 /* FileDialogTableViewController.swift */,
+				C0E61CA51EE404A200FA962C /* Card.swift */,
+				C0E61CA71EE404AD00FA962C /* Deck.swift */,
+				C0E61CA91EE40E6500FA962C /* Language.swift */,
 				C00A52451EE2B0F6009B3075 /* Assets.xcassets */,
 				C00A52471EE2B0F6009B3075 /* LaunchScreen.storyboard */,
 				C00A524A1EE2B0F6009B3075 /* Info.plist */,
@@ -274,6 +289,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0E61CB41EE4199F00FA962C /* Languages in Resources */,
 				C00A527F1EE2C963009B3075 /* ExportStoryboard.storyboard in Resources */,
 				C00A52731EE2C767009B3075 /* StatisticsMainStoryboard.storyboard in Resources */,
 				C00A527D1EE2C916009B3075 /* ModusQuizStoryboard.storyboard in Resources */,
@@ -310,13 +326,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0E61CA81EE404AD00FA962C /* Deck.swift in Sources */,
+				C0E61CAA1EE40E6500FA962C /* Language.swift in Sources */,
 				C04EF0E91EE3FB62001641BB /* LanguagesTableViewController.swift in Sources */,
 				C002D6C61EE323F500505137 /* OpenFileViewController.swift in Sources */,
 				C00A52411EE2B0F6009B3075 /* ViewController.swift in Sources */,
+				C0E61CB81EE41A7500FA962C /* UnitsTableViewController.swift in Sources */,
 				C00A523F1EE2B0F6009B3075 /* AppDelegate.swift in Sources */,
 				C002D6CA1EE3242F00505137 /* FileDialogTableViewController.swift in Sources */,
 				C002D6CC1EE3259500505137 /* ImportMainViewController.swift in Sources */,
 				C002D6C81EE3241500505137 /* ManualInputViewController.swift in Sources */,
+				C0E61CA61EE404A200FA962C /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
