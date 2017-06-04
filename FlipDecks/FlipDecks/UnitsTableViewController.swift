@@ -8,28 +8,29 @@
 
 import UIKit
 
-//TableViewController that contains all units for one language
+//TableViewController that contains all units/decks for one language
 class UnitsTableViewController: UITableViewController {
 
-    var currentLanguage : Language?
+    //current language
+    var language : Language = Language(name: "")
+    
+    //list of all decks/units
     var listOfUnits = [Deck]()
-    var languageName = ""
     
     //set title of ViewController
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = languageName
+        self.title = language.getName()
     }
 
-    //get all Units for ViewController
+    //get all Units for ViewController > store in listOfUnits
     func getListOfUnits() {
-        if (self.languageName != "") {
-            currentLanguage = Language(name: languageName)
-            self.listOfUnits = (currentLanguage?.returnAllDecks())!
+        if (self.language.getName() != "") {
+            self.listOfUnits = (language.returnAllDecks())
         }
     }
     
-    //show available files in tableView
+    //show available units in tableView
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "unitCell", for: indexPath)
         cell.textLabel?.text = listOfUnits[indexPath.row].getName()
@@ -61,17 +62,18 @@ class UnitsTableViewController: UITableViewController {
         
     }
     
-    //give language and unit to ModusViewController
+    //give language and unit to ModusViewController via segue unitToModus
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "unitToModus" {
             let cell = sender as! UITableViewCell
             let indexPath = self.tableView.indexPath(for:cell)!
             let selectedUnit = listOfUnits[indexPath.row]
             
+            //since there is a navigation controller in the middle, I have to go through it
             let navigationController = segue.destination as! UINavigationController
             let controller = navigationController.viewControllers.first as! ModusViewController
-            controller.unitName = selectedUnit.getName()
-            controller.languageName = self.languageName
+            controller.deck = selectedUnit
+            controller.language = self.language
         }
     }
 

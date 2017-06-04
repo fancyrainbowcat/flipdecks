@@ -35,6 +35,7 @@ class Card {
     
     //stores result of card being played
     func cardPlayed(result : String) {
+        //increment either correct or incorrectCount
         if result == "correct" {
             self.correctCount += 1
         } else {
@@ -42,11 +43,16 @@ class Card {
         }
     }
     
-    //returns status of card (true if card has been correct 3 times, else false)
+    //returns status of card (true if card has been correct at least 3 times, else false)
     func getFinishedStatus() -> Bool {
         if (self.correctCount >= 3 ) {
             return true
         }
         return false
+    }
+    
+    //returns incorrect count of card
+    func getIncorrectCount() -> Int {
+        return self.incorrectCount
     }
 }

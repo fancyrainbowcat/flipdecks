@@ -11,8 +11,13 @@ import UIKit
 //View Controller for file dialog
 class FileDialogTableViewController: UITableViewController {
     
+    //stores all files that the user can choose
     var files : [String] = []
+    
+    //file that the user chose
     var selectedFile : String = ""
+    
+    //URL of "Documents/Flipdecks"
     var directoryURL : URL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("FlipDecks", isDirectory: true)
     
     override func viewDidLoad() {
@@ -27,15 +32,17 @@ class FileDialogTableViewController: UITableViewController {
     //saves content of FlipDecks directory in string array files
     func listDirectoryContent() {
         do {
+            //loop over all files in FlipDecks directory and append all .txt or .csv files
             let allFiles = try FileManager.default.contentsOfDirectory(atPath: directoryURL.path)
-            print("Log fileURL: \(directoryURL)")
             for file in allFiles {
                 if (file.contains(".txt") || file.contains(".csv")) {
                     files.append(file)
                 }
             }
+            //sort files for better user experience :)
             files = files.sorted()
-        } catch {
+        } //if there are no contents of this path we have to create the directory first and then loop over the files again, this case should only be reached once
+        catch {
             do {
                 try FileManager.default.createDirectory(atPath: directoryURL.path, withIntermediateDirectories: true, attributes: nil)
                 listDirectoryContent()

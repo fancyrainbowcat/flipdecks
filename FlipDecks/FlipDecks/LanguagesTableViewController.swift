@@ -11,27 +11,36 @@ import UIKit
 //View Controller for all available languages
 class LanguagesTableViewController: UITableViewController {
 
+    //contains all languages
     var listOfLanguages = [Language]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
-    //gets list of all languages
+    //gets list of all languages = all folders in internal folder "Languages"
     func getListOfLanguages() {
+        
+        //URL for internal folder "Languages"
         let directoryURL = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true)
         
         do {
+            //get the content of folder "Languages"
             let allDicts = try FileManager.default.contentsOfDirectory(atPath: directoryURL.path)
+            
+            //check for all folders if any of those is a new language, that is not contained in listOfLanguages yet
             for dict in allDicts {
                 let newLanguage = Language(name: dict)
                 let checkLanguageExists = listOfLanguages.contains(where: { $0.getName() == newLanguage.getName() })
+                
+                //if it is a new language append it to listOfLanguages
                 if (checkLanguageExists == false) {
                     self.listOfLanguages.append(newLanguage)
                 }
             }
-        } catch {
-            print("There are no languages yet")
+        } //this should never be reached: case that there are no languages yet (we will provide default languages)
+        catch {
+            print("LanguagesTableViewController: There are no languages yet")
         }
     }
     
@@ -41,7 +50,7 @@ class LanguagesTableViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
-    //show available files in tableView
+    //show available languages in tableView
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "languageCell", for: indexPath)
         cell.textLabel?.text = listOfLanguages[indexPath.row].getName()
@@ -70,13 +79,16 @@ class LanguagesTableViewController: UITableViewController {
     //give language to UnitsTableViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "languageToUnit" {
+            
+            //get the selected language 
             let cell = sender as! UITableViewCell
             let indexPath = self.tableView.indexPath(for:cell)!
             let selectedLanguage = listOfLanguages[indexPath.row]
             
+            //since there is a navigation controller in between, I have to go through it
             let navigationController = segue.destination as! UINavigationController
             let controller = navigationController.viewControllers.first as! UnitsTableViewController
-            controller.languageName = selectedLanguage.getName()
+            controller.language = selectedLanguage
         }
     }
 }

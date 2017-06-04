@@ -255,7 +255,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Export"/>
                                 <connections>
-                                    <segue destination="dd2-UB-ahz" kind="presentation" id="uHX-hw-aWS"/>
+                                    <segue destination="dd2-UB-ahz" kind="presentation" identifier="modusToExport" id="uHX-hw-aWS"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ILR-D6-Jrz">
@@ -317,7 +317,6 @@
         <!--Navigation Controller-->
         <scene sceneID="Lrf-gd-avi">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HHl-IV-cry" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="kUA-Y8-xdY" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Mzx-TG-80U">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -327,6 +326,7 @@
                         <segue destination="fjj-4Q-4j8" kind="relationship" relationship="rootViewController" id="Fhk-ZA-UDl"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HHl-IV-cry" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2612" y="134"/>
         </scene>

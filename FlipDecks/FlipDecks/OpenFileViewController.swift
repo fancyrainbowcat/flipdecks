@@ -52,7 +52,7 @@ class OpenFileViewController: UIViewController {
         return
     }
     
-    //cancel button action
+    //cancel button action > go back to openFileViewController
     @IBAction func cancelToOpenFileViewController(segue:UIStoryboardSegue) {
         self.fileNameField.text = ""
         okButton.isEnabled = false
@@ -60,7 +60,7 @@ class OpenFileViewController: UIViewController {
         loadedLabel.text = ""
     }
     
-    //use selected file done button action
+    //sets selectedFile and enables button
     @IBAction func useFile(segue:UIStoryboardSegue) {
         self.fileNameField.text = selectedFile
         okButton.isEnabled = true
@@ -69,36 +69,55 @@ class OpenFileViewController: UIViewController {
     
     //checks if language is already existent
     func checkForLanguageExistence(languageName : String) -> String {
+        //URL of internal "Languages" folder
         let allLanguagesURL = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true)
         
         do {
+            //loop over all folders = languages in "Languages" folder
             let allDicts = try FileManager.default.contentsOfDirectory(atPath: allLanguagesURL.path)
             for dict in allDicts {
+                //if there is already a folder name that is the same as the new languageName use this name
                 if dict.lowercased() == languageName.lowercased() {
                     return dict
                 }
             }
-        } catch {
-            print("There are no languages yet")
+        } //should never be reached since we will provide dummy languages
+        catch {
+            print("OpenFileViewController: There are no languages yet")
         }
-        
+        //if the language does not exist yet it should be a new one
         return "not found"
     }
     
     //load data from file in documents folder into internal storage
     func loadData(filename : String, languageName : String, fileURL : URL) {
+        //content of file to be loaded
         var contentOfFile = ""
+        
+        //content that will be written into internal storage
         var newContent = ""
+        
+        //this will remove the file ending
         let index = filename.index(filename.endIndex, offsetBy: -4)
         let fileWithoutEnding = filename.substring(to: index)
         
+        //path to internal file "Languages/languageName/fileName.txt" > internal files will always be .txt files
         let deckPath = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true).appendingPathComponent(languageName, isDirectory: true).appendingPathComponent(fileWithoutEnding).appendingPathExtension("txt")
-        print("Log deckPath: \(deckPath)")
+        
+        /*for logging purposes, this is where the export will be created at
+         if you want to access this folder copy the URL and open a command window
+         remove filename from URL
+         type: cd URL e.g. cd /Users/nicolagreth/Library/Developer/CoreSimulator/Devices/DD4410EE-83B0-45B9-9584-9CC740FDE3B7/data/Containers/Bundle/Application/A5BFFC58-6E29-4A11-954E-68D7F7C05B6F/FlipDecks.app/Languages/test/
+         then type: open .
+         this will open the finder so you can open the files with any program of your choice */
+        print("OpenFileViewController: Log deckPath at \(deckPath)")
         
         do {
+            //split content of original file into lines
             contentOfFile = try String(contentsOf: fileURL)
             let lines = contentOfFile.components(separatedBy: "\n")
             
+            //loop over lines and split into elements by file separator ";"
             for line in lines {
                 if line != "" {
                     var newLine = line
@@ -106,12 +125,17 @@ class OpenFileViewController: UIViewController {
                     newContent.append(newLine)
                 }
             }
+            //convert content string into data
             let contentData = newContent.data(using: .utf8)
+            
+            //create internal file and write into it
             FileManager.default.createFile(atPath: deckPath.path, contents: contentData, attributes: nil)
+            
+            //send message
             loadedLabel.text = "File successfully loaded"
             loadedLabel.textColor = UIColor.green
         } catch {
-            print("Failed to read file")
+            //send message if file could not be loaded e.g. incorrect format
             loadedLabel.text = "File could not be loaded"
             loadedLabel.textColor = UIColor.red
         }
@@ -119,30 +143,45 @@ class OpenFileViewController: UIViewController {
     
     //read from file
     @IBAction func readFromFile() {
-        //no language is given
+        //if there is no language given user is informed to enter language name
         if(languageNameField.text == "") {
             loadedLabel.text = "Please enter language name"
             loadedLabel.textColor = UIColor.red
-        } //language is valid
+        } //if language is valid
         else {
+            //URL of folder "Documents/Flipdecks"
             let directoryURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("FlipDecks", isDirectory: true)
+            
+            /*for logging purposes, this is where the export will be created at
+             if you want to access this folder copy the URL and open a command window
+             type: cd URL e.g. cd /Users/nicolagreth/Library/Developer/CoreSimulator/Devices/DD4410EE-83B0-45B9-9584-9CC740FDE3B7/data/Containers/Data/Application/A0EEA03D-93F7-4C41-89DE-28901C420443/Documents/FlipDecks/
+             then type: open .
+             this will open the finder so you can open the files with any program of your choice */
+            print("OpenFileViewController: Log directoryURL: \(directoryURL)")
+            
+            //name of file
             let filename = fileNameField.text
+            
+            //URL of file, here it is only initialized with the directory URL, it will be changed later
             var fileURL:URL = directoryURL
+            
+            //name of the target language
             let languageName = languageNameField.text
+            
+            //check if the file it in a valid format e.g. .txt or .csv
             var valid = false
         
-            //if it is a valid txt file
+            //if the given filename is a valid .txt/.csv file create fileURL
             if (filename!.contains(".txt") || filename!.contains(".csv")) {
                 fileURL = directoryURL.appendingPathComponent(filename!)
                 valid = true
-            }
-            //test for invalid file format
+            } //test for invalid file format e.g. everything with a fileEnding indicated by "." but not txt or csv
             else if (filename!.contains(".")) {
-                print("File Ending is not valid, please use .txt files")
-            }
-            //missing file ending
+                print("OpenFileViewController: File Ending is not valid, please use .txt files")
+            } //missing file ending - we have to add the correct ending e.g. .txt or .csv
             else {
                 do {
+                    //loop over all files in directory and find the one with our filename, then add the correct fileEnding
                     let allFiles = try FileManager.default.contentsOfDirectory(atPath: directoryURL.path)
                     for file in allFiles {
                         if file.contains(filename!) {
@@ -152,33 +191,38 @@ class OpenFileViewController: UIViewController {
                             }
                         }
                     }
-                }
+                } //if this is printed then the file is not existent and has to be created yet
                 catch {
-                    print("File does not exist")
+                    print("OpenFileViewController: File does not exist")
                 
                 }
             }
             
+            //internal target directory "Languages"
             let allLanguagesURL = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true).appendingPathComponent(languageName!, isDirectory: true)
-            print("Log allLanguagesURL: \(allLanguagesURL)")
         
+            //if the file is valid (in the checks above)
             if (valid == true) {
+                //check if the language exists currently
                 let checkResult = checkForLanguageExistence(languageName: languageName!)
+                
+                //if the language does exist, use the correct language name (upper/lowercase) and write into the language folder
                 if (checkResult != "not found") {
                     loadData(filename: filename!, languageName: checkResult, fileURL: fileURL)
-                } else {
+                } else { //if the language does not exist, load the data and create the language folder
                     do {
                         try FileManager.default.createDirectory(atPath: allLanguagesURL.path, withIntermediateDirectories: true, attributes: nil)
                         loadData(filename: filename!, languageName: languageName!, fileURL: fileURL)
-                    } catch  {
-                        print("Could not create directory")
+                    } catch  { //should not happen, there was an error with creating the directory
+                        print("OpenFileViewController: Could not create directory")
                     }
                 }
-            } else {
+            } else { //if ths file is not valid the user is informed
                 loadedLabel.text = "File is not valid"
                 loadedLabel.textColor = UIColor.red
             }
         
+            //after the load action all input should be resetted 
             fileNameField.text = ""
             languageNameField.text = ""
             okButton.isEnabled = false

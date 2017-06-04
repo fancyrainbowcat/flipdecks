@@ -34,6 +34,7 @@
 		C0E61CB41EE4199F00FA962C /* Languages in Resources */ = {isa = PBXBuildFile; fileRef = C0E61CB31EE4199F00FA962C /* Languages */; };
 		C0E61CB81EE41A7500FA962C /* UnitsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E61CB71EE41A7500FA962C /* UnitsTableViewController.swift */; };
 		C0E61CBA1EE4297400FA962C /* ModusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E61CB91EE4297400FA962C /* ModusViewController.swift */; };
+		C0E61CBC1EE489AA00FA962C /* ExportStoryboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E61CBB1EE489AA00FA962C /* ExportStoryboardViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		C0E61CB31EE4199F00FA962C /* Languages */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Languages; sourceTree = "<group>"; };
 		C0E61CB71EE41A7500FA962C /* UnitsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitsTableViewController.swift; sourceTree = "<group>"; };
 		C0E61CB91EE4297400FA962C /* ModusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModusViewController.swift; sourceTree = "<group>"; };
+		C0E61CBB1EE489AA00FA962C /* ExportStoryboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExportStoryboardViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 				C04EF0E81EE3FB62001641BB /* LanguagesTableViewController.swift */,
 				C00A52801EE2C9B5009B3075 /* ModusMemoryStoryboard.storyboard */,
 				C00A527E1EE2C963009B3075 /* ExportStoryboard.storyboard */,
+				C0E61CBB1EE489AA00FA962C /* ExportStoryboardViewController.swift */,
 				C00A527C1EE2C916009B3075 /* ModusQuizStoryboard.storyboard */,
 				C00A527A1EE2C8CC009B3075 /* ModusClassicFlipStoryboard.storyboard */,
 				C00A52781EE2C88C009B3075 /* ModusClassicTypeStoryboard.storyboard */,
@@ -338,6 +341,7 @@
 				C00A523F1EE2B0F6009B3075 /* AppDelegate.swift in Sources */,
 				C0E61CBA1EE4297400FA962C /* ModusViewController.swift in Sources */,
 				C002D6CA1EE3242F00505137 /* FileDialogTableViewController.swift in Sources */,
+				C0E61CBC1EE489AA00FA962C /* ExportStoryboardViewController.swift in Sources */,
 				C002D6CC1EE3259500505137 /* ImportMainViewController.swift in Sources */,
 				C002D6C81EE3241500505137 /* ManualInputViewController.swift in Sources */,
 				C0E61CA61EE404A200FA962C /* Card.swift in Sources */,

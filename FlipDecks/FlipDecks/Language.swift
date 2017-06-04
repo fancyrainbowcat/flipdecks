@@ -10,6 +10,8 @@ import Foundation
 
 //Class Language -> part of list of languages in LanguagesTablesViewController
 class Language {
+    
+    //language name and list of decks for this language
     var name = "" 
     var listOfDecks = [Deck]()
     
@@ -21,8 +23,10 @@ class Language {
     
     //gets all decks for this language from folder
     func initializeLanguage() {
+        //URL of internal "Languages" folder where we store all data
         let directoryURL = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory:true).appendingPathComponent(self.name, isDirectory: true)
         do {
+            //loop over all files in this directory and append it as decks into listOfDecks (without fileEnding)
             let allFiles = try FileManager.default.contentsOfDirectory(atPath: directoryURL.path)
             for file in allFiles {
                 let index = file.index(file.endIndex, offsetBy: -4)
@@ -31,20 +35,22 @@ class Language {
                 let newDeck = Deck(name: fileWithoutEnding, languageName: self.name, fileEnding: fileEnding)
                 self.listOfDecks.append(newDeck)
             }
-        } catch {
+        } //should not be reached since we will create sample data
+        catch {
             print("Language.swift: There are no files for this language yet")
         }
     }
     
     //returns count of all decks
     func getCountOfDecks() -> Int {
-        return listOfDecks.count
+        return self.listOfDecks.count
     }
     
     //return count of all finished decks
     func getCountOfFinishedDecks() -> Int {
         var countFinishedDecks = 0
         
+        //loop over all decks and count finished decks
         for deck in self.listOfDecks {
             if deck.getFinishedStatus() == true {
                 countFinishedDecks += 1
@@ -56,6 +62,8 @@ class Language {
     //returns all not-finished decks
     func returnAllNotFinishedDecks() -> [Deck] {
         var notFinishedDecks = [Deck]()
+        
+        //loop over all decks and count unfinished decks
         for deck in self.listOfDecks {
             if deck.getFinishedStatus() == false {
                 notFinishedDecks.append(deck)
@@ -66,7 +74,7 @@ class Language {
     
     //returns all decks for this language
     func returnAllDecks() -> [Deck] {
-        return listOfDecks
+        return self.listOfDecks
     }
     
     //returns name of language

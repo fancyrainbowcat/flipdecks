@@ -11,16 +11,33 @@ import UIKit
 //View Controller for all modi for one unit for one language
 class ModusViewController: UIViewController {
 
-    var unitName = ""
-    var languageName = ""
+    //current deck and language
+    var deck : Deck = Deck(name: "", languageName: "", fileEnding: "")
+    var language : Language = Language(name: "")
     
     //set title when view was loaded
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "\(languageName) - \(unitName)"
+        self.title = "\(self.language.getName()) - \(self.deck.getName())"
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    //give language and unit to ExportStoryboardViewController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "modusToExport" {
+            
+            //since there is a navigation controller in between, I have to go through it 
+            let navigationController = segue.destination as! UINavigationController
+            let controller = navigationController.viewControllers.first as! ExportStoryboardViewController
+            controller.language = self.language
+            controller.deck = self.deck
+        }
+    }
+    
+    //functionality for cancel button segue
+    @IBAction func cancelToModusTableViewController(segue:UIStoryboardSegue) {
     }
 }

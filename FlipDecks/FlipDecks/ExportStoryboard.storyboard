@@ -28,7 +28,7 @@
         <!--Export-->
         <scene sceneID="mxS-k5-6Ks">
             <objects>
-                <viewController id="Hyf-T9-NJs" sceneMemberID="viewController">
+                <viewController id="Hyf-T9-NJs" customClass="ExportStoryboardViewController" customModule="FlipDecks" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LJd-Ah-BeW"/>
                         <viewControllerLayoutGuide type="bottom" id="0h6-M3-SVk"/>
@@ -41,22 +41,45 @@
                                 <rect key="frame" x="138" y="208" width="62" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="All Cards"/>
+                                <connections>
+                                    <action selector="exportAllCards:" destination="Hyf-T9-NJs" eventType="touchUpInside" id="d1V-Iz-XmZ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MuA-a6-ZSX">
                                 <rect key="frame" x="122" y="414" width="131" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Most intense cards"/>
+                                <connections>
+                                    <action selector="exportMostIntenseCards:" destination="Hyf-T9-NJs" eventType="touchUpInside" id="EoW-eE-8yK"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsF-KC-CA9">
+                                <rect key="frame" x="16" y="548" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Export" id="amQ-Is-fB4">
-                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="BoY-Vh-Dqd"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="BoY-Vh-Dqd">
+                            <connections>
+                                <segue destination="zpc-yn-MHM" kind="unwind" unwindAction="cancelToModusTableViewControllerWithSegue:" id="d3B-3a-baJ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="allCardsButton" destination="wtJ-sQ-Xqs" id="Blr-lx-8nm"/>
+                        <outlet property="messageLabel" destination="wsF-KC-CA9" id="g51-9J-ekZ"/>
+                        <outlet property="mostIntenseCardsButton" destination="MuA-a6-ZSX" id="73X-jw-vG8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Npz-Z4-bY6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="zpc-yn-MHM" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="7989" y="633"/>
+            <point key="canvasLocation" x="7988" y="632.83358320839591"/>
         </scene>
     </scenes>
 </document>
