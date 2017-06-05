@@ -18,11 +18,11 @@ class Language {
     //new Language
     init(name: String) {
         self.name = name
-        initializeLanguage()
+        refreshDeckList()
     }
     
     //gets all decks for this language from folder
-    func initializeLanguage() {
+    func refreshDeckList() {
         //URL of internal "Languages" folder where we store all data
         let directoryURL = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory:true).appendingPathComponent(self.name, isDirectory: true)
         do {
@@ -35,7 +35,13 @@ class Language {
                     let fileWithoutEnding = file.substring(to: index)
                     let fileEnding = file.substring(from: index)
                     let newDeck = Deck(name: fileWithoutEnding, languageName: self.name, fileEnding: fileEnding)
-                    self.listOfDecks.append(newDeck)
+
+                    //check if deck is already in list
+                    let checkDeckExists = listOfDecks.contains(where: { $0.getName() == newDeck.getName() })
+                        
+                    if(checkDeckExists == false) {
+                        self.listOfDecks.append(newDeck)
+                    }
                 }
             }
         } //should not be reached since we will create sample data
@@ -46,11 +52,13 @@ class Language {
     
     //returns count of all decks
     func getCountOfDecks() -> Int {
+        refreshDeckList()
         return self.listOfDecks.count
     }
     
     //return count of all finished decks
     func getCountOfFinishedDecks() -> Int {
+        refreshDeckList()
         var countFinishedDecks = 0
         
         //loop over all decks and count finished decks
@@ -64,6 +72,7 @@ class Language {
     
     //returns all not-finished decks
     func returnAllNotFinishedDecks() -> [Deck] {
+        refreshDeckList()
         var notFinishedDecks = [Deck]()
         
         //loop over all decks and count unfinished decks
@@ -77,6 +86,7 @@ class Language {
     
     //returns all decks for this language
     func returnAllDecks() -> [Deck] {
+        refreshDeckList()
         return self.listOfDecks
     }
     
