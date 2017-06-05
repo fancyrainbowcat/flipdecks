@@ -91,7 +91,8 @@ class ExportStoryboardViewController: UIViewController {
         
         //if the listOfCards is empty there are no most intense cards yet 
         if listOfCards.isEmpty {
-            messageLabel.text = "There are no cards yet that were incorrect more than 3 times"
+            messageLabel.text = "There are no most intense cards yet"
+            messageLabel.textColor = UIColor.red
         } else {
             export(listOfCards: listOfCards, modus: "Intense")
         }

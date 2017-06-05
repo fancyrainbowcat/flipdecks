@@ -20,11 +20,11 @@ class Deck {
         self.name = name
         self.fileEnding = fileEnding
         self.languageName = languageName
-        initializeDeck()
+        refreshDeck()
     }
     
     //initializes the deck with information from given file (only txt files are valid)
-    func initializeDeck() {
+    func refreshDeck() {
         //set fileName and filePath
         let fileName = self.name + fileEnding
         let filePath = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true).appendingPathComponent(self.languageName, isDirectory: true).appendingPathComponent(fileName)
@@ -42,24 +42,32 @@ class Deck {
                     
                     //create a new card and append it to this deck
                     let newCard = Card(question: elements[0], answer: elements[1], correctCount: Int(elements[2])!, incorrectCount: Int(elements[3])!)
-                    self.listOfCards.append(newCard)
+                    
+                    //check if card is already in list
+                    let checkCardExists = listOfCards.contains(where: { $0.getQuestion() == newCard.getQuestion() && $0.getAnswer() == newCard.getAnswer() })
+                    
+                    if(checkCardExists == false) {
+                        self.listOfCards.append(newCard)
+                    }
                 }
             }
         }
         catch
         {
-        //TODO
+            print("Deck.swift: Could not read content of file")
         }
         
     }
     
     //returns count of all cards
     func getCountOfCards() -> Int {
+        refreshDeck()
         return listOfCards.count
     }
     
     //return count of all finished cards (finished card = 3x correct)
     func getCountOfFinishedCards() -> Int {
+        refreshDeck()
         var countFinishedCards = 0
         
         //if status of card is finished append it
@@ -81,6 +89,7 @@ class Deck {
     
     //returns all not-finished cards 
     func returnAllNotFinishedCards() -> [Card] {
+        refreshDeck()
         var notFinishedCards = [Card]()
         //if status of card is not finished append it
         for card in self.listOfCards {
@@ -93,6 +102,7 @@ class Deck {
     
     //returns all cards
     func returnAllCards() -> [Card] {
+        refreshDeck()
         return self.listOfCards
     }
     
@@ -103,6 +113,7 @@ class Deck {
     
     //returns most intense cards in deck 
     func returnMostIntenseCards() -> [Card] {
+        refreshDeck()
         var mostIntenseCards = [Card]()
         for card in self.listOfCards {
             //card is intense when it has been incorrect for at least 3 times
