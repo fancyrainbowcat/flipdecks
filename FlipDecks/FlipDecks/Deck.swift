@@ -14,6 +14,8 @@ class Deck {
     var fileEnding = ""
     var listOfCards = [Card]()
     var languageName = ""
+    var fileName = ""
+    var filePath = URL(string:"")
     
     //new Deck
     init(name: String, languageName: String, fileEnding: String) {
@@ -26,37 +28,39 @@ class Deck {
     //initializes the deck with information from given file (only txt files are valid)
     func refreshDeck() {
         //set fileName and filePath
-        let fileName = self.name + fileEnding
-        let filePath = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true).appendingPathComponent(self.languageName, isDirectory: true).appendingPathComponent(fileName)
+        fileName = self.name + fileEnding
+        
+        if (fileName != "") {
+            filePath = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true).appendingPathComponent(self.languageName, isDirectory: true).appendingPathComponent(fileName)
     
-        do
-        {
-            //get content of file and split it in lines
-            let contents = try String(contentsOfFile: filePath.path)
-            let lines = contents.components(separatedBy: "\n")
+            do
+            {
+                //get content of file and split it in lines
+                let contents = try String(contentsOfFile: (filePath?.path)!)
+                let lines = contents.components(separatedBy: "\n")
             
-            //loop over lines and split into elements
-            for line in lines {
-                if line != "" {
-                    let elements = line.components(separatedBy: ";")
+                //loop over lines and split into elements
+                for line in lines {
+                    if line != "" {
+                        let elements = line.components(separatedBy: ";")
                     
-                    //create a new card and append it to this deck
-                    let newCard = Card(question: elements[0], answer: elements[1], correctCount: Int(elements[2])!, incorrectCount: Int(elements[3])!)
+                        //create a new card and append it to this deck
+                        let newCard = Card(question: elements[0], answer: elements[1], correctCount: Int(elements[2])!, incorrectCount: Int(elements[3])!)
                     
-                    //check if card is already in list
-                    let checkCardExists = listOfCards.contains(where: { $0.getQuestion() == newCard.getQuestion() && $0.getAnswer() == newCard.getAnswer() })
+                        //check if card is already in list
+                        let checkCardExists = listOfCards.contains(where: { $0.getQuestion() == newCard.getQuestion() && $0.getAnswer() == newCard.getAnswer() })
                     
-                    if(checkCardExists == false) {
-                        self.listOfCards.append(newCard)
+                        if(checkCardExists == false) {
+                            self.listOfCards.append(newCard)
+                        }
                     }
                 }
             }
+            catch
+            {
+                print("Deck.swift: Could not read content of file")
+            }
         }
-        catch
-        {
-            print("Deck.swift: Could not read content of file")
-        }
-        
     }
     
     //returns count of all cards
@@ -122,5 +126,27 @@ class Deck {
             }
         }
         return mostIntenseCards
+    }
+    
+    //saves the current status in file 
+    func saveToFile() {
+        //remove deck
+        do {
+            try FileManager.default.removeItem(atPath: (filePath?.path)!)
+        }
+        catch let error as NSError {
+            print("\(error)")
+        }
+        
+        //write current data into content string
+        var content = ""
+        for card in listOfCards {
+            content = content.appending("\(card.getQuestion());\(card.getAnswer());\(card.getCorrectCount());\(card.getIncorrectCount())\n")
+        }
+        //convert content string to data
+        let contentData = content.data(using: .utf8)
+        
+        //recreate deck with current values
+        FileManager.default.createFile(atPath: (filePath?.path)!, contents: contentData, attributes: nil)
     }
 }

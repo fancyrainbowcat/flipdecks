@@ -55,4 +55,9 @@ class Card {
     func getIncorrectCount() -> Int {
         return self.incorrectCount
     }
+    
+    //returns correct count of card
+    func getCorrectCount() -> Int {
+        return self.correctCount
+    }
 }
