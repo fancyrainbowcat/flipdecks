@@ -157,6 +157,15 @@ class OpenFileViewController: UIViewController {
             //URL of folder "Documents/Flipdecks"
             let directoryURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("FlipDecks", isDirectory: true)
             
+            //check if FlipDecks directory exists at this point
+            if (!FileManager.default.fileExists(atPath: directoryURL.path)) {
+                do {
+                    try FileManager.default.createDirectory(atPath: directoryURL.path, withIntermediateDirectories: true, attributes: nil)
+                } catch let error as NSError {
+                    print(error.localizedDescription);
+                }
+            }
+            
             /*for logging purposes, this is where the export will be created at
              if you want to access this folder copy the URL and open a command window
              type: cd URL e.g. cd /Users/nicolagreth/Library/Developer/CoreSimulator/Devices/DD4410EE-83B0-45B9-9584-9CC740FDE3B7/data/Containers/Data/Application/A0EEA03D-93F7-4C41-89DE-28901C420443/Documents/FlipDecks/
