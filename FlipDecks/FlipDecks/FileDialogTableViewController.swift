@@ -20,6 +20,7 @@ class FileDialogTableViewController: UITableViewController {
     //URL of "Documents/Flipdecks"
     var directoryURL : URL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("FlipDecks", isDirectory: true)
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.listDirectoryContent()
@@ -31,6 +32,14 @@ class FileDialogTableViewController: UITableViewController {
     
     //saves content of FlipDecks directory in string array files
     func listDirectoryContent() {
+        
+        /*for logging purposes, this is where you have to put the files
+         if you want to access this folder copy the URL and open a command window
+         type: cd URL e.g. cd /Users/nicolagreth/Library/Developer/CoreSimulator/Devices/DD4410EE-83B0-45B9-9584-9CC740FDE3B7/data/Containers/Data/Application/A0EEA03D-93F7-4C41-89DE-28901C420443/Documents/FlipDecks/
+         then type: open .
+         this will open the finder so you can open the files with any program of your choice */
+        print("Put your files here: Log directoryURL: \(directoryURL)")
+        
         do {
             //loop over all files in FlipDecks directory and append all .txt or .csv files
             let allFiles = try FileManager.default.contentsOfDirectory(atPath: directoryURL.path)

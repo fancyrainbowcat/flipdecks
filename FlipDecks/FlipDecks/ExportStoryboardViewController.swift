@@ -33,7 +33,18 @@ class ExportStoryboardViewController: UIViewController {
     //exports the given list of cards
     func export(listOfCards : [Card], modus: String) {
         //Directory Documents/FlipDecks/Export/...
+        let directoryURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("FlipDecks", isDirectory: true)
         let exportDirURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("FlipDecks", isDirectory: true).appendingPathComponent("Export", isDirectory: true)
+        
+        //check if FlipDecks directory and export directory exists at this point
+        if (!FileManager.default.fileExists(atPath: directoryURL.path)) {
+            do {
+                try FileManager.default.createDirectory(atPath: directoryURL.path, withIntermediateDirectories: true, attributes: nil)
+                try FileManager.default.createDirectory(atPath: exportDirURL.path, withIntermediateDirectories: true, attributes: nil)
+            } catch let error as NSError {
+                print(error.localizedDescription);
+            }
+        }
         
         //file name is always deckName_modus e.g. Unit1_All or Unit1_Intense
         let fileURL = exportDirURL.appendingPathComponent("\(self.deck.getName())_\(modus)").appendingPathExtension("csv")
@@ -69,13 +80,7 @@ class ExportStoryboardViewController: UIViewController {
             
         } //in catch case the directory will be created because it only gets here if this does not exist
         catch {
-            do {
-                try FileManager.default.createDirectory(atPath: fileURL.path, withIntermediateDirectories: true, attributes: nil)
-                
-                //then call export function recursively to get into the do case
-                export(listOfCards : listOfCards, modus : modus)
-            } catch {
-            }
+            print("Export: Directory does not exist")
         }
     }
     

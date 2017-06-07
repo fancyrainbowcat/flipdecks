@@ -109,7 +109,7 @@ class OpenFileViewController: UIViewController {
         //path to internal file "Languages/languageName/fileName.txt" > internal files will always be .txt files
         let deckPath = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true).appendingPathComponent(languageName, isDirectory: true).appendingPathComponent(fileWithoutEnding).appendingPathExtension("txt")
         
-        /*for logging purposes, this is where the export will be created at
+        /*for logging purposes, this is where your deck is stored internally
          if you want to access this folder copy the URL and open a command window
          remove filename from URL
          type: cd URL e.g. cd /Users/nicolagreth/Library/Developer/CoreSimulator/Devices/DD4410EE-83B0-45B9-9584-9CC740FDE3B7/data/Containers/Bundle/Application/A5BFFC58-6E29-4A11-954E-68D7F7C05B6F/FlipDecks.app/Languages/test/
@@ -165,13 +165,6 @@ class OpenFileViewController: UIViewController {
                     print(error.localizedDescription);
                 }
             }
-            
-            /*for logging purposes, this is where the export will be created at
-             if you want to access this folder copy the URL and open a command window
-             type: cd URL e.g. cd /Users/nicolagreth/Library/Developer/CoreSimulator/Devices/DD4410EE-83B0-45B9-9584-9CC740FDE3B7/data/Containers/Data/Application/A0EEA03D-93F7-4C41-89DE-28901C420443/Documents/FlipDecks/
-             then type: open .
-             this will open the finder so you can open the files with any program of your choice */
-            print("OpenFileViewController: Log directoryURL: \(directoryURL)")
             
             //name of file
             let filename = fileNameField.text

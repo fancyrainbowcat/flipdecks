@@ -20,7 +20,7 @@ class ModusViewController: UIViewController {
         super.viewDidLoad()
         self.title = "\(self.language.getName()) - \(self.deck.getName())"
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

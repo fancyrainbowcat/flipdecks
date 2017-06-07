@@ -1,6 +1,6 @@
 Frage1;Antwort1;0;0
-Frage2;Antwort2;0;0
-Frage3;Antwort3;0;0
+Frage2;Antwort2;4;0
+Frage3;Antwort3;3;0
 Frage4;Antwort4;1;4
 Frage5;Antwort5;2;3
 Frage6;Antwort6;0;5
