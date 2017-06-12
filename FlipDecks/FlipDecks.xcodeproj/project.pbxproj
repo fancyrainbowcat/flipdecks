@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		816B02DF1EEE80A70080D6F5 /* ClassicQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B02DE1EEE80A70080D6F5 /* ClassicQuestionViewController.swift */; };
 		C002D6C61EE323F500505137 /* OpenFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C002D6C51EE323F500505137 /* OpenFileViewController.swift */; };
 		C002D6C81EE3241500505137 /* ManualInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C002D6C71EE3241500505137 /* ManualInputViewController.swift */; };
 		C002D6CA1EE3242F00505137 /* FileDialogTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C002D6C91EE3242F00505137 /* FileDialogTableViewController.swift */; };
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		816B02DE1EEE80A70080D6F5 /* ClassicQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassicQuestionViewController.swift; sourceTree = "<group>"; };
 		C002D6C51EE323F500505137 /* OpenFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenFileViewController.swift; sourceTree = "<group>"; };
 		C002D6C71EE3241500505137 /* ManualInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualInputViewController.swift; sourceTree = "<group>"; };
 		C002D6C91EE3242F00505137 /* FileDialogTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDialogTableViewController.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				C00A52451EE2B0F6009B3075 /* Assets.xcassets */,
 				C00A52471EE2B0F6009B3075 /* LaunchScreen.storyboard */,
 				C00A524A1EE2B0F6009B3075 /* Info.plist */,
+				816B02DE1EEE80A70080D6F5 /* ClassicQuestionViewController.swift */,
 			);
 			path = FlipDecks;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				C002D6CA1EE3242F00505137 /* FileDialogTableViewController.swift in Sources */,
 				C0E61CBC1EE489AA00FA962C /* ExportStoryboardViewController.swift in Sources */,
 				C002D6CC1EE3259500505137 /* ImportMainViewController.swift in Sources */,
+				816B02DF1EEE80A70080D6F5 /* ClassicQuestionViewController.swift in Sources */,
 				C002D6C81EE3241500505137 /* ManualInputViewController.swift in Sources */,
 				C0E61CA61EE404A200FA962C /* Card.swift in Sources */,
 			);
