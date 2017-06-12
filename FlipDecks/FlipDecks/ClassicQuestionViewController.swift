@@ -123,9 +123,12 @@ class ClassicQuestionViewController: UIViewController {
     @IBOutlet weak var BackLabel: UIBarButtonItem!
     
     @IBOutlet weak var QuitLabel: UIBarButtonItem!
-    @IBAction func cancelToModusViewController(segue:UIStoryboardSegue) {
+
+    @IBAction func cancelToLanguageTableViewController(segue:UIStoryboardSegue) {
     }
     
+   
+    // Show previously played cards
     @IBAction func PreviousCard() {
         if currentCardIndex > 0 {
             currentCardIndex = currentCardIndex-1

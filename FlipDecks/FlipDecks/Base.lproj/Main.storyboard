@@ -239,7 +239,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Classic Type"/>
                                 <connections>
-                                    <segue destination="DLF-mg-1Jf" kind="presentation" id="lYo-VR-h3b"/>
+                                    <segue destination="DLF-mg-1Jf" kind="presentation" identifier="modusToClassicType" id="lYo-VR-h3b"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pdL-9L-kan">
