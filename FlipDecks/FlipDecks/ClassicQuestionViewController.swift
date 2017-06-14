@@ -124,9 +124,6 @@ class ClassicQuestionViewController: UIViewController {
     
     @IBOutlet weak var QuitLabel: UIBarButtonItem!
 
-    @IBAction func cancelToLanguageTableViewController(segue:UIStoryboardSegue) {
-    }
-    
    
     // Show previously played cards
     @IBAction func PreviousCard() {
