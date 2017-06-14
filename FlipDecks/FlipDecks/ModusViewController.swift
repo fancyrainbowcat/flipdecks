@@ -72,5 +72,6 @@ class ModusViewController: UIViewController {
     
     //functionality for cancel button segue
     @IBAction func cancelToModusTableViewController(segue:UIStoryboardSegue) {
+    self.deck.saveToFile()
     }
 }

@@ -27,9 +27,16 @@ class ClassicTypeViewController: UIViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-   
+        
+        deck.listOfCards.shuffle()
         printQuestion()
         
+        //to determine when the Application is entering into background
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterBackground), name: .UIApplicationDidEnterBackground, object: nil)
+        
+        //to determine when the Application is terminated
+        NotificationCenter.default.addObserver(self, selector: #selector(willTerminate), name: .UIApplicationWillTerminate, object: nil)
+
     }
     
     //Print question on label
@@ -71,6 +78,8 @@ class ClassicTypeViewController: UIViewController {
         let oldCard = deck.listOfCards[currentCardIndex]
         let newCard = Card(question: oldCard.getQuestion(), answer: oldCard.getAnswer(), correctCount: oldCard.getCorrectCount(), incorrectCount: oldCard.getIncorrectCount())
         deck.listOfCards.append(newCard)
+        currentCardIndex += 1
+        printQuestion()
     }
     
     // Show previously played cards
@@ -107,7 +116,16 @@ class ClassicTypeViewController: UIViewController {
         deck.listOfCards[currentCardIndex].cardPlayed(result: "incorrect")
         }
     }
-
+    
+    //function that will be called once the app is entering into background
+    func willEnterBackground(_ notification: Notification) {
+        self.deck.saveToFile()
+    }
+    
+    //function that will be called once the app is terminated
+    func willTerminate(_ notification: Notification) {
+        self.deck.saveToFile()
+    }
 
     @IBOutlet weak var AnswerTypeView: UIView!
     @IBOutlet weak var AnswerTypeLabel: UILabel!

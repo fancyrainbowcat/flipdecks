@@ -8,21 +8,6 @@
 
 import UIKit
 
-extension MutableCollection where Indices.Iterator.Element == Index {
-    
-    // Shuffles the contents of this collection.
-    mutating func shuffle() {
-        let c = count
-        guard c > 1 else { return }
-        
-        for (firstUnshuffled , unshuffledCount) in zip(indices, stride(from: c, to: 1, by: -1)) {
-            let d: IndexDistance = numericCast(arc4random_uniform(numericCast(unshuffledCount)))
-            guard d != 0 else { continue }
-            let i = index(firstUnshuffled, offsetBy: d)
-            swap(&self[firstUnshuffled], &self[i])
-        }
-    }
-}
 
 class ClassicQuestionViewController: UIViewController {
     
@@ -36,10 +21,14 @@ class ClassicQuestionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         deck.listOfCards.shuffle()
         printQuestion()
         
+        //to determine when the Application is entering into background
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterBackground), name: .UIApplicationDidEnterBackground, object: nil)
+        
+        //to determine when the Application is terminated
+        NotificationCenter.default.addObserver(self, selector: #selector(willTerminate), name: .UIApplicationWillTerminate, object: nil)
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -66,7 +55,6 @@ class ClassicQuestionViewController: UIViewController {
         Incorrect.isHidden = true
         Shelve.isHidden = false
         Show.isHidden = false
-        
     }
     
     //Print answer on label
@@ -105,6 +93,8 @@ class ClassicQuestionViewController: UIViewController {
         let oldCard = deck.listOfCards[currentCardIndex]
         let newCard = Card(question: oldCard.getQuestion(), answer: oldCard.getAnswer(), correctCount: oldCard.getCorrectCount(), incorrectCount: oldCard.getIncorrectCount())
         deck.listOfCards.append(newCard)
+        currentCardIndex += 1
+        printQuestion()
     }
     
     //Flip Label
@@ -133,6 +123,16 @@ class ClassicQuestionViewController: UIViewController {
             self.QuestionView.isHidden = false
             self.AnswerView.isHidden = true
         }
+    }
+    
+    //function that will be called once the app is entering into background
+    func willEnterBackground(_ notification: Notification) {
+        self.deck.saveToFile()
+    }
+    
+    //function that will be called once the app is terminated
+    func willTerminate(_ notification: Notification) {
+        self.deck.saveToFile()
     }
     
     // IBOutlets
