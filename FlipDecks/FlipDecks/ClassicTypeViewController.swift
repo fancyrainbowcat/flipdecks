@@ -107,10 +107,7 @@ class ClassicTypeViewController: UIViewController {
         deck.listOfCards[currentCardIndex].cardPlayed(result: "incorrect")
         }
     }
-  
-    //functionality for cancel button segue
-    @IBAction func cancelToModusTableViewController(segue:UIStoryboardSegue) {
-    }
+
 
     @IBOutlet weak var AnswerTypeView: UIView!
     @IBOutlet weak var AnswerTypeLabel: UILabel!
