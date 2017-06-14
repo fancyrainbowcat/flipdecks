@@ -55,6 +55,7 @@ class ClassicQuestionViewController: UIViewController {
         Incorrect.isHidden = true
         Shelve.isHidden = false
         Show.isHidden = false
+        self.AnswerView.isHidden = true
     }
     
     //Print answer on label
@@ -115,7 +116,7 @@ class ClassicQuestionViewController: UIViewController {
     @IBOutlet weak var QuitLabel: UIBarButtonItem!
 
    
-    // Show previously played cards
+    // Show previously played card
     @IBAction func PreviousCard() {
         if currentCardIndex > 0 {
             currentCardIndex = currentCardIndex-1

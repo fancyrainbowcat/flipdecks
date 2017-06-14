@@ -10,6 +10,7 @@
 		8147BF841EF154BE00DFE88A /* MemoryGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8147BF831EF154BE00DFE88A /* MemoryGameViewController.swift */; };
 		816B02DF1EEE80A70080D6F5 /* ClassicQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B02DE1EEE80A70080D6F5 /* ClassicQuestionViewController.swift */; };
 		816B02E11EEEE2B50080D6F5 /* ClassicTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B02E01EEEE2B50080D6F5 /* ClassicTypeViewController.swift */; };
+		816B02E31EF15BA00080D6F5 /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B02E21EF15BA00080D6F5 /* QuizViewController.swift */; };
 		C002D6C61EE323F500505137 /* OpenFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C002D6C51EE323F500505137 /* OpenFileViewController.swift */; };
 		C002D6C81EE3241500505137 /* ManualInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C002D6C71EE3241500505137 /* ManualInputViewController.swift */; };
 		C002D6CA1EE3242F00505137 /* FileDialogTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C002D6C91EE3242F00505137 /* FileDialogTableViewController.swift */; };
@@ -67,6 +68,7 @@
 		8147BF831EF154BE00DFE88A /* MemoryGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryGameViewController.swift; sourceTree = "<group>"; };
 		816B02DE1EEE80A70080D6F5 /* ClassicQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassicQuestionViewController.swift; sourceTree = "<group>"; };
 		816B02E01EEEE2B50080D6F5 /* ClassicTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassicTypeViewController.swift; sourceTree = "<group>"; };
+		816B02E21EF15BA00080D6F5 /* QuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		8DEC05A0B64FAD28905C24A1 /* Pods-FlipDecksUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlipDecksUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlipDecksUITests/Pods-FlipDecksUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C002D6C51EE323F500505137 /* OpenFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenFileViewController.swift; sourceTree = "<group>"; };
 		C002D6C71EE3241500505137 /* ManualInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualInputViewController.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				C00A524A1EE2B0F6009B3075 /* Info.plist */,
 				816B02DE1EEE80A70080D6F5 /* ClassicQuestionViewController.swift */,
 				816B02E01EEEE2B50080D6F5 /* ClassicTypeViewController.swift */,
+				816B02E21EF15BA00080D6F5 /* QuizViewController.swift */,
 			);
 			path = FlipDecks;
 			sourceTree = "<group>";
@@ -529,6 +532,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0E61CA81EE404AD00FA962C /* Deck.swift in Sources */,
+				816B02E31EF15BA00080D6F5 /* QuizViewController.swift in Sources */,
 				C0E61CAA1EE40E6500FA962C /* Language.swift in Sources */,
 				C04EF0E91EE3FB62001641BB /* LanguagesTableViewController.swift in Sources */,
 				C002D6C61EE323F500505137 /* OpenFileViewController.swift in Sources */,

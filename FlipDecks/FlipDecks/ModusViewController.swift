@@ -59,7 +59,14 @@ class ModusViewController: UIViewController {
             controller.language = self.language
             controller.deck = self.deck
         }
-        
+        //give language and unit to QuizViewController
+        if segue.identifier == "modusToQuizViewController" {
+            
+            //since there is a navigation controller in between, I have to go through it
+            let controller = segue.destination as! QuizViewController
+            controller.language = self.language
+            controller.deck = self.deck
+        }
     }
     
     //functionality for cancel button segue

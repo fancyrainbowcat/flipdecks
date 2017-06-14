@@ -1,15 +1,14 @@
 //
-//  ClassicTypeViewController.swift
+//  QuizViewController.swift
 //  FlipDecks
 //
-//  Created by Sabine Kaupp on 12.06.17.
+//  Created by Sabine Kaupp on 14.06.17.
 //  Copyright © 2017 Nicola Greth. All rights reserved.
 //
 
 import UIKit
 
-
-class ClassicTypeViewController: UIViewController {
+class QuizViewController: UIViewController {
     
     // current deck and language
     var deck : Deck = Deck(name: "", languageName: "", fileEnding: "")
@@ -17,7 +16,6 @@ class ClassicTypeViewController: UIViewController {
     var array = [String] ()
     var strValue = ""
     var currentCardIndex = 0
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,39 +37,23 @@ class ClassicTypeViewController: UIViewController {
 
     }
     
+    @IBOutlet weak var QuestionQuizLabel: UILabel!
+    
     //Print question on label
     @IBAction func printQuestion() {
         strValue = deck.listOfCards[currentCardIndex].getQuestion()
-        QuestionTypeLabel.text = strValue
-        NextType.isHidden = true
-        ShelveType.isHidden = false
-        CheckType.isHidden = false
+        QuestionQuizLabel.text = strValue
     }
-    
-    //Print answer on label
-    @IBAction func printAnswer() {
-        strValue = deck.listOfCards[currentCardIndex].getAnswer()
-        AnswerTypeLabel.text = strValue
-        ShelveType.isHidden = true
-        CheckType.isHidden = true
-        NextType.isHidden = false
-        flip()
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
-  
+
+    // MARK: - Table view data source
+
     
-    
-    //Flip Label
-    func flip() {
-        let transitionOptions: UIViewAnimationOptions = [.transitionFlipFromRight, .showHideTransitionViews]
-        
-        UIView.transition(with: QuestionTypeView, duration: 1.0, options: transitionOptions, animations: {
-            self.QuestionTypeView.isHidden = true
-        })
-        
-        UIView.transition(with: AnswerTypeView, duration: 1.0, options: transitionOptions, animations: {
-            self.AnswerTypeView.isHidden = false
-        })
-    }
+    @IBOutlet weak var ShelveQuiz: UIButton!
     
     // Shelve cards
     @IBAction func shelveCard() {
@@ -82,59 +64,31 @@ class ClassicTypeViewController: UIViewController {
         printQuestion()
     }
     
+    @IBOutlet weak var BackQuiz: UIBarButtonItem!
+    
     // Show previously played card
     @IBAction func PreviousCard() {
         if currentCardIndex > 0 {
             currentCardIndex = currentCardIndex-1
             printQuestion()
-            self.QuestionTypeView.isHidden = false
-            self.AnswerTypeView.isHidden = true
         }
-    }
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    // Play next card
-    @IBAction func playNextCard() {
-        currentCardIndex += 1
-        printQuestion()
-        self.QuestionTypeView.isHidden = false
-        self.AnswerTypeView.isHidden = true
     }
 
-    // Check Input
-    @IBAction func checkInput() {
-    let userInput = String(describing: TextFieldType.text)
-        if userInput == deck.listOfCards[currentCardIndex].getQuestion() {
-        deck.listOfCards[currentCardIndex].cardPlayed(result: "correct")
-        }
-        else {
-        deck.listOfCards[currentCardIndex].cardPlayed(result: "incorrect")
-        }
-    }
-    
     //function that will be called once the app is entering into background
     func willEnterBackground(_ notification: Notification) {
         self.deck.saveToFile()
     }
+    
+    @IBOutlet weak var AnswerOne: UIButton!
+    @IBOutlet weak var AnswerTwo: UIButton!
+    @IBOutlet weak var AnswerThree: UIButton!
+    @IBOutlet weak var AnswerFour: UIButton!
+    
+    
     
     //function that will be called once the app is terminated
     func willTerminate(_ notification: Notification) {
         self.deck.saveToFile()
     }
 
-    @IBOutlet weak var AnswerTypeView: UIView!
-    @IBOutlet weak var AnswerTypeLabel: UILabel!
-    @IBOutlet weak var QuestionTypeView: UIView!
-    @IBOutlet weak var QuestionTypeLabel: UILabel!
-    
-    @IBOutlet weak var ShelveType: UIButton!
-    @IBOutlet weak var CheckType: UIButton!
-
-    @IBOutlet weak var NextType: UIButton!
-    @IBOutlet weak var TextFieldType: UITextField!
 }
