@@ -1,0 +1,6 @@
+framework module Pods_FlipDecks {
+  umbrella header "Pods-FlipDecks-umbrella.h"
+
+  export *
+  module * { export * }
+}
