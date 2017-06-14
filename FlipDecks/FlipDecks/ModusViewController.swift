@@ -59,6 +59,14 @@ class ModusViewController: UIViewController {
             controller.language = self.language
             controller.deck = self.deck
         }
+        //give language and unit to MemoryGameViewController
+        if segue.identifier == "modusToMemoryGame" {
+            
+            //since there is a navigation controller in between, I have to go through it
+            let controller = segue.destination as! MemoryGameViewController
+            controller.language = self.language
+            controller.deck = self.deck
+        }
         
     }
     

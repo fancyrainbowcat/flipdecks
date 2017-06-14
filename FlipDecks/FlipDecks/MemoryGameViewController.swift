@@ -13,14 +13,18 @@ class MemoryGameViewController: UIViewController {
     
     var deck : Deck = Deck(name: "", languageName: "", fileEnding: "")
     var language : Language = Language(name: "")
-    var cards = [Card]()
+    var mCards = [Card]()
     
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         
         
         
-        
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
 }
 
