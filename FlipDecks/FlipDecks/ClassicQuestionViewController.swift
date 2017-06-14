@@ -24,6 +24,11 @@ class ClassicQuestionViewController: UIViewController {
         deck.listOfCards.shuffle()
         printQuestion()
         
+        //to determine when the Application is entering into background
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterBackground), name: .UIApplicationDidEnterBackground, object: nil)
+        
+        //to determine when the Application is terminated
+        NotificationCenter.default.addObserver(self, selector: #selector(willTerminate), name: .UIApplicationWillTerminate, object: nil)
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -118,6 +123,16 @@ class ClassicQuestionViewController: UIViewController {
             self.QuestionView.isHidden = false
             self.AnswerView.isHidden = true
         }
+    }
+    
+    //function that will be called once the app is entering into background
+    func willEnterBackground(_ notification: Notification) {
+        self.deck.saveToFile()
+    }
+    
+    //function that will be called once the app is terminated
+    func willTerminate(_ notification: Notification) {
+        self.deck.saveToFile()
     }
     
     // IBOutlets
