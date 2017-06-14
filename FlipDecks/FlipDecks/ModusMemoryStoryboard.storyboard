@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Memory Game View Controller-->
         <scene sceneID="war-bZ-Pm5">
             <objects>
-                <viewController id="IoP-PZ-T0y" sceneMemberID="viewController">
+                <viewController id="IoP-PZ-T0y" customClass="MemoryGameViewController" customModule="FlipDecks" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PnG-kC-ik5"/>
                         <viewControllerLayoutGuide type="bottom" id="Z0j-BK-lO7"/>
@@ -20,10 +20,26 @@
                     <view key="view" contentMode="scaleToFill" id="aMW-g1-7rD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rPS-v8-fw3">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Title" id="zVS-ie-Tu6">
+                                        <barButtonItem key="rightBarButtonItem" title="Quit" id="Trc-pp-RP4">
+                                            <connections>
+                                                <segue destination="IWb-7l-ZuI" kind="unwind" unwindAction="cancelToModusTableViewControllerWithSegue:" id="0IS-02-cfo"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QPP-nN-q87" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="IWb-7l-ZuI" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="169" y="213"/>
         </scene>
