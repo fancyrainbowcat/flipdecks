@@ -25,7 +25,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Question" id="NVa-rH-2pa">
+                                    <navigationItem title="Quiz" id="NVa-rH-2pa">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="HZy-zS-7ir">
                                             <connections>
                                                 <action selector="PreviousCard" destination="RBG-z1-Xsd" id="7nU-ud-uXH"/>
