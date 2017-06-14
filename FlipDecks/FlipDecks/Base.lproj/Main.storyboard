@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3KT-EP-wPi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3KT-EP-wPi">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -219,51 +219,66 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJR-E6-bda">
-                                <rect key="frame" x="33" y="130" width="78" height="30"/>
+                                <rect key="frame" x="33" y="130" width="113" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Classic Flip"/>
                                 <connections>
                                     <segue destination="FS5-MJ-T2i" kind="presentation" identifier="modusToClassicQuestion" id="Upe-7f-Lwj"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pdk-q6-zKk">
-                                <rect key="frame" x="55" y="331" width="32" height="30"/>
+                                <rect key="frame" x="56" y="284" width="90" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Quiz"/>
                                 <connections>
                                     <segue destination="rk1-yr-bzD" kind="presentation" identifier="modusToQuizViewController" id="mLa-jO-s1P"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PFe-q7-ftc">
-                                <rect key="frame" x="238" y="130" width="87" height="30"/>
+                                <rect key="frame" x="214" y="130" width="111" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Classic Type"/>
                                 <connections>
                                     <segue destination="DLF-mg-1Jf" kind="presentation" identifier="modusToClassicType" id="lYo-VR-h3b"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pdL-9L-kan">
-                                <rect key="frame" x="39" y="522" width="98" height="28"/>
+                                <rect key="frame" x="87" y="432" width="149" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Show Statistik"/>
                                 <connections>
                                     <segue destination="lw6-Y2-X46" kind="presentation" id="BJv-E0-EKf"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cly-ZM-L1F">
-                                <rect key="frame" x="243" y="522" width="46" height="30"/>
+                                <rect key="frame" x="214" y="569" width="90" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Export"/>
                                 <connections>
                                     <segue destination="dd2-UB-ahz" kind="presentation" identifier="modusToExport" id="uHX-hw-aWS"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ILR-D6-Jrz">
-                                <rect key="frame" x="238" y="331" width="57" height="30"/>
+                                <rect key="frame" x="214" y="284" width="96" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Memory"/>
                                 <connections>
                                     <segue destination="0xK-m1-Zwv" kind="presentation" identifier="modusToMemoryGame" id="Ufb-tX-g8i"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="omU-g3-ly8">
+                                <rect key="frame" x="33" y="556" width="113" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="List &amp; Search"/>
+                                <connections>
+                                    <segue destination="uFf-LD-gfh" kind="presentation" identifier="modusToListAndSearch" id="gF1-xj-rTn"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -305,6 +320,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6OO-3X-xEo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5626" y="386"/>
+        </scene>
+        <!--ListAndSearchStoryboard-->
+        <scene sceneID="cwe-HI-5gQ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ListAndSearchStoryboard" id="uFf-LD-gfh" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aAn-Fv-2Z5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5606" y="512"/>
         </scene>
         <!--ModusClassicTypeStoryboard-->
         <scene sceneID="syS-i4-cfZ">

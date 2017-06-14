@@ -15,6 +15,8 @@
 		C002D6C81EE3241500505137 /* ManualInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C002D6C71EE3241500505137 /* ManualInputViewController.swift */; };
 		C002D6CA1EE3242F00505137 /* FileDialogTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C002D6C91EE3242F00505137 /* FileDialogTableViewController.swift */; };
 		C002D6CC1EE3259500505137 /* ImportMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C002D6CB1EE3259500505137 /* ImportMainViewController.swift */; };
+		C004A7411EF1ABE900011DC5 /* ListAndSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C004A7401EF1ABE900011DC5 /* ListAndSearchTableViewController.swift */; };
+		C004A7451EF1AC5F00011DC5 /* ListAndSearchStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C004A7441EF1AC5F00011DC5 /* ListAndSearchStoryboard.storyboard */; };
 		C00A523F1EE2B0F6009B3075 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00A523E1EE2B0F6009B3075 /* AppDelegate.swift */; };
 		C00A52411EE2B0F6009B3075 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00A52401EE2B0F6009B3075 /* ViewController.swift */; };
 		C00A52441EE2B0F6009B3075 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C00A52421EE2B0F6009B3075 /* Main.storyboard */; };
@@ -74,6 +76,8 @@
 		C002D6C71EE3241500505137 /* ManualInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualInputViewController.swift; sourceTree = "<group>"; };
 		C002D6C91EE3242F00505137 /* FileDialogTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDialogTableViewController.swift; sourceTree = "<group>"; };
 		C002D6CB1EE3259500505137 /* ImportMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportMainViewController.swift; sourceTree = "<group>"; };
+		C004A7401EF1ABE900011DC5 /* ListAndSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListAndSearchTableViewController.swift; sourceTree = "<group>"; };
+		C004A7441EF1AC5F00011DC5 /* ListAndSearchStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ListAndSearchStoryboard.storyboard; sourceTree = "<group>"; };
 		C00A523B1EE2B0F6009B3075 /* FlipDecks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlipDecks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C00A523E1EE2B0F6009B3075 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C00A52401EE2B0F6009B3075 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 		C00A523D1EE2B0F6009B3075 /* FlipDecks */ = {
 			isa = PBXGroup;
 			children = (
+				C004A7401EF1ABE900011DC5 /* ListAndSearchTableViewController.swift */,
 				C00A52741EE2C7D8009B3075 /* StatisticsPerLanguage.storyboard */,
 				C00A523E1EE2B0F6009B3075 /* AppDelegate.swift */,
 				C00A52401EE2B0F6009B3075 /* ViewController.swift */,
@@ -218,6 +223,7 @@
 				816B02DE1EEE80A70080D6F5 /* ClassicQuestionViewController.swift */,
 				816B02E01EEEE2B50080D6F5 /* ClassicTypeViewController.swift */,
 				816B02E21EF15BA00080D6F5 /* QuizViewController.swift */,
+				C004A7441EF1AC5F00011DC5 /* ListAndSearchStoryboard.storyboard */,
 			);
 			path = FlipDecks;
 			sourceTree = "<group>";
@@ -361,6 +367,7 @@
 				C00A52731EE2C767009B3075 /* StatisticsMainStoryboard.storyboard in Resources */,
 				C00A527D1EE2C916009B3075 /* ModusQuizStoryboard.storyboard in Resources */,
 				C00A52791EE2C88C009B3075 /* ModusClassicTypeStoryboard.storyboard in Resources */,
+				C004A7451EF1AC5F00011DC5 /* ListAndSearchStoryboard.storyboard in Resources */,
 				C00A52771EE2C83B009B3075 /* StatisticsPerUnit.storyboard in Resources */,
 				C00A52491EE2B0F6009B3075 /* LaunchScreen.storyboard in Resources */,
 				C00A527B1EE2C8CC009B3075 /* ModusClassicFlipStoryboard.storyboard in Resources */,
@@ -538,6 +545,7 @@
 				C002D6C61EE323F500505137 /* OpenFileViewController.swift in Sources */,
 				C00A52411EE2B0F6009B3075 /* ViewController.swift in Sources */,
 				C0E61CB81EE41A7500FA962C /* UnitsTableViewController.swift in Sources */,
+				C004A7411EF1ABE900011DC5 /* ListAndSearchTableViewController.swift in Sources */,
 				C00A523F1EE2B0F6009B3075 /* AppDelegate.swift in Sources */,
 				816B02E11EEEE2B50080D6F5 /* ClassicTypeViewController.swift in Sources */,
 				C0E61CBA1EE4297400FA962C /* ModusViewController.swift in Sources */,
