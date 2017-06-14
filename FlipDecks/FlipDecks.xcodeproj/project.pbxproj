@@ -17,6 +17,7 @@
 		C002D6CC1EE3259500505137 /* ImportMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C002D6CB1EE3259500505137 /* ImportMainViewController.swift */; };
 		C004A7411EF1ABE900011DC5 /* ListAndSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C004A7401EF1ABE900011DC5 /* ListAndSearchTableViewController.swift */; };
 		C004A7451EF1AC5F00011DC5 /* ListAndSearchStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C004A7441EF1AC5F00011DC5 /* ListAndSearchStoryboard.storyboard */; };
+		C004A7471EF1B0E700011DC5 /* ListAndSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C004A7461EF1B0E700011DC5 /* ListAndSearchTableViewCell.swift */; };
 		C00A523F1EE2B0F6009B3075 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00A523E1EE2B0F6009B3075 /* AppDelegate.swift */; };
 		C00A52411EE2B0F6009B3075 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00A52401EE2B0F6009B3075 /* ViewController.swift */; };
 		C00A52441EE2B0F6009B3075 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C00A52421EE2B0F6009B3075 /* Main.storyboard */; };
@@ -78,6 +79,7 @@
 		C002D6CB1EE3259500505137 /* ImportMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportMainViewController.swift; sourceTree = "<group>"; };
 		C004A7401EF1ABE900011DC5 /* ListAndSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListAndSearchTableViewController.swift; sourceTree = "<group>"; };
 		C004A7441EF1AC5F00011DC5 /* ListAndSearchStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ListAndSearchStoryboard.storyboard; sourceTree = "<group>"; };
+		C004A7461EF1B0E700011DC5 /* ListAndSearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListAndSearchTableViewCell.swift; sourceTree = "<group>"; };
 		C00A523B1EE2B0F6009B3075 /* FlipDecks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlipDecks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C00A523E1EE2B0F6009B3075 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C00A52401EE2B0F6009B3075 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				C004A7401EF1ABE900011DC5 /* ListAndSearchTableViewController.swift */,
+				C004A7461EF1B0E700011DC5 /* ListAndSearchTableViewCell.swift */,
 				C00A52741EE2C7D8009B3075 /* StatisticsPerLanguage.storyboard */,
 				C00A523E1EE2B0F6009B3075 /* AppDelegate.swift */,
 				C00A52401EE2B0F6009B3075 /* ViewController.swift */,
@@ -540,6 +543,7 @@
 			files = (
 				C0E61CA81EE404AD00FA962C /* Deck.swift in Sources */,
 				816B02E31EF15BA00080D6F5 /* QuizViewController.swift in Sources */,
+				C004A7471EF1B0E700011DC5 /* ListAndSearchTableViewCell.swift in Sources */,
 				C0E61CAA1EE40E6500FA962C /* Language.swift in Sources */,
 				C04EF0E91EE3FB62001641BB /* LanguagesTableViewController.swift in Sources */,
 				C002D6C61EE323F500505137 /* OpenFileViewController.swift in Sources */,
