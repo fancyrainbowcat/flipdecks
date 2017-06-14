@@ -31,9 +31,12 @@ class UnitsTableViewController: UITableViewController {
     }
     
     //show available units in tableView
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "unitCell", for: indexPath)
-        cell.textLabel?.text = listOfUnits[indexPath.row].getName()
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UnitsTableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "unitCell", for: indexPath) as! UnitsTableViewCell
+        let progress = Float(listOfUnits[indexPath.row].getCountOfFinishedCards()) / Float(listOfUnits[indexPath.row].getCountOfCards())
+        cell.Label?.text = listOfUnits[indexPath.row].getName()
+        cell.ProgressBar?.progress = progress
+        cell.ProgressBar?.progressTintColor = cell.returnColor()
         return cell
     }
     

@@ -101,6 +101,7 @@ class Deck {
     
     //returns true if whole Deck is finished, false if not
     func getFinishedStatus() -> Bool {
+        refreshDeck()
         if self.getCountOfFinishedCards() == self.getCountOfCards() {
             return true
         }

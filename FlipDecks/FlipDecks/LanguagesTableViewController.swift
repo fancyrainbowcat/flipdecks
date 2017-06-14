@@ -51,9 +51,12 @@ class LanguagesTableViewController: UITableViewController {
     }
     
     //show available languages in tableView
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "languageCell", for: indexPath)
-        cell.textLabel?.text = listOfLanguages[indexPath.row].getName()
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> LanguagesTableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "languageCell", for: indexPath) as! LanguagesTableViewCell
+        let progress = Float(listOfLanguages[indexPath.row].getCountOfFinishedDecks()) / Float(listOfLanguages[indexPath.row].getCountOfDecks())
+        cell.Label?.text = listOfLanguages[indexPath.row].getName()
+        cell.ProgressBar?.progress = progress
+        cell.ProgressBar?.progressTintColor = cell.returnColor()
         return cell
     }
     

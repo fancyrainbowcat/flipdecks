@@ -35,6 +35,8 @@
 		C00A527F1EE2C963009B3075 /* ExportStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C00A527E1EE2C963009B3075 /* ExportStoryboard.storyboard */; };
 		C00A52811EE2C9B5009B3075 /* ModusMemoryStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C00A52801EE2C9B5009B3075 /* ModusMemoryStoryboard.storyboard */; };
 		C04EF0E91EE3FB62001641BB /* LanguagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04EF0E81EE3FB62001641BB /* LanguagesTableViewController.swift */; };
+		C0AD3FC61EF1BA2E00774261 /* LanguagesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AD3FC51EF1BA2E00774261 /* LanguagesTableViewCell.swift */; };
+		C0D136961EF1C65C0019B2C5 /* UnitsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D136951EF1C65C0019B2C5 /* UnitsTableViewCell.swift */; };
 		C0E61CA61EE404A200FA962C /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E61CA51EE404A200FA962C /* Card.swift */; };
 		C0E61CA81EE404AD00FA962C /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E61CA71EE404AD00FA962C /* Deck.swift */; };
 		C0E61CAA1EE40E6500FA962C /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E61CA91EE40E6500FA962C /* Language.swift */; };
@@ -104,6 +106,8 @@
 		C00A52801EE2C9B5009B3075 /* ModusMemoryStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ModusMemoryStoryboard.storyboard; sourceTree = "<group>"; };
 		C03F1CF604B0900D147B25A0 /* Pods-FlipDecks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlipDecks.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlipDecks/Pods-FlipDecks.release.xcconfig"; sourceTree = "<group>"; };
 		C04EF0E81EE3FB62001641BB /* LanguagesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguagesTableViewController.swift; sourceTree = "<group>"; };
+		C0AD3FC51EF1BA2E00774261 /* LanguagesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguagesTableViewCell.swift; sourceTree = "<group>"; };
+		C0D136951EF1C65C0019B2C5 /* UnitsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitsTableViewCell.swift; sourceTree = "<group>"; };
 		C0E61CA51EE404A200FA962C /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		C0E61CA71EE404AD00FA962C /* Deck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		C0E61CA91EE40E6500FA962C /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
@@ -227,6 +231,8 @@
 				816B02E01EEEE2B50080D6F5 /* ClassicTypeViewController.swift */,
 				816B02E21EF15BA00080D6F5 /* QuizViewController.swift */,
 				C004A7441EF1AC5F00011DC5 /* ListAndSearchStoryboard.storyboard */,
+				C0AD3FC51EF1BA2E00774261 /* LanguagesTableViewCell.swift */,
+				C0D136951EF1C65C0019B2C5 /* UnitsTableViewCell.swift */,
 			);
 			path = FlipDecks;
 			sourceTree = "<group>";
@@ -542,6 +548,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0E61CA81EE404AD00FA962C /* Deck.swift in Sources */,
+				C0AD3FC61EF1BA2E00774261 /* LanguagesTableViewCell.swift in Sources */,
 				816B02E31EF15BA00080D6F5 /* QuizViewController.swift in Sources */,
 				C004A7471EF1B0E700011DC5 /* ListAndSearchTableViewCell.swift in Sources */,
 				C0E61CAA1EE40E6500FA962C /* Language.swift in Sources */,
@@ -559,6 +566,7 @@
 				C002D6CC1EE3259500505137 /* ImportMainViewController.swift in Sources */,
 				816B02DF1EEE80A70080D6F5 /* ClassicQuestionViewController.swift in Sources */,
 				C002D6C81EE3241500505137 /* ManualInputViewController.swift in Sources */,
+				C0D136961EF1C65C0019B2C5 /* UnitsTableViewCell.swift in Sources */,
 				C0E61CA61EE404A200FA962C /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
