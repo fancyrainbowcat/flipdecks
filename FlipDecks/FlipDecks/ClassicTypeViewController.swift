@@ -27,7 +27,8 @@ class ClassicTypeViewController: UIViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-   
+        
+        deck.listOfCards.shuffle()
         printQuestion()
         
     }
@@ -71,6 +72,8 @@ class ClassicTypeViewController: UIViewController {
         let oldCard = deck.listOfCards[currentCardIndex]
         let newCard = Card(question: oldCard.getQuestion(), answer: oldCard.getAnswer(), correctCount: oldCard.getCorrectCount(), incorrectCount: oldCard.getIncorrectCount())
         deck.listOfCards.append(newCard)
+        currentCardIndex += 1
+        printQuestion()
     }
     
     // Show previously played cards

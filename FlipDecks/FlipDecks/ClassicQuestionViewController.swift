@@ -8,21 +8,6 @@
 
 import UIKit
 
-extension MutableCollection where Indices.Iterator.Element == Index {
-    
-    // Shuffles the contents of this collection.
-    mutating func shuffle() {
-        let c = count
-        guard c > 1 else { return }
-        
-        for (firstUnshuffled , unshuffledCount) in zip(indices, stride(from: c, to: 1, by: -1)) {
-            let d: IndexDistance = numericCast(arc4random_uniform(numericCast(unshuffledCount)))
-            guard d != 0 else { continue }
-            let i = index(firstUnshuffled, offsetBy: d)
-            swap(&self[firstUnshuffled], &self[i])
-        }
-    }
-}
 
 class ClassicQuestionViewController: UIViewController {
     
@@ -35,7 +20,6 @@ class ClassicQuestionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         deck.listOfCards.shuffle()
         printQuestion()
@@ -66,7 +50,6 @@ class ClassicQuestionViewController: UIViewController {
         Incorrect.isHidden = true
         Shelve.isHidden = false
         Show.isHidden = false
-        
     }
     
     //Print answer on label
@@ -105,6 +88,8 @@ class ClassicQuestionViewController: UIViewController {
         let oldCard = deck.listOfCards[currentCardIndex]
         let newCard = Card(question: oldCard.getQuestion(), answer: oldCard.getAnswer(), correctCount: oldCard.getCorrectCount(), incorrectCount: oldCard.getIncorrectCount())
         deck.listOfCards.append(newCard)
+        currentCardIndex += 1
+        printQuestion()
     }
     
     //Flip Label
