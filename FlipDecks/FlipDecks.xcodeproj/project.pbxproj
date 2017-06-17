@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8147BF841EF154BE00DFE88A /* MemoryGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8147BF831EF154BE00DFE88A /* MemoryGameViewController.swift */; };
+		8147BF861EF4429100DFE88A /* MemoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8147BF851EF4429100DFE88A /* MemoryViewCell.swift */; };
+		8147BF881EF55F4100DFE88A /* MemoryGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8147BF871EF55F4100DFE88A /* MemoryGame.swift */; };
 		816B02DF1EEE80A70080D6F5 /* ClassicQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B02DE1EEE80A70080D6F5 /* ClassicQuestionViewController.swift */; };
 		816B02E11EEEE2B50080D6F5 /* ClassicTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B02E01EEEE2B50080D6F5 /* ClassicTypeViewController.swift */; };
 		816B02E31EF15BA00080D6F5 /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B02E21EF15BA00080D6F5 /* QuizViewController.swift */; };
@@ -71,6 +73,8 @@
 		4F6DD92E4C5C31E8B0E24FE1 /* Pods_FlipDecksTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlipDecksTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F8129010665544AE3AA1303 /* Pods-FlipDecksTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlipDecksTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlipDecksTests/Pods-FlipDecksTests.release.xcconfig"; sourceTree = "<group>"; };
 		8147BF831EF154BE00DFE88A /* MemoryGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryGameViewController.swift; sourceTree = "<group>"; };
+		8147BF851EF4429100DFE88A /* MemoryViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryViewCell.swift; sourceTree = "<group>"; };
+		8147BF871EF55F4100DFE88A /* MemoryGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryGame.swift; sourceTree = "<group>"; };
 		816B02DE1EEE80A70080D6F5 /* ClassicQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassicQuestionViewController.swift; sourceTree = "<group>"; };
 		816B02E01EEEE2B50080D6F5 /* ClassicTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassicTypeViewController.swift; sourceTree = "<group>"; };
 		816B02E21EF15BA00080D6F5 /* QuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
@@ -207,6 +211,8 @@
 				C0E61CB91EE4297400FA962C /* ModusViewController.swift */,
 				C04EF0E81EE3FB62001641BB /* LanguagesTableViewController.swift */,
 				C00A52801EE2C9B5009B3075 /* ModusMemoryStoryboard.storyboard */,
+				8147BF851EF4429100DFE88A /* MemoryViewCell.swift */,
+				8147BF871EF55F4100DFE88A /* MemoryGame.swift */,
 				8147BF831EF154BE00DFE88A /* MemoryGameViewController.swift */,
 				C00A527E1EE2C963009B3075 /* ExportStoryboard.storyboard */,
 				C0E61CBB1EE489AA00FA962C /* ExportStoryboardViewController.swift */,
@@ -556,6 +562,7 @@
 				C002D6C61EE323F500505137 /* OpenFileViewController.swift in Sources */,
 				C00A52411EE2B0F6009B3075 /* ViewController.swift in Sources */,
 				C0E61CB81EE41A7500FA962C /* UnitsTableViewController.swift in Sources */,
+				8147BF861EF4429100DFE88A /* MemoryViewCell.swift in Sources */,
 				C004A7411EF1ABE900011DC5 /* ListAndSearchTableViewController.swift in Sources */,
 				C00A523F1EE2B0F6009B3075 /* AppDelegate.swift in Sources */,
 				816B02E11EEEE2B50080D6F5 /* ClassicTypeViewController.swift in Sources */,
@@ -566,6 +573,7 @@
 				C002D6CC1EE3259500505137 /* ImportMainViewController.swift in Sources */,
 				816B02DF1EEE80A70080D6F5 /* ClassicQuestionViewController.swift in Sources */,
 				C002D6C81EE3241500505137 /* ManualInputViewController.swift in Sources */,
+				8147BF881EF55F4100DFE88A /* MemoryGame.swift in Sources */,
 				C0D136961EF1C65C0019B2C5 /* UnitsTableViewCell.swift in Sources */,
 				C0E61CA61EE404A200FA962C /* Card.swift in Sources */,
 			);
