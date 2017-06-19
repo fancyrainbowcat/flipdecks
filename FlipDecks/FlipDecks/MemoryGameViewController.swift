@@ -60,13 +60,16 @@ class MemoryGameViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 12
+        return 12   // array.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let mcell = collectionView.dequeueReusableCell(withReuseIdentifier: "mCell", for: indexPath) as! MemoryViewCell
         // set images to the cells
+        
         mcell.cellImageView.image = UIImage(named: backImage[0]) // or named: backImage[indexPath.row]
+        
+        mcell.showCard(false, animated: false)
         return mcell
     }
     
@@ -74,11 +77,28 @@ class MemoryGameViewController: UIViewController, UICollectionViewDelegate, UICo
         let cell = collectionView.cellForItem(at: indexPath) as! MemoryViewCell
         
         if cell.shown { return }
- //       gameController.selectCard(cell.card)
+        cell.showCard(true, animated: true)
+    
+       // gameController.selectCard()
         
         collectionView.deselectItem(at: indexPath, animated:true)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        //let numberOfColumns:Int = self.collectionView(collectionView, numberOfItemsInSection: indexPath.section)
+        
+        let itemWidth: CGFloat = collectionView.frame.width / 3.0 - 15.0 //numberOfColumns as CGFloat - 10 //- (minimumInteritemSpacing * numberOfColumns))
+        
+        return CGSize(width: itemWidth, height: itemWidth)
+    }
+    
+
+    
+    func setupNewGame() {
+        let cardsData:[UILabel] = MemoryGame.defaultCardLabels
+        gameController.newGame(cardsData)
+    }
+
     
 
     // IBOutlets

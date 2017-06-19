@@ -11,13 +11,21 @@ import UIKit
 class MemoryViewCell: UICollectionViewCell {
     
     //IBOutlets for CollectionViewCells
-    
+
     @IBOutlet weak var frontCellLabel: UILabel!
     @IBOutlet weak var cellImageView: UIImageView!
+    
+    var card:MemoryCard? {
+        didSet {
+            guard let card = card else { return }
+           // frontCellLabel = card.text
+        }
+    }
     
     
     var shown: Bool = false
     
+
     func showCard (_ show: Bool, animated: Bool) {
         cellImageView.isHidden = false
         frontCellLabel.isHidden = false
@@ -50,4 +58,5 @@ class MemoryViewCell: UICollectionViewCell {
             }
         }
     }
+    
 }
