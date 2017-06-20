@@ -49,6 +49,7 @@ class ClassicQuestionViewController: UIViewController {
     
     //Print question on label
     @IBAction func printQuestion() {
+        if (currentCardIndex < deck.getCountOfCards()) {
         strValue = deck.listOfCards[currentCardIndex].getQuestion()
         QuestionLabel.text = strValue
         Correct.isHidden = true
@@ -56,6 +57,16 @@ class ClassicQuestionViewController: UIViewController {
         Shelve.isHidden = false
         Show.isHidden = false
         self.AnswerView.isHidden = true
+        }
+        else {
+        strValue = "Congratulations!"
+        QuestionLabel.text = strValue
+        Correct.isHidden = true
+        Incorrect.isHidden = true
+        Shelve.isHidden = true
+        Show.isHidden = true
+        self.AnswerView.isHidden = true
+        }
     }
     
     //Print answer on label
@@ -82,6 +93,9 @@ class ClassicQuestionViewController: UIViewController {
     // Card correct
     @IBAction func cardCorrect() {
         deck.listOfCards[currentCardIndex].cardPlayed(result: "correct")
+        if (deck.listOfCards[currentCardIndex].getCorrectCount() < 3) {
+        shelveCard()
+        }
         currentCardIndex += 1
         printQuestion()
         self.QuestionView.isHidden = false
