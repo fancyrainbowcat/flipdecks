@@ -41,11 +41,20 @@ class ClassicTypeViewController: UIViewController {
     
     //Print question on label
     @IBAction func printQuestion() {
+        if (currentCardIndex < deck.getCountOfCards()) {
         strValue = deck.listOfCards[currentCardIndex].getQuestion()
         QuestionTypeLabel.text = strValue
         NextType.isHidden = true
         ShelveType.isHidden = false
         CheckType.isHidden = false
+        }
+        else {
+        strValue = "Congratulations!"
+        QuestionTypeLabel.text = strValue
+        NextType.isHidden = true
+        ShelveType.isHidden = true
+        CheckType.isHidden = true
+        }
     }
     
     //Print answer on label

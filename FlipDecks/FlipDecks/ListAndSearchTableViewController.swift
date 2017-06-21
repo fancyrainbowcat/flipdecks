@@ -26,7 +26,7 @@ class ListAndSearchTableViewController: UITableViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.listOfCards = self.deck.returnAllCards()
+        self.listOfCards = self.deck.returnAllCards().sorted(by: {$0.getQuestion() < $1.getQuestion()})
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
@@ -61,9 +61,13 @@ class ListAndSearchTableViewController: UITableViewController {
         if searchController.isActive && searchController.searchBar.text != "" {
             cell.QuestionLabel?.text = self.filteredCards[indexPath.row].getQuestion()
             cell.AnswerLabel?.text = self.filteredCards[indexPath.row].getAnswer()
+            cell.correctLabel?.text = "Correct: \(self.filteredCards[indexPath.row].getCorrectCount())"
+            cell.incorrectLabel?.text = "Incorrect: \(self.filteredCards[indexPath.row].getIncorrectCount())"
         } else {
             cell.QuestionLabel?.text = self.listOfCards[indexPath.row].getQuestion()
             cell.AnswerLabel?.text = self.listOfCards[indexPath.row].getAnswer()
+            cell.correctLabel?.text = "Correct: \(self.listOfCards[indexPath.row].getCorrectCount())"
+            cell.incorrectLabel?.text = "Incorrect: \(self.listOfCards[indexPath.row].getIncorrectCount())"
         }
         return cell
     }
