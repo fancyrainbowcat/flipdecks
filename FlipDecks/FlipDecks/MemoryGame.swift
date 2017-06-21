@@ -14,6 +14,7 @@ class MemoryGame {
     var mCards = [MemoryCard]()
     var isPlaying: Bool = false
     var cardsShown:[MemoryCard] = [MemoryCard]()
+
     
     var cell = MemoryViewCell()
     
@@ -36,58 +37,39 @@ class MemoryGame {
     }
     
     func selectCard(cell : MemoryViewCell, mCard: MemoryCard) {
-        let unpaired = unpairedCard()
+        let firstCard = cardsShown.last
         
-        
-        
-        if unpairedCardShown() {
-            print("here ucs")
+        if twoCardsShown() {
             // aufgedeckte karte mit zuvor aufgedeckter vergleichen
-            if mCard.equals() { // mcard.equals(firstCard)
-            
+            if mCard.equals(firstCard!) { // mcard.equals(firstCard)
+                cardsShown.append(mCard)
             } else {
                 
-                let unpairedCard = cardsShown.removeLast()
+                cardsShown.removeLast()
                 
                 let delayTime = DispatchTime.now() + Double(Int64(1 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
                 DispatchQueue.main.asyncAfter(deadline: delayTime) {
-                    print("here timedelay")
-                    cell.hideCards([mCard, unpaired!])
+                    cell.showCard(false, animated: true)
+                    self.cell.showCard(false, animated: true)
+                    
                 }
                
             }
         } else {
-        cardsShown.append(mCard)
-        }
-        
-      /*  if unpairedCardShown() {
-            let unpaired = unpairedCard()!
-            if mCard.equals() /* (unpaired) */ {
-                cardsShown.append(mCard)
-            } else {
-                let unpairedCard = cardsShown.removeLast()
-                
-                let delayTime = DispatchTime.now() + Double(Int64(1 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-                DispatchQueue.main.asyncAfter(deadline: delayTime) {
-                    
-         
-                    
-                }
-            }
-        } else {
             cardsShown.append(mCard)
+            self.cell = cell
         }
-        
-        if cardsShown.count == mCards.count {
-            wonGame()
-        } */
 
     }
     
     func newGame(cardsData: [String]) {
         isPlaying = true
-        let cardsData = randomCards(cardsData)
-  //      MemoryViewCell.setCard(cardsData)
+        cell = MemoryViewCell()
+        
+ //       let cardsData = randomCards(cardsData)
+ //       for n in mCards {
+ //       cell.setCard(mCard: cell, cellText: cardsData[n])
+ //       }
     }
     
     func endGame() {
@@ -105,7 +87,7 @@ class MemoryGame {
         let unpairedCard = cardsShown.last
         return unpairedCard
     }
-    func unpairedCardShown() -> Bool {
+    func twoCardsShown() -> Bool {
         return cardsShown.count % 2 != 0
     }
 
@@ -116,12 +98,6 @@ class MemoryGame {
             }
         }
         return nil
-    }
-    func randomCards(_ cardsData:[String]) -> [String]{
-    // here shuffle or split etc
-        let cardsData = cardsData.choose(6)
-        
-        return cardsData
     }
     
     

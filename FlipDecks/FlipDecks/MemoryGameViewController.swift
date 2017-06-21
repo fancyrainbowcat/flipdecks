@@ -38,6 +38,9 @@ class MemoryGameViewController: UIViewController, UICollectionViewDelegate, UICo
     var testArray = [1,2,3,4,5,6,7,8,9,10,11,12,13]
     var backImage = ["mCardBack"]
     
+    var answers: [MemoryCard] = [MemoryCard]()
+    var questions: [MemoryCard] = [MemoryCard]()
+    
     let gameController = MemoryGame()
 
     
@@ -80,7 +83,7 @@ class MemoryGameViewController: UIViewController, UICollectionViewDelegate, UICo
         if cell.shown { return }
         cell.showCard(true, animated: true)
         
-        cell.mCard = MemoryCard()
+        cell.mCard = MemoryCard(cellText: deck.listOfCards[0].getQuestion(), id: deck.listOfCards[0])
         
         gameController.selectCard(cell : cell, mCard: cell.mCard!)
         
@@ -91,6 +94,18 @@ class MemoryGameViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func setupNewGame() {
         gameController.newGame(cardsData: MemoryGame.defaultCardStrings)
+    }
+    func divideCards(cards:[Card]) {
+       // split dat array in questions and answers!
+        for card in cards {
+            let answer = card.getAnswer()
+            let question = card.getQuestion()
+            answers.append(MemoryCard(cellText: answer, id: card))
+            questions.append(MemoryCard(cellText: question, id: card))
+        }
+        // shuffle both of the arrays
+        questions.shuffle()
+        answers.shuffle()
     }
     
     

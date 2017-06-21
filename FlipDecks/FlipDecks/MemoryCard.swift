@@ -11,14 +11,17 @@ import UIKit
 
 class MemoryCard {
     
-    var frontCellText: String = "yay"
-    var id: Int = 0
+    var frontCellText = ""
+    var id = Card(question: "", answer: "", correctCount: 0, incorrectCount: 0)
     
     
+    init(cellText: String, id: Card){
+        self.frontCellText = cellText
+        self.id = id
+    }
 
-
     
-    func equals() -> Bool {
+    func equals(_ mCard: MemoryCard) -> Bool {
         return false
         // if id.mcard.answer/question = id.firstCard -> equal
     }
