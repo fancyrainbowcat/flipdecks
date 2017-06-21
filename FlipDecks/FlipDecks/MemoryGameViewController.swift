@@ -46,6 +46,7 @@ class MemoryGameViewController: UIViewController, UICollectionViewDelegate, UICo
         self.MemoryCollectionView.delegate = self
         self.MemoryCollectionView.dataSource = self
         
+        print(deck.listOfCards[0].getQuestion())
         
         let mCards = deck.listOfCards.choose(6)
         let testLeFunc = testArray.choose(6)
@@ -78,27 +79,20 @@ class MemoryGameViewController: UIViewController, UICollectionViewDelegate, UICo
         
         if cell.shown { return }
         cell.showCard(true, animated: true)
-    
-       // gameController.selectCard()
+        
+        cell.mCard = MemoryCard()
+        
+        gameController.selectCard(cell : cell, mCard: cell.mCard!)
         
         collectionView.deselectItem(at: indexPath, animated:true)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        //let numberOfColumns:Int = self.collectionView(collectionView, numberOfItemsInSection: indexPath.section)
-        
-        let itemWidth: CGFloat = collectionView.frame.width / 3.0 - 15.0 //numberOfColumns as CGFloat - 10 //- (minimumInteritemSpacing * numberOfColumns))
-        
-        return CGSize(width: itemWidth, height: itemWidth)
     }
     
 
     
     func setupNewGame() {
-        let cardsData:[UILabel] = MemoryGame.defaultCardLabels
-        gameController.newGame(cardsData)
+        gameController.newGame(cardsData: MemoryGame.defaultCardStrings)
     }
-
+    
     
 
     // IBOutlets

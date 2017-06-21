@@ -15,16 +15,33 @@ class MemoryViewCell: UICollectionViewCell {
     @IBOutlet weak var frontCellLabel: UILabel!
     @IBOutlet weak var cellImageView: UIImageView!
     
-    var card:MemoryCard? {
+
+    
+    var mCard:MemoryCard? {
         didSet {
-            guard let card = card else { return }
-           // frontCellLabel = card.text
+            guard let mCard = mCard else { return }
+            frontCellLabel.text = mCard.frontCellText
         }
     }
     
     
     var shown: Bool = false
+   
     
+    func setCard(mCard: MemoryViewCell, cellText: String){
+        mCard.frontCellLabel.text = cellText
+    }
+    
+    func hideCards (_ cards: [MemoryCard]) {
+        for _ in cards {
+            UIView.transition(from: frontCellLabel,
+                          to: cellImageView,
+                          duration: 0.5,
+                          options: [.transitionFlipFromRight, .showHideTransitionViews],
+                          completion:  { (finished: Bool) -> () in
+            })
+        }
+    }
 
     func showCard (_ show: Bool, animated: Bool) {
         cellImageView.isHidden = false
@@ -41,8 +58,8 @@ class MemoryViewCell: UICollectionViewCell {
                                   completion: { (finished: Bool) -> () in
                 })
             } else {
-                UIView.transition(from: cellImageView,
-                                  to: frontCellLabel,
+                UIView.transition(from: frontCellLabel,
+                                  to: cellImageView,
                                   duration: 0.5,
                                   options: [.transitionFlipFromRight, .showHideTransitionViews],
                                   completion:  { (finished: Bool) -> () in

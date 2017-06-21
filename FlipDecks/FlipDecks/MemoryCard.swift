@@ -10,9 +10,16 @@ import Foundation
 import UIKit
 
 class MemoryCard {
+    
+    var frontCellText: String = "yay"
+    var id: Int = 0
+    
+    
+
 
     
     func equals() -> Bool {
         return false
+        // if id.mcard.answer/question = id.firstCard -> equal
     }
 }
