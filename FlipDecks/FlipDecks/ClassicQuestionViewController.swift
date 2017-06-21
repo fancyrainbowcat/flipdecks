@@ -14,14 +14,16 @@ class ClassicQuestionViewController: UIViewController {
     // current deck and language
     var deck : Deck = Deck(name: "", languageName: "", fileEnding: "")
     var language : Language = Language(name: "")
-    var array = [String] ()
     var strValue = ""
     var currentCardIndex = 0
+    var currentCards = [Card]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //only not finished cards are relevant
+        currentCards = self.deck.returnAllNotFinishedCards()
+        currentCards.shuffle()
         
-        deck.listOfCards.shuffle()
         printQuestion()
         
         //to determine when the Application is entering into background
@@ -49,29 +51,29 @@ class ClassicQuestionViewController: UIViewController {
     
     //Print question on label
     @IBAction func printQuestion() {
-        if (currentCardIndex < deck.getCountOfCards()) {
-        strValue = deck.listOfCards[currentCardIndex].getQuestion()
-        QuestionLabel.text = strValue
-        Correct.isHidden = true
-        Incorrect.isHidden = true
-        Shelve.isHidden = false
-        Show.isHidden = false
-        self.AnswerView.isHidden = true
+        if (currentCardIndex < currentCards.count) {
+            strValue = currentCards[currentCardIndex].getQuestion()
+            QuestionLabel.text = strValue
+            Correct.isHidden = true
+            Incorrect.isHidden = true
+            Shelve.isHidden = false
+            Show.isHidden = false
+            self.AnswerView.isHidden = true
         }
         else {
-        strValue = "Congratulations!"
-        QuestionLabel.text = strValue
-        Correct.isHidden = true
-        Incorrect.isHidden = true
-        Shelve.isHidden = true
-        Show.isHidden = true
-        self.AnswerView.isHidden = true
+            strValue = "Congratulations!"
+            QuestionLabel.text = strValue
+            Correct.isHidden = true
+            Incorrect.isHidden = true
+            Shelve.isHidden = true
+            Show.isHidden = true
+            self.AnswerView.isHidden = true
         }
     }
     
     //Print answer on label
     @IBAction func printAnswer() {
-        strValue = deck.listOfCards[currentCardIndex].getAnswer()
+        strValue = currentCards[currentCardIndex].getAnswer()
         AnswerLabel.text = strValue
         Shelve.isHidden = true
         Show.isHidden = true
@@ -82,8 +84,9 @@ class ClassicQuestionViewController: UIViewController {
     
     // Card incorrect
     @IBAction func cardIncorrect() {
-        deck.listOfCards[currentCardIndex].cardPlayed(result: "")
-        shelveCard()
+        currentCards[currentCardIndex].cardPlayed(result: "incorrect")
+        
+        appendCard()
         currentCardIndex += 1
         printQuestion()
         self.QuestionView.isHidden = false
@@ -92,9 +95,10 @@ class ClassicQuestionViewController: UIViewController {
     
     // Card correct
     @IBAction func cardCorrect() {
-        deck.listOfCards[currentCardIndex].cardPlayed(result: "correct")
-        if (deck.listOfCards[currentCardIndex].getCorrectCount() < 3) {
-        shelveCard()
+        currentCards[currentCardIndex].cardPlayed(result: "correct")
+
+        if (currentCards[currentCardIndex].getCorrectCount() < 3) {
+            appendCard()
         }
         currentCardIndex += 1
         printQuestion()
@@ -105,11 +109,14 @@ class ClassicQuestionViewController: UIViewController {
     
     // Shelve cards
     @IBAction func shelveCard() {
-        let oldCard = deck.listOfCards[currentCardIndex]
-        let newCard = Card(question: oldCard.getQuestion(), answer: oldCard.getAnswer(), correctCount: oldCard.getCorrectCount(), incorrectCount: oldCard.getIncorrectCount())
-        deck.listOfCards.append(newCard)
+        appendCard()
         currentCardIndex += 1
         printQuestion()
+    }
+    
+    // append current card to retry later
+    @IBAction func appendCard() {
+        currentCards.append(currentCards[currentCardIndex])
     }
     
     //Flip Label
