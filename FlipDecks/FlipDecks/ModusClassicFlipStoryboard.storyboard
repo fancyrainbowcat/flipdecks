@@ -101,6 +101,14 @@
                                 <color key="backgroundColor" red="1" green="0.94092529209999998" blue="0.55933140000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="1" green="0.94092529209988252" blue="0.55933140000203796" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2GN-A4-nph">
+                                <rect key="frame" x="149" y="488" width="77" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Continue"/>
+                                <connections>
+                                    <action selector="continueLecture" destination="APM-nd-4K1" eventType="touchUpInside" id="hYk-dy-uOO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -108,6 +116,7 @@
                         <outlet property="AnswerLabel" destination="0n0-VR-Hvp" id="8b2-bM-eRX"/>
                         <outlet property="AnswerView" destination="Ez8-3w-P7L" id="AAZ-OZ-BG5"/>
                         <outlet property="BackLabel" destination="0Bh-Jj-g7r" id="g5J-zY-rUJ"/>
+                        <outlet property="Continue" destination="2GN-A4-nph" id="lyy-cn-FKY"/>
                         <outlet property="Correct" destination="u34-nc-r0g" id="WPk-1q-yxk"/>
                         <outlet property="Incorrect" destination="rix-v8-RPX" id="45u-VH-gTI"/>
                         <outlet property="QuestionLabel" destination="nLg-EO-t4K" id="dsk-3c-PME"/>

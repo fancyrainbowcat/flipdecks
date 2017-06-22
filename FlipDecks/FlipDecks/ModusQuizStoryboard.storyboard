@@ -100,6 +100,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="AnswerQuizView" translatesAutoresizingMaskIntoConstraints="NO" id="TNT-4X-APe">
+                                <rect key="frame" x="67" y="131" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Answer!!!!!!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RII-ui-bjL">
+                                        <rect key="frame" x="7" y="13" width="225" height="102"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.94092529209999998" blue="0.55933140000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Answer 3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FSg-X1-s1P">
                                 <rect key="frame" x="18" y="449" width="143" height="104"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -130,20 +144,22 @@
                                     <action selector="playNextCard" destination="RBG-z1-Xsd" eventType="touchUpInside" id="zAB-rD-yBY"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="AnswerQuizView" translatesAutoresizingMaskIntoConstraints="NO" id="TNT-4X-APe">
-                                <rect key="frame" x="67" y="131" width="240" height="128"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cqQ-8w-y8w">
+                                <rect key="frame" x="164" y="444" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Answer!!!!!!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RII-ui-bjL">
-                                        <rect key="frame" x="7" y="13" width="225" height="102"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="0.94092529209999998" blue="0.55933140000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
+                                <state key="normal" title="Show"/>
+                                <connections>
+                                    <action selector="showAnswerForPreviousCard" destination="RBG-z1-Xsd" eventType="touchUpInside" id="VZR-n1-KpJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JuA-NY-maY">
+                                <rect key="frame" x="153" y="444" width="69" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Continue"/>
+                                <connections>
+                                    <action selector="continueLecture" destination="RBG-z1-Xsd" eventType="touchUpInside" id="j4q-RT-5zH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -158,11 +174,13 @@
                         <outlet property="AnswerTwo" destination="1Cd-jb-tra" id="qnx-QM-2BR"/>
                         <outlet property="AnswerTwoLabel" destination="e8r-qA-cZl" id="Ltm-yh-GF0"/>
                         <outlet property="BackQuiz" destination="HZy-zS-7ir" id="DLl-YB-U7a"/>
+                        <outlet property="ContinueQuiz" destination="JuA-NY-maY" id="ZpO-Dj-GSZ"/>
                         <outlet property="NextQuiz" destination="IOJ-d7-zas" id="XEa-Q2-Cbe"/>
                         <outlet property="QuestionQuizLabel" destination="qqX-B9-DRp" id="XtH-YV-SpK"/>
                         <outlet property="QuizAnswerView" destination="TNT-4X-APe" id="Pfk-0K-B27"/>
                         <outlet property="QuizQuestionView" destination="y9I-Sv-zsN" id="WLB-8q-j7E"/>
                         <outlet property="ShelveQuiz" destination="qtn-gT-cdU" id="gyy-bg-xaE"/>
+                        <outlet property="ShowQuiz" destination="cqQ-8w-y8w" id="MG2-qn-qHj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8dp-95-aIC" userLabel="First Responder" sceneMemberID="firstResponder"/>

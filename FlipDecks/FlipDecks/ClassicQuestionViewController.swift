@@ -23,7 +23,7 @@ class ClassicQuestionViewController: UIViewController {
         //only not finished cards are relevant
         currentCards = self.deck.returnAllNotFinishedCards()
         currentCards.shuffle()
-        
+        Continue.isHidden = true
         printQuestion()
         
         //to determine when the Application is entering into background
@@ -80,6 +80,10 @@ class ClassicQuestionViewController: UIViewController {
         Correct.isHidden = false
         Incorrect.isHidden = false
         flip()
+        if (Continue.isHidden == false) {
+        Correct.isHidden = true
+        Incorrect.isHidden = true
+        }
     }
     
     // Card incorrect
@@ -114,7 +118,7 @@ class ClassicQuestionViewController: UIViewController {
         printQuestion()
     }
     
-    // append current card to retry later
+    // Append current card to retry later
     @IBAction func appendCard() {
         currentCards.append(currentCards[currentCardIndex])
     }
@@ -144,6 +148,10 @@ class ClassicQuestionViewController: UIViewController {
             printQuestion()
             self.QuestionView.isHidden = false
             self.AnswerView.isHidden = true
+            Incorrect.isHidden = true
+            Correct.isHidden = true
+            Continue.isHidden = false
+            Shelve.isHidden = true
         }
     }
     
@@ -157,7 +165,19 @@ class ClassicQuestionViewController: UIViewController {
         self.deck.saveToFile()
     }
     
+    // Continue after looking at previous card
+    @IBAction func continueLecture() {
+    currentCardIndex += 1
+    printQuestion()
+    Continue.isHidden = true
+    Shelve.isHidden = false
+    self.QuestionView.isHidden = false
+    self.AnswerView.isHidden = true
+    }
+    
     // IBOutlets
+    
+    @IBOutlet weak var Continue: UIButton!
     
     @IBOutlet weak var AnswerLabel: UILabel!
     @IBOutlet weak var QuestionView: UIView!
