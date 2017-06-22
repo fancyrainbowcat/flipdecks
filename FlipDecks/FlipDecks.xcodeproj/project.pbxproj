@@ -14,6 +14,7 @@
 		816B02DF1EEE80A70080D6F5 /* ClassicQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B02DE1EEE80A70080D6F5 /* ClassicQuestionViewController.swift */; };
 		816B02E11EEEE2B50080D6F5 /* ClassicTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B02E01EEEE2B50080D6F5 /* ClassicTypeViewController.swift */; };
 		816B02E31EF15BA00080D6F5 /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B02E21EF15BA00080D6F5 /* QuizViewController.swift */; };
+		84F963171EFBE11E00F9E474 /* BarCharViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F963161EFBE11E00F9E474 /* BarCharViewController.swift */; };
 		C002D6C61EE323F500505137 /* OpenFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C002D6C51EE323F500505137 /* OpenFileViewController.swift */; };
 		C002D6C81EE3241500505137 /* ManualInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C002D6C71EE3241500505137 /* ManualInputViewController.swift */; };
 		C002D6CA1EE3242F00505137 /* FileDialogTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C002D6C91EE3242F00505137 /* FileDialogTableViewController.swift */; };
@@ -80,6 +81,7 @@
 		816B02DE1EEE80A70080D6F5 /* ClassicQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassicQuestionViewController.swift; sourceTree = "<group>"; };
 		816B02E01EEEE2B50080D6F5 /* ClassicTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassicTypeViewController.swift; sourceTree = "<group>"; };
 		816B02E21EF15BA00080D6F5 /* QuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
+		84F963161EFBE11E00F9E474 /* BarCharViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarCharViewController.swift; sourceTree = "<group>"; };
 		8DEC05A0B64FAD28905C24A1 /* Pods-FlipDecksUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlipDecksUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlipDecksUITests/Pods-FlipDecksUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C002D6C51EE323F500505137 /* OpenFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenFileViewController.swift; sourceTree = "<group>"; };
 		C002D6C71EE3241500505137 /* ManualInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualInputViewController.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				C00A527A1EE2C8CC009B3075 /* ModusClassicFlipStoryboard.storyboard */,
 				C00A52781EE2C88C009B3075 /* ModusClassicTypeStoryboard.storyboard */,
 				C00A52761EE2C83B009B3075 /* StatisticsPerUnit.storyboard */,
+				84F963161EFBE11E00F9E474 /* BarCharViewController.swift */,
 				C0E61CB31EE4199F00FA962C /* Languages */,
 				C00A52721EE2C767009B3075 /* StatisticsMainStoryboard.storyboard */,
 				C00A526E1EE2C4F3009B3075 /* ImportStoryboard.storyboard */,
@@ -567,6 +570,7 @@
 				C0E61CB81EE41A7500FA962C /* UnitsTableViewController.swift in Sources */,
 				8147BF861EF4429100DFE88A /* MemoryViewCell.swift in Sources */,
 				C004A7411EF1ABE900011DC5 /* ListAndSearchTableViewController.swift in Sources */,
+				84F963171EFBE11E00F9E474 /* BarCharViewController.swift in Sources */,
 				C00A523F1EE2B0F6009B3075 /* AppDelegate.swift in Sources */,
 				816B02E11EEEE2B50080D6F5 /* ClassicTypeViewController.swift in Sources */,
 				C0E61CBA1EE4297400FA962C /* ModusViewController.swift in Sources */,
@@ -735,6 +739,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = FlipDecks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ng.FlipDecks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -748,6 +753,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = FlipDecks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ng.FlipDecks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
