@@ -83,6 +83,7 @@ class ClassicQuestionViewController: UIViewController {
         if (Continue.isHidden == false) {
         Correct.isHidden = true
         Incorrect.isHidden = true
+        Continue.tintColor = UIColor.blue
         }
     }
     
@@ -151,6 +152,7 @@ class ClassicQuestionViewController: UIViewController {
             Incorrect.isHidden = true
             Correct.isHidden = true
             Continue.isHidden = false
+            Continue.tintColor = UIColor.white
             Shelve.isHidden = true
         }
     }
