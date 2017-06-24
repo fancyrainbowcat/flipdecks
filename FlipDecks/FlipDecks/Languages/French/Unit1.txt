@@ -1,0 +1,50 @@
+mieten;louer;0;0;0;0
+müssen;devoir;0;0;0;0
+wunderbar;formidable;0;0;0;0
+etwas viele;un peu nombreux;0;0;0;0
+nur wenige;peu nombreux;0;0;0;0
+baden;se baigner;0;0;0;0
+Wetter;temps;0;0;0;0
+zahlreich;nombreux;0;0;0;0
+Strand;plage;0;0;0;0
+Schande;honte;0;0;0;0
+Spaziergang;promenade;0;0;0;0
+warum;pourquoi;0;0;0;0
+wann;quand;0;0;0;0
+was;qu'est-ce que;0;0;0;0
+Herr;Monsieur;0;0;0;0
+Fräulein;Mademoiselle;0;0;0;0
+meine Damen und Herren;Messieurs-dames;0;0;0;0
+guten Abend;bonsoir;0;0;0;0
+Abend;soir;0;0;0;0
+Nacht;nuit;0;0;0;0
+Danke;merci;0;0;0;0
+Auf Wiedersehen;Au revoir;0;0;0;0
+Urlaub, Ferien;vacances;0;0;0;0
+und;et;0;0;0;0
+Name;nom;0;0;0;0
+Adresse;adresse;0;0;0;0
+Bleistift;crayon;0;0;0;0
+eins;un  ;0;0;0;0
+zwei;deux;0;0;0;0
+drei;trois;0;0;0;0
+vier;quatre;0;0;0;0
+fünf;cinq;0;0;0;0
+sechs;six;0;0;0;0
+sieben;sept;0;0;0;0
+acht;huit;0;0;0;0
+neun;neuf;0;0;0;0
+zehn;dix;0;0;0;0
+zählen;compter;0;0;0;0
+mit;avec;0;0;0;0
+Was ist das?;c'est quoi?;0;0;0;0
+Mikrofon;micro;0;0;0;0
+deutsch;allemand;0;0;0;0
+ja;oui;0;0;0;0
+in Urlaub;en vacances;0;0;0;0
+nein;non;0;0;0;0
+ich;je;0;0;0;0
+wohnen;habiter;0;0;0;0
+oder;ou ;0;0;0;0
+Gruppe;groupe;0;0;0;0
+ganz allein;tout seul;0;0;0;0

@@ -49,23 +49,25 @@ class Deck {
         if (fileName != "") {
             filePath = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true).appendingPathComponent(self.languageName, isDirectory: true).appendingPathComponent(fileName)
     
+            print("File path: \(filePath!)")
+            
             do
             {
                 //get content of file and split it in lines
                 let contents = try String(contentsOfFile: (filePath?.path)!)
-                let lines = contents.components(separatedBy: "\n")
+                let lines = contents.components(separatedBy: NSCharacterSet.newlines)
             
                 //loop over lines and split into elements
                 for line in lines {
                     if line != "" {
                         let elements = line.components(separatedBy: ";")
-                    
+                        
                         //create a new card and append it to this deck
                         let newCard = Card(question: elements[0], answer: elements[1], correctCount: Int(elements[2])!, incorrectCount: Int(elements[3])!)
-                    
+                        
                         //check if card is already in list
                         let checkCardExists = listOfCards.contains(where: { $0.getQuestion() == newCard.getQuestion() && $0.getAnswer() == newCard.getAnswer() })
-                    
+                        
                         if(checkCardExists == false) {
                             self.listOfCards.append(newCard)
                         }
@@ -165,5 +167,12 @@ class Deck {
         
         //recreate deck with current values
         FileManager.default.createFile(atPath: (filePath?.path)!, contents: contentData, attributes: nil)
+    }
+    
+    //resets all data for this unit 
+    func resetAllCards() {
+        for card in self.listOfCards {
+            card.resetCounts()
+        }
     }
 }

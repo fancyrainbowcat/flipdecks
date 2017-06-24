@@ -1,0 +1,50 @@
+Geld;argent;0;0;0;0
+gewinnen;gagner;0;0;0;0
+tragen;porter;0;0;0;0
+Kino;cinéma;0;0;0;0
+mit  Freude;avec plaisir;0;0;0;0
+die Deutschen;les Allemands;0;0;0;0
+die Belgier;les Belges;0;0;0;0
+die Korsen;les Corses;0;0;0;0
+Faulheit;paresse;0;0;0;0
+sich treffen;se rencontrer;0;0;0;0
+Sohn;fils;0;0;0;0
+Zucker;sucre;0;0;0;0
+Sirup;sirop;0;0;0;0
+Honig;miel;0;0;0;0
+Rechnung;facture;0;0;0;0
+in Rechnung stellen;facturer;0;0;0;0
+Automechaniker;garagiste;0;0;0;0
+Mann;homme;0;0;0;0
+Unfall;accident;0;0;0;0
+Paradis;paradis;0;0;0;0
+Bett;lit;0;0;0;0
+beruhigen;rassurer;0;0;0;0
+Bein;jambe;0;0;0;0
+einfach;simple;0;0;0;0
+furchtbar;terrible;0;0;0;0
+Traktor;tracteur;0;0;0;0
+Ehemann;mari;0;0;0;0
+Tomate;tomate;0;0;0;0
+traditionel;traditionel;0;0;0;0
+Kartoffeln;pommes de terre;0;0;0;0
+Meer;mer;0;0;0;0
+Fisch;poisson;0;0;0;0
+Portion;portion;0;0;0;0
+momentan;maintenant;0;0;0;0
+auch;aussi;0;0;0;0
+fortschrittlich;progressif;0;0;0;0
+Ernährung;alimentation;0;0;0;0
+Hausaufgaben;devoirs;0;0;0;0
+einige;quelques;0;0;0;0
+Mal;fois;0;0;0;0
+Entdeckung;découverte;0;0;0;0
+vorher;avant ;0;0;0;0
+künstlerisch;artistique;0;0;0;0
+morgen;demain;0;0;0;0
+frei;libre;0;0;0;0
+beginnen;commencer par;0;0;0;0
+Minimum;minimum;0;0;0;0
+möglich;possible;0;0;0;0
+wirklich;vraiment;0;0;0;0
+Schiff;bateau;0;0;0;0

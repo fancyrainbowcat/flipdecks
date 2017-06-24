@@ -120,7 +120,7 @@ class OpenFileViewController: UIViewController {
         do {
             //split content of original file into lines
             contentOfFile = try String(contentsOf: fileURL)
-            let lines = contentOfFile.components(separatedBy: "\n")
+            let lines = contentOfFile.components(separatedBy: NSCharacterSet.newlines)
             
             //loop over lines and split into elements by file separator ";"
             for line in lines {

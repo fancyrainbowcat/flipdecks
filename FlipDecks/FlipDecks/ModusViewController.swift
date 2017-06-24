@@ -11,6 +11,12 @@ import UIKit
 //View Controller for all modi for one unit for one language
 class ModusViewController: UIViewController {
 
+    @IBOutlet weak var timeModeButton: UIButton!
+    var timeMode : Bool = false
+    
+    @IBOutlet weak var resetUnitButton: UIButton!
+    
+    
     //current deck and language
     var deck : Deck = Deck(name: "", languageName: "", fileEnding: "")
     var language : Language = Language(name: "")
@@ -21,6 +27,22 @@ class ModusViewController: UIViewController {
         self.title = "\(self.language.getName()) - \(self.deck.getName())"
     }
     
+    //turn time mode on and off
+    @IBAction func timeModeChanged(_ sender: Any) {
+        if (self.timeMode == true) {
+            self.timeMode = false
+            self.timeModeButton.setTitle("Time Mode: off", for: UIControlState.normal)
+            self.timeModeButton.setTitleColor(UIColor.red, for: UIControlState.normal)
+        } else {
+            self.timeMode = true
+            self.timeModeButton.setTitle("Time Mode: on", for: UIControlState.normal)
+            self.timeModeButton.setTitleColor(UIColor.green, for: UIControlState.normal)
+        }
+    }
+    
+    @IBAction func resetUnit(_ sender: Any) {
+        self.deck.resetAllCards()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -42,14 +64,7 @@ class ModusViewController: UIViewController {
             let controller = segue.destination as! ClassicQuestionViewController
             controller.language = self.language
             controller.deck = self.deck
-        }
-        //give language and unit to ClassicQuestionViewController
-        if segue.identifier == "modusToClassicQuestion" {
-            
-            //since there is a navigation controller in between, I have to go through it
-            let controller = segue.destination as! ClassicQuestionViewController
-            controller.language = self.language
-            controller.deck = self.deck
+            controller.timeMode = self.timeMode
         }
         //give language and unit to ClassicTypeViewController
         if segue.identifier == "modusToClassicType" {
