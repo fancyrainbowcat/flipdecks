@@ -63,7 +63,7 @@ class Deck {
                         let elements = line.components(separatedBy: ";")
                         
                         //create a new card and append it to this deck
-                        let newCard = Card(question: elements[0], answer: elements[1], correctCount: Int(elements[2])!, incorrectCount: Int(elements[3])!)
+                        let newCard = Card(question: elements[0], answer: elements[1], correctCount: Int(elements[2])!, incorrectCount: Int(elements[3])!, secondsSpentOnCard : Int(elements[4])!)
                         
                         //check if card is already in list
                         let checkCardExists = listOfCards.contains(where: { $0.getQuestion() == newCard.getQuestion() && $0.getAnswer() == newCard.getAnswer() })
@@ -160,7 +160,7 @@ class Deck {
         //write current data into content string
         var content = ""
         for card in listOfCards {
-            content = content.appending("\(card.getQuestion());\(card.getAnswer());\(card.getCorrectCount());\(card.getIncorrectCount())\n")
+            content = content.appending("\(card.getQuestion());\(card.getAnswer());\(card.getCorrectCount());\(card.getIncorrectCount());\(card.getTimeSpentOnCard())\n")
         }
         //convert content string to data
         let contentData = content.data(using: .utf8)
@@ -174,5 +174,16 @@ class Deck {
         for card in self.listOfCards {
             card.resetCounts()
         }
+    }
+    
+    //returns the time that was spent on the deck in seconds
+    func returnSecondsSpentOnDeck() -> Int {
+        var timeSpentOnDeck = 0
+        
+        for card in self.listOfCards {
+            timeSpentOnDeck = timeSpentOnDeck + card.getTimeSpentOnCard()
+        }
+        
+        return timeSpentOnDeck
     }
 }

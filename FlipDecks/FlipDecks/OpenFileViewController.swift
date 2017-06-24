@@ -126,7 +126,7 @@ class OpenFileViewController: UIViewController {
             for line in lines {
                 if line != "" {
                     var newLine = line
-                    newLine = newLine.appending(";0;0\n")
+                    newLine = newLine.appending(";0;0;0\n")
                     newContent.append(newLine)
                 }
             }

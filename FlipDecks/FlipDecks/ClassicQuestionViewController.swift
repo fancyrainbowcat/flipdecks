@@ -39,6 +39,7 @@ class ClassicQuestionViewController: UIViewController {
             timeLabel.isHidden = true
         } else {
             timeLabel.isHidden = false
+            self.overallSecondsCount = self.deck.returnSecondsSpentOnDeck()
         }
         
         printQuestion()
@@ -104,6 +105,7 @@ class ClassicQuestionViewController: UIViewController {
         }
     }
     
+    //transforms counts to double-digit number
     func transformToTime(count : Int) -> String {
         var countStr = ""
         
@@ -115,6 +117,7 @@ class ClassicQuestionViewController: UIViewController {
         return countStr
     }
     
+    //splits seconds into hours:minutes:seconds format
     func splitSeconds(secondsCount : Int) -> (String, String, String) {
         var minutes = 0
         var seconds = 0
@@ -174,7 +177,11 @@ class ClassicQuestionViewController: UIViewController {
     
     // Card incorrect
     @IBAction func cardIncorrect() {
-        currentCards[currentCardIndex].cardPlayed(result: "incorrect")
+        if (timeMode == true) {
+            currentCards[currentCardIndex].cardPlayed(result: "incorrect", seconds: secondsCount)
+        } else {
+            currentCards[currentCardIndex].cardPlayed(result: "incorrect")
+        }
         
         appendCard()
         currentCardIndex += 1
@@ -185,7 +192,11 @@ class ClassicQuestionViewController: UIViewController {
     
     // Card correct
     @IBAction func cardCorrect() {
-        currentCards[currentCardIndex].cardPlayed(result: "correct")
+        if (timeMode == true) {
+            currentCards[currentCardIndex].cardPlayed(result: "correct", seconds: secondsCount)
+        } else {
+            currentCards[currentCardIndex].cardPlayed(result: "correct")
+        }
 
         if (currentCards[currentCardIndex].getCorrectCount() < 3) {
             appendCard()

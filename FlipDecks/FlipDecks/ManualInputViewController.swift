@@ -51,7 +51,7 @@ class ManualInputViewController: UIViewController {
     //load data from file in documents folder into internal storage
     func loadData(deckName : String, languageName : String, question: String, answer: String) {
         //add correct and incorrect count to the given input
-        let newContent = "\(question);\(answer);0;0\n"
+        let newContent = "\(question);\(answer);0;0;0\n"
         
         //path for the file in internal storage
         let deckPath = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true).appendingPathComponent(languageName, isDirectory: true).appendingPathComponent(deckName).appendingPathExtension("txt")

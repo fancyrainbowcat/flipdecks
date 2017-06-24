@@ -99,6 +99,7 @@ class ModusViewController: UIViewController {
             let controller = navigationController.viewControllers.first as! ListAndSearchTableViewController
             controller.language = self.language
             controller.deck = self.deck
+            controller.timeMode = self.timeMode 
         }
     }
     
