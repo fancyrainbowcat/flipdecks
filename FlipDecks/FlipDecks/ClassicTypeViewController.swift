@@ -17,7 +17,7 @@ class ClassicTypeViewController: UIViewController {
     var array = [String] ()
     var strValue = ""
     var currentCardIndex = 0
-    
+    var currentCards = [Card]()    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +28,13 @@ class ClassicTypeViewController: UIViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        deck.listOfCards.shuffle()
+        //only not finished cards are relevant
+        currentCards = self.deck.returnAllNotFinishedCards()
+        currentCards.shuffle()
+        
         printQuestion()
+        ShowType.isHidden = true
+        ContinueType.isHidden = true
         
         //to determine when the Application is entering into background
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterBackground), name: .UIApplicationDidEnterBackground, object: nil)
@@ -41,25 +46,25 @@ class ClassicTypeViewController: UIViewController {
     
     //Print question on label
     @IBAction func printQuestion() {
-        if (currentCardIndex < deck.getCountOfCards()) {
-        strValue = deck.listOfCards[currentCardIndex].getQuestion()
-        QuestionTypeLabel.text = strValue
-        NextType.isHidden = true
-        ShelveType.isHidden = false
-        CheckType.isHidden = false
+        if (currentCardIndex < currentCards.count) {
+            strValue = currentCards[currentCardIndex].getQuestion()
+            QuestionTypeLabel.text = strValue
+            NextType.isHidden = true
+            ShelveType.isHidden = false
+            CheckType.isHidden = false
         }
         else {
-        strValue = "Congratulations!"
-        QuestionTypeLabel.text = strValue
-        NextType.isHidden = true
-        ShelveType.isHidden = true
-        CheckType.isHidden = true
+            strValue = "Congratulations!"
+            QuestionTypeLabel.text = strValue
+            NextType.isHidden = true
+            ShelveType.isHidden = true
+            CheckType.isHidden = true
         }
     }
     
     //Print answer on label
     @IBAction func printAnswer() {
-        strValue = deck.listOfCards[currentCardIndex].getAnswer()
+        strValue = currentCards[currentCardIndex].getAnswer()
         AnswerTypeLabel.text = strValue
         ShelveType.isHidden = true
         CheckType.isHidden = true
@@ -84,9 +89,7 @@ class ClassicTypeViewController: UIViewController {
     
     // Shelve cards
     @IBAction func shelveCard() {
-        let oldCard = deck.listOfCards[currentCardIndex]
-        let newCard = Card(question: oldCard.getQuestion(), answer: oldCard.getAnswer(), correctCount: oldCard.getCorrectCount(), incorrectCount: oldCard.getIncorrectCount())
-        deck.listOfCards.append(newCard)
+        appendCard()
         currentCardIndex += 1
         printQuestion()
     }
@@ -98,9 +101,37 @@ class ClassicTypeViewController: UIViewController {
             printQuestion()
             self.QuestionTypeView.isHidden = false
             self.AnswerTypeView.isHidden = true
+            TextFieldType.isHidden = true
+            ShowType.isHidden = false
+            CheckType.isHidden = true
+            ShelveType.isHidden = true
         }
     }
     
+    // Show Answer When PreviousCard has been selected
+    @IBAction func showAnswerForPreviousCard() {
+    printAnswer()
+    ShelveType.isHidden = true
+    CheckType.isHidden = true
+    NextType.isHidden = false
+    flip()
+    ShowType.isHidden = true
+    ContinueType.isHidden = false
+    NextType.isHidden = true
+    }
+
+    //Continue Lection
+    @IBAction func continueLection() {
+        currentCardIndex += 1
+        printQuestion()
+        ContinueType.isHidden = true
+        ShowType.isHidden = true
+        self.AnswerTypeView.isHidden = true
+        self.QuestionTypeView.isHidden = false
+        TextFieldType.isHidden = false
+        CheckType.isHidden = false
+        ShelveType.isHidden = false
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -115,15 +146,26 @@ class ClassicTypeViewController: UIViewController {
         self.AnswerTypeView.isHidden = true
     }
 
+    // Append current card to retry later
+    @IBAction func appendCard() {
+        currentCards.append(currentCards[currentCardIndex])
+    }
+    
+    
     // Check Input
     @IBAction func checkInput() {
     let userInput = String(describing: TextFieldType.text)
-        if userInput == deck.listOfCards[currentCardIndex].getQuestion() {
-        deck.listOfCards[currentCardIndex].cardPlayed(result: "correct")
+        if userInput == currentCards[currentCardIndex].getQuestion() {
+        currentCards[currentCardIndex].cardPlayed(result: "correct")
+            if (currentCards[currentCardIndex].getCorrectCount() < 3) {
+                appendCard()
+            }
         }
         else {
-        deck.listOfCards[currentCardIndex].cardPlayed(result: "incorrect")
+        currentCards[currentCardIndex].cardPlayed(result: "incorrect")
+        appendCard()
         }
+    printAnswer()
     }
     
     //function that will be called once the app is entering into background
@@ -136,6 +178,8 @@ class ClassicTypeViewController: UIViewController {
         self.deck.saveToFile()
     }
 
+    @IBOutlet weak var ContinueType: UIButton!
+    @IBOutlet weak var ShowType: UIButton!
     @IBOutlet weak var AnswerTypeView: UIView!
     @IBOutlet weak var AnswerTypeLabel: UILabel!
     @IBOutlet weak var QuestionTypeView: UIView!

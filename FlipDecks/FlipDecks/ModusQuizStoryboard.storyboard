@@ -25,7 +25,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Quiz" id="NVa-rH-2pa">
+                                    <navigationItem title="Question" id="NVa-rH-2pa">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="HZy-zS-7ir">
                                             <connections>
                                                 <action selector="PreviousCard" destination="RBG-z1-Xsd" id="7nU-ud-uXH"/>
@@ -39,32 +39,37 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Question?????" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqX-B9-DRp">
-                                <rect key="frame" x="75" y="141" width="225" height="102"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZXJ-FB-ZIx">
-                                <rect key="frame" x="18" y="337" width="62" height="30"/>
+                                <rect key="frame" x="58" y="406" width="62" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Answer 1"/>
+                                <state key="normal" title="This!"/>
+                                <connections>
+                                    <action selector="checkCardOne" destination="RBG-z1-Xsd" eventType="touchUpInside" id="nCK-z5-ZZa"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Cd-jb-tra">
-                                <rect key="frame" x="245" y="337" width="64" height="30"/>
+                                <rect key="frame" x="255" y="406" width="64" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Answer 2"/>
+                                <state key="normal" title="This!"/>
+                                <connections>
+                                    <action selector="checkCardTwo" destination="RBG-z1-Xsd" eventType="touchUpInside" id="P41-CW-Gez"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lwt-nj-8Mf">
-                                <rect key="frame" x="17" y="449" width="64" height="30"/>
+                                <rect key="frame" x="56" y="548" width="64" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Answer 3"/>
+                                <state key="normal" title="This!"/>
+                                <connections>
+                                    <action selector="checkCardThree" destination="RBG-z1-Xsd" eventType="touchUpInside" id="CjU-BC-bbQ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2co-xG-GxY">
-                                <rect key="frame" x="245" y="449" width="65" height="30"/>
+                                <rect key="frame" x="255" y="548" width="65" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Answer 4"/>
+                                <state key="normal" title="This!"/>
+                                <connections>
+                                    <action selector="checkCardFour" destination="RBG-z1-Xsd" eventType="touchUpInside" id="JZt-zz-nyp"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qtn-gT-cdU">
                                 <rect key="frame" x="164" y="588" width="46" height="30"/>
@@ -74,17 +79,108 @@
                                     <action selector="shelveCard" destination="RBG-z1-Xsd" eventType="touchUpInside" id="Uw0-Zc-bdF"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Answer 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yQw-Si-Vrw">
+                                <rect key="frame" x="18" y="307" width="143" height="104"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Answer 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e8r-qA-cZl">
+                                <rect key="frame" x="216" y="307" width="143" height="104"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Answer 4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ASZ-by-HNZ">
+                                <rect key="frame" x="216" y="449" width="143" height="104"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="AnswerQuizView" translatesAutoresizingMaskIntoConstraints="NO" id="TNT-4X-APe">
+                                <rect key="frame" x="67" y="131" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Answer!!!!!!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RII-ui-bjL">
+                                        <rect key="frame" x="7" y="13" width="225" height="102"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.94092529209999998" blue="0.55933140000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Answer 3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FSg-X1-s1P">
+                                <rect key="frame" x="18" y="449" width="143" height="104"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="QuestionQuizView" translatesAutoresizingMaskIntoConstraints="NO" id="y9I-Sv-zsN">
+                                <rect key="frame" x="67" y="131" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="QuestionQuizLabel" text="Question?????" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqX-B9-DRp">
+                                        <rect key="frame" x="7" y="13" width="225" height="102"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.94092529209999998" blue="0.55933140000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="1" green="0.94092529209999998" blue="0.55933140000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IOJ-d7-zas">
+                                <rect key="frame" x="164" y="588" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="playNextCard" destination="RBG-z1-Xsd" eventType="touchUpInside" id="zAB-rD-yBY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cqQ-8w-y8w">
+                                <rect key="frame" x="164" y="444" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Show"/>
+                                <connections>
+                                    <action selector="showAnswerForPreviousCard" destination="RBG-z1-Xsd" eventType="touchUpInside" id="VZR-n1-KpJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JuA-NY-maY">
+                                <rect key="frame" x="153" y="444" width="69" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Continue"/>
+                                <connections>
+                                    <action selector="continueLecture" destination="RBG-z1-Xsd" eventType="touchUpInside" id="j4q-RT-5zH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="AnswerFour" destination="2co-xG-GxY" id="4rV-7T-ANE"/>
+                        <outlet property="AnswerFourLabel" destination="ASZ-by-HNZ" id="vBt-ca-sBb"/>
                         <outlet property="AnswerOne" destination="ZXJ-FB-ZIx" id="J3k-am-cYk"/>
+                        <outlet property="AnswerOneLabel" destination="yQw-Si-Vrw" id="9HP-cy-ROu"/>
+                        <outlet property="AnswerQuizLabel" destination="RII-ui-bjL" id="8yb-ab-pNc"/>
                         <outlet property="AnswerThree" destination="Lwt-nj-8Mf" id="0vG-AB-Aa9"/>
+                        <outlet property="AnswerThreeLabel" destination="FSg-X1-s1P" id="8Qh-qc-jPi"/>
                         <outlet property="AnswerTwo" destination="1Cd-jb-tra" id="qnx-QM-2BR"/>
+                        <outlet property="AnswerTwoLabel" destination="e8r-qA-cZl" id="Ltm-yh-GF0"/>
                         <outlet property="BackQuiz" destination="HZy-zS-7ir" id="DLl-YB-U7a"/>
-                        <outlet property="QuestionQuizLabel" destination="qqX-B9-DRp" id="h8a-u2-7kp"/>
+                        <outlet property="ContinueQuiz" destination="JuA-NY-maY" id="ZpO-Dj-GSZ"/>
+                        <outlet property="NextQuiz" destination="IOJ-d7-zas" id="XEa-Q2-Cbe"/>
+                        <outlet property="QuestionQuizLabel" destination="qqX-B9-DRp" id="XtH-YV-SpK"/>
+                        <outlet property="QuizAnswerView" destination="TNT-4X-APe" id="Pfk-0K-B27"/>
+                        <outlet property="QuizQuestionView" destination="y9I-Sv-zsN" id="WLB-8q-j7E"/>
                         <outlet property="ShelveQuiz" destination="qtn-gT-cdU" id="gyy-bg-xaE"/>
+                        <outlet property="ShowQuiz" destination="cqQ-8w-y8w" id="MG2-qn-qHj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8dp-95-aIC" userLabel="First Responder" sceneMemberID="firstResponder"/>
