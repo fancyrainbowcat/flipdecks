@@ -90,7 +90,10 @@ class MemoryGameViewController: UIViewController, UICollectionViewDelegate, UICo
         collectionView.deselectItem(at: indexPath, animated:true)
     }
     
-
+    // TODO: Layout
+    
+    
+    
     
     func setupNewGame() {
         gameController.newGame(cardsData: MemoryGame.defaultCardStrings)
@@ -106,6 +109,10 @@ class MemoryGameViewController: UIViewController, UICollectionViewDelegate, UICo
         // shuffle both of the arrays
         questions.shuffle()
         answers.shuffle()
+        
+        // alles in ein array, shuffeln -> dann nach cards abfragen
+        // oder immer 1 answer und 1 question
+        
     }
     
     

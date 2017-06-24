@@ -59,6 +59,10 @@ class MemoryGame {
             cardsShown.append(mCard)
             self.cell = cell
         }
+        
+        if threeCardsShown() {
+            
+        }
 
     }
     
@@ -89,6 +93,9 @@ class MemoryGame {
     }
     func twoCardsShown() -> Bool {
         return cardsShown.count % 2 != 0
+    }
+    func threeCardsShown() -> Bool {
+        return cardsShown.count % 3 != 0
     }
 
     func indexForCard(_ card: MemoryCard) -> Int? {
