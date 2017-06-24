@@ -12,7 +12,7 @@ import UIKit
 class MemoryCard {
     
     var frontCellText = ""
-    var id = Card(question: "", answer: "", correctCount: 0, incorrectCount: 0)
+    var id = Card(question: "", answer: "", correctCount: 0, incorrectCount: 0, secondsSpentOnCard: 0)
     
     
     init(cellText: String, id: Card){
