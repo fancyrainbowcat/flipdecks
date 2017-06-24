@@ -28,8 +28,9 @@ class MemoryViewCell: UICollectionViewCell {
     var shown: Bool = false
    
     
-    func setCard(mCard: MemoryViewCell, cellText: String){
-        mCard.frontCellLabel.text = cellText
+    func setCard(mCell: MemoryViewCell, cellText: String, mCard: MemoryCard){
+        mCell.mCard = mCard
+        mCell.frontCellLabel.text = cellText
     }
     
 

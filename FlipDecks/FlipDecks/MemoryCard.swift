@@ -22,7 +22,10 @@ class MemoryCard {
 
     
     func equals(_ mCard: MemoryCard) -> Bool {
+        if (mCard.id === self.id) {
+            return true
+        }else{
         return false
-        // if id.mcard.answer/question = id.firstCard -> equal
+        } 
     }
 }

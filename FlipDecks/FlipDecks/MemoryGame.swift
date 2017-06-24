@@ -15,22 +15,7 @@ class MemoryGame {
     var isPlaying: Bool = false
     var cardsShown:[MemoryCard] = [MemoryCard]()
 
-    
     var cell = MemoryViewCell()
-    
-    static var defaultCardStrings:[String] = [
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-        "10"
-        
-    ];
     
     var numberOfMCards: Int {
         return mCards.count
@@ -58,11 +43,13 @@ class MemoryGame {
         } else {
             cardsShown.append(mCard)
             self.cell = cell
+            
+          //  if cardsShown.count = 12 { // finalMemoryCards.count
+          //      wonGame()
+          //  }
         }
         
-        if threeCardsShown() {
-            
-        }
+
 
     }
     
