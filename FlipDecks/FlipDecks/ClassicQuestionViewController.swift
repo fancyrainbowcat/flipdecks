@@ -17,6 +17,7 @@ class ClassicQuestionViewController: UIViewController {
     var strValue = ""
     var currentCardIndex = 0
     var currentCards = [Card]()
+    var timeMode = false
     
     override func viewDidLoad() {
         super.viewDidLoad()

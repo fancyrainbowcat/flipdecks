@@ -254,21 +254,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pdL-9L-kan">
-                                <rect key="frame" x="87" y="432" width="149" height="28"/>
+                                <rect key="frame" x="27" y="427" width="149" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Show Statistik"/>
                                 <connections>
                                     <segue destination="lw6-Y2-X46" kind="presentation" id="BJv-E0-EKf"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cly-ZM-L1F">
-                                <rect key="frame" x="214" y="569" width="90" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Export"/>
-                                <connections>
-                                    <segue destination="dd2-UB-ahz" kind="presentation" identifier="modusToExport" id="uHX-hw-aWS"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ILR-D6-Jrz">
@@ -281,12 +272,32 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="omU-g3-ly8">
-                                <rect key="frame" x="33" y="556" width="113" height="55"/>
+                                <rect key="frame" x="206" y="413" width="113" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="List &amp; Search"/>
                                 <connections>
                                     <segue destination="uFf-LD-gfh" kind="presentation" identifier="modusToListAndSearch" id="gF1-xj-rTn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cly-ZM-L1F">
+                                <rect key="frame" x="56" y="563" width="90" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Export"/>
+                                <connections>
+                                    <segue destination="dd2-UB-ahz" kind="presentation" identifier="modusToExport" id="uHX-hw-aWS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wJ-XI-Jc6">
+                                <rect key="frame" x="214" y="561" width="123" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Time Mode: off">
+                                    <color key="titleColor" red="1" green="0.2735167215" blue="0.2575843437" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="timeModeChanged:" destination="1yc-w1-MJt" eventType="touchUpInside" id="9y9-MT-EFP"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -299,6 +310,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="timeModeButton" destination="9wJ-XI-Jc6" id="qeA-sk-0zb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bZg-ek-NNZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="EfP-76-ROi" userLabel="Exit" sceneMemberID="exit"/>
