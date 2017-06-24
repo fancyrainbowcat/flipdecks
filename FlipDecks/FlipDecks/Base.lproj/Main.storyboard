@@ -309,7 +309,6 @@
                                 </state>
                                 <connections>
                                     <action selector="resetUnit:" destination="1yc-w1-MJt" eventType="touchUpInside" id="ao3-XX-umY"/>
-                                    <action selector="timeModeChanged:" destination="1yc-w1-MJt" eventType="touchUpInside" id="AHQ-bd-KeR"/>
                                 </connections>
                             </button>
                         </subviews>

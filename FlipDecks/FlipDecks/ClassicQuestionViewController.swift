@@ -92,9 +92,10 @@ class ClassicQuestionViewController: UIViewController {
             //time mode functionality 
             if (timeMode == true) {
                 let (secondsStr, minutesStr, hoursStr) = splitSeconds(secondsCount: overallSecondsCount)
-                self.timeSpentLabel.text = "Time spent on this unit: \(hoursStr):\(minutesStr):\(secondsStr)"
+                self.timeSpentLabel.text = "Time spent: \(hoursStr):\(minutesStr):\(secondsStr)"
                 self.timeSpentLabel.isHidden = false
             }
+            self.timeLabel.isHidden = true
             strValue = "Congratulations!"
             QuestionLabel.text = strValue
             Correct.isHidden = true

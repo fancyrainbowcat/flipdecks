@@ -22,6 +22,15 @@ class QuizViewController: UIViewController {
     var currentCardIndex = 0
     var currentCards = [Card]()
 
+    //timer functionality
+    var timeMode = false
+    var timer : Timer?
+    var secondsCount = 0
+    var overallSecondsCount = 0
+    
+    @IBOutlet weak var timeSpentLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,13 +44,54 @@ class QuizViewController: UIViewController {
         //only not finished cards are relevant
         currentCards = self.deck.returnAllNotFinishedCards()
         currentCards.shuffle()
-        printQuestion()
         ShelveQuiz.isHidden = false
         NextQuiz.isHidden = true
         QuizAnswerView.isHidden = true
         QuizQuestionView.isHidden = false
         ShowQuiz.isHidden = true
         ContinueQuiz.isHidden = true
+        
+        self.timeSpentLabel.isHidden = true
+        
+        if(timeMode == false) {
+            timeLabel.isHidden = true
+        } else {
+            timeLabel.isHidden = false
+            self.overallSecondsCount = self.deck.returnSecondsSpentOnDeck()
+        }
+        
+        //this mode is only possible with more than 3 cards
+        if (currentCards.count > 3) {
+            printQuestion()
+        } else if (currentCards.count > 1) {
+            QuestionQuizLabel.text = "More than \(currentCards.count) cards needed."
+            QuizAnswerView.isHidden = true
+            QuizQuestionView.isHidden = false
+            AnswerOne.isHidden = true
+            AnswerOneLabel.isHidden = true
+            AnswerTwo.isHidden = true
+            AnswerTwoLabel.isHidden = true
+            AnswerThree.isHidden = true
+            AnswerThreeLabel.isHidden = true
+            AnswerFour.isHidden = true
+            AnswerFourLabel.isHidden = true
+            ShelveQuiz.isHidden = true
+            timeLabel.isHidden = true
+        } else {
+            QuestionQuizLabel.text = "More than 1 card needed."
+            QuizAnswerView.isHidden = true
+            QuizQuestionView.isHidden = false
+            AnswerOne.isHidden = true
+            AnswerOneLabel.isHidden = true
+            AnswerTwo.isHidden = true
+            AnswerTwoLabel.isHidden = true
+            AnswerThree.isHidden = true
+            AnswerThreeLabel.isHidden = true
+            AnswerFour.isHidden = true
+            AnswerFourLabel.isHidden = true
+            ShelveQuiz.isHidden = true
+            timeLabel.isHidden = true 
+        }
         
         //to determine when the Application is entering into background
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterBackground), name: .UIApplicationDidEnterBackground, object: nil)
@@ -57,8 +107,25 @@ class QuizViewController: UIViewController {
             strValue = currentCards[currentCardIndex].getQuestion()
             QuestionQuizLabel.text = strValue
             pickRandomAnswer()
+            
+            //starts timer
+            if (timeMode == true) {
+                //save overall seconds and start counter again
+                self.overallSecondsCount = self.overallSecondsCount + self.secondsCount
+                self.secondsCount = 0
+                self.timeLabel.text = "00:00:00"
+                
+                timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
             }
+        }
         else {
+            //time mode functionality
+            if (timeMode == true) {
+                let (secondsStr, minutesStr, hoursStr) = splitSeconds(secondsCount: overallSecondsCount)
+                self.timeSpentLabel.text = "Time spent: \(hoursStr):\(minutesStr):\(secondsStr)"
+                self.timeSpentLabel.isHidden = false
+            }
+            timeLabel.isHidden = true
             strValue = "Congratulations!"
             QuestionQuizLabel.text = strValue
             AnswerOneLabel.isHidden = true
@@ -70,9 +137,61 @@ class QuizViewController: UIViewController {
             AnswerTwo.isHidden = true
             AnswerThree.isHidden = true
             AnswerFour.isHidden = true
+            ShelveQuiz.isHidden = true
             }
         }
 
+    //transforms counts to double-digit number
+    func transformToTime(count : Int) -> String {
+        var countStr = ""
+        
+        if (count < 10) {
+            countStr = "0\(count)"
+        } else {
+            countStr = String(count)
+        }
+        return countStr
+    }
+    
+    //splits seconds into hours:minutes:seconds format
+    func splitSeconds(secondsCount : Int) -> (String, String, String) {
+        var minutes = 0
+        var seconds = 0
+        var hours = 0
+        
+        //calculates minutes out of seconds
+        if (secondsCount >= 60) {
+            minutes = secondsCount / 60
+            seconds = secondsCount % 60
+        } else {
+            seconds = secondsCount
+        }
+        
+        //calculates hours out of minutes
+        if (minutes >= 60) {
+            hours = minutes / 60
+            minutes = minutes % 60
+        }
+        
+        //transforms to string
+        let secondsStr = transformToTime(count : seconds)
+        let minutesStr = transformToTime(count : minutes)
+        let hoursStr = transformToTime(count : hours)
+        
+        return (secondsStr, minutesStr, hoursStr)
+    }
+    
+    //counts seconds per card
+    func updateCounter() {
+        secondsCount += 1
+        
+        let (secondsStr, minutesStr, hoursStr) = splitSeconds(secondsCount: secondsCount)
+        
+        //updates time Label
+        self.timeLabel.text = "\(hoursStr):\(minutesStr):\(secondsStr)"
+    }
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -80,6 +199,9 @@ class QuizViewController: UIViewController {
 
     //Print answer on label
     @IBAction func printAnswer() {
+        if (timeMode == true) {
+            timer?.invalidate()
+        }
         strValue = currentCards[currentCardIndex].getAnswer()
         AnswerQuizLabel.text = strValue
         ShelveQuiz.isHidden = true
@@ -92,31 +214,40 @@ class QuizViewController: UIViewController {
         currentCardIndex += 1
         QuizQuestionView.isHidden = false
         QuizAnswerView.isHidden = true
-        printQuestion()
         AnswerOne.isHidden = false
         AnswerTwo.isHidden = false
         AnswerThree.isHidden = false
         AnswerFour.isHidden = false
         NextQuiz.isHidden = true
         ShelveQuiz.isHidden = false
+        printQuestion()
     }
     
     
     // pick random answers
     func pickRandomAnswer() {
-    var interrimArray = currentCards
-        interrimArray.remove(at: currentCardIndex)
-    var randomAnswerArray = interrimArray.choose(3)
-    randomAnswerArray.append(currentCards[currentCardIndex])
-    randomAnswerArray.shuffle()
-    strValueOne = randomAnswerArray[0].getAnswer()
-    AnswerOneLabel.text = strValueOne
-    strValueTwo = randomAnswerArray[1].getAnswer()
-    AnswerTwoLabel.text = strValueTwo
-    strValueThree = randomAnswerArray[2].getAnswer()
-    AnswerThreeLabel.text = strValueThree
-    strValueFour = randomAnswerArray[3].getAnswer()
-    AnswerFourLabel.text = strValueFour
+        //use all cards to make sure that there are always more than 4 cards
+        var interrimArray = [Card]()
+        let allCards = self.deck.returnAllCards()
+        
+        for card in allCards {
+            if (card.getQuestion() != currentCards[currentCardIndex].getQuestion() && card.getAnswer() != currentCards[currentCardIndex].getAnswer()) {
+                interrimArray.append(card)
+            }
+        }
+        
+        var randomAnswerArray = interrimArray.choose(3)
+        randomAnswerArray.append(currentCards[currentCardIndex])
+        randomAnswerArray.shuffle()
+    
+        strValueOne = randomAnswerArray[0].getAnswer()
+        AnswerOneLabel.text = strValueOne
+        strValueTwo = randomAnswerArray[1].getAnswer()
+        AnswerTwoLabel.text = strValueTwo
+        strValueThree = randomAnswerArray[2].getAnswer()
+        AnswerThreeLabel.text = strValueThree
+        strValueFour = randomAnswerArray[3].getAnswer()
+        AnswerFourLabel.text = strValueFour
     }
 
     /*/ Select Answers
@@ -133,14 +264,23 @@ class QuizViewController: UIViewController {
     // Check Card One
     @IBAction func checkCardOne() {
         if (currentCards[currentCardIndex].getAnswer() == AnswerOneLabel.text) {
-        currentCards[currentCardIndex].cardPlayed(result: "correct")
+            if (timeMode == true) {
+                currentCards[currentCardIndex].cardPlayed(result: "correct", seconds: secondsCount)
+            } else {
+                currentCards[currentCardIndex].cardPlayed(result: "correct")
+            }
+            
             if (currentCards[currentCardIndex].getCorrectCount() < 3) {
                 appendCard()
             }
         }
         else {
-        currentCards[currentCardIndex].cardPlayed(result: "")
-        appendCard()
+            if (timeMode == true) {
+                currentCards[currentCardIndex].cardPlayed(result: "incorrect", seconds: secondsCount)
+            } else {
+                currentCards[currentCardIndex].cardPlayed(result: "incorrect")
+            }
+            appendCard()
         }
         printAnswer()
         AnswerOne.isHidden = true
@@ -152,13 +292,21 @@ class QuizViewController: UIViewController {
     // Check Card Two
     @IBAction func checkCardTwo() {
         if (currentCards[currentCardIndex].getAnswer() == AnswerTwoLabel.text) {
-            currentCards[currentCardIndex].cardPlayed(result: "correct")
+            if (timeMode == true) {
+                currentCards[currentCardIndex].cardPlayed(result: "correct", seconds: secondsCount)
+            } else {
+                currentCards[currentCardIndex].cardPlayed(result: "correct")
+            }
             if (currentCards[currentCardIndex].getCorrectCount() < 3) {
                 appendCard()
             }
         }
         else {
-            currentCards[currentCardIndex].cardPlayed(result: "")
+            if (timeMode == true) {
+                currentCards[currentCardIndex].cardPlayed(result: "incorrect", seconds: secondsCount)
+            } else {
+                currentCards[currentCardIndex].cardPlayed(result: "incorrect")
+            }
             appendCard()
         }
         printAnswer()
@@ -172,13 +320,21 @@ class QuizViewController: UIViewController {
     // Check Card Three
     @IBAction func checkCardThree() {
         if (currentCards[currentCardIndex].getAnswer() == AnswerThreeLabel.text) {
-           currentCards[currentCardIndex].cardPlayed(result: "correct")
+            if (timeMode == true) {
+                currentCards[currentCardIndex].cardPlayed(result: "correct", seconds: secondsCount)
+            } else {
+                currentCards[currentCardIndex].cardPlayed(result: "correct")
+            }
             if (currentCards[currentCardIndex].getCorrectCount() < 3) {
                 appendCard()
             }
         }
         else {
-            currentCards[currentCardIndex].cardPlayed(result: "")
+            if (timeMode == true) {
+                currentCards[currentCardIndex].cardPlayed(result: "incorrect", seconds: secondsCount)
+            } else {
+                currentCards[currentCardIndex].cardPlayed(result: "incorrect")
+            }
             appendCard()
         }
         printAnswer()
@@ -191,13 +347,21 @@ class QuizViewController: UIViewController {
     // Check Card Four
     @IBAction func checkCardFour() {
         if (currentCards[currentCardIndex].getAnswer() == AnswerFourLabel.text) {
-            currentCards[currentCardIndex].cardPlayed(result: "correct")
+            if (timeMode == true) {
+                currentCards[currentCardIndex].cardPlayed(result: "correct", seconds: secondsCount)
+            } else {
+                currentCards[currentCardIndex].cardPlayed(result: "correct")
+            }
             if (currentCards[currentCardIndex].getCorrectCount() < 3) {
                 appendCard()
             }
         }
         else {
-            currentCards[currentCardIndex].cardPlayed(result: "")
+            if (timeMode == true) {
+                currentCards[currentCardIndex].cardPlayed(result: "incorrect", seconds: secondsCount)
+            } else {
+                currentCards[currentCardIndex].cardPlayed(result: "incorrect")
+            }
             appendCard()
         }
         printAnswer()
@@ -229,6 +393,9 @@ class QuizViewController: UIViewController {
     
     // Shelve cards
     @IBAction func shelveCard() {
+        if (timeMode == true) {
+            timer?.invalidate()
+        }
         appendCard()
         currentCardIndex += 1
         printQuestion()
@@ -238,6 +405,9 @@ class QuizViewController: UIViewController {
     
     // Show previously played card
     @IBAction func PreviousCard() {
+        if (timeMode == true) {
+            timer?.invalidate()
+        }
         if currentCardIndex > 0 {
             currentCardIndex = currentCardIndex-1
             printQuestion()

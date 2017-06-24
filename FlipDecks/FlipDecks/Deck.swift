@@ -123,6 +123,19 @@ class Deck {
         return notFinishedCards
     }
     
+    //returns all finished cards
+    func returnAllFinishedCards() -> [Card] {
+        refreshDeck()
+        var finishedCards = [Card]()
+        //if status of card is not finished append it
+        for card in self.listOfCards {
+            if card.getFinishedStatus() == true {
+                finishedCards.append(card)
+            }
+        }
+        return finishedCards
+    }
+    
     //returns all cards
     func returnAllCards() -> [Card] {
         refreshDeck()
