@@ -73,6 +73,7 @@ class ModusViewController: UIViewController {
             let controller = segue.destination as! ClassicTypeViewController
             controller.language = self.language
             controller.deck = self.deck
+            controller.timeMode = self.timeMode
         }
         //give language and unit to QuizViewController
         if segue.identifier == "modusToQuizViewController" {
