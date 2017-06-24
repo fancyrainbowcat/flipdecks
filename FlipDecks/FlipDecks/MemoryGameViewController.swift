@@ -34,9 +34,13 @@ class MemoryGameViewController: UIViewController, UICollectionViewDelegate, UICo
     
     var deck : Deck = Deck(name: "", languageName: "", fileEnding: "")
     var language : Language = Language(name: "")
-   // var mCards = [Card]()
-    var testArray = [1,2,3,4,5,6,7,8,9,10,11,12,13]
     var backImage = ["mCardBack"]
+    var answers: [MemoryCard] = [MemoryCard]()
+    var questions: [MemoryCard] = [MemoryCard]()
+    
+    var finalMemoryCards = [MemoryCard]()
+    
+    
     
     let gameController = MemoryGame()
 
@@ -46,14 +50,9 @@ class MemoryGameViewController: UIViewController, UICollectionViewDelegate, UICo
         self.MemoryCollectionView.delegate = self
         self.MemoryCollectionView.dataSource = self
         
-        print(deck.listOfCards[0].getQuestion())
+        finalMemoryCards = setupNewCards()
         
-        let mCards = deck.listOfCards.choose(6)
-        let testLeFunc = testArray.choose(6)
         
-        print(mCards)
-        print(testLeFunc)
-
     }
     
     override func didReceiveMemoryWarning() {
@@ -61,14 +60,17 @@ class MemoryGameViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 12   // array.count
+        return finalMemoryCards.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let mcell = collectionView.dequeueReusableCell(withReuseIdentifier: "mCell", for: indexPath) as! MemoryViewCell
-        // set images to the cells
-        
-        mcell.cellImageView.image = UIImage(named: backImage[0]) // or named: backImage[indexPath.row]
+
+       
+        //set Labels to cells
+        startCards([finalMemoryCards[indexPath.row]], mcell as MemoryViewCell)
+        // set back image to cells
+        mcell.cellImageView.image = UIImage(named: backImage[0]) // or if different images named: backImage[indexPath.row]
         
         mcell.showCard(false, animated: false)
         return mcell
@@ -80,20 +82,58 @@ class MemoryGameViewController: UIViewController, UICollectionViewDelegate, UICo
         if cell.shown { return }
         cell.showCard(true, animated: true)
         
-        cell.mCard = MemoryCard()
-        
         gameController.selectCard(cell : cell, mCard: cell.mCard!)
         
         collectionView.deselectItem(at: indexPath, animated:true)
     }
     
-
-    
-    func setupNewGame() {
-        gameController.newGame(cardsData: MemoryGame.defaultCardStrings)
+    // TODO: Layout
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        //let numberOfColumns:Int = self.collectionView(collectionView, numberOfItemsInSection: indexPath.section)
+        
+        let itemWidth: CGFloat = collectionView.frame.width / 3.0 - 15.0 //numberOfColumns as CGFloat - 10 //- (minimumInteritemSpacing * numberOfColumns))
+        
+        return CGSize(width: itemWidth, height: itemWidth)
     }
     
+
     
+    func setupNewCards() -> [MemoryCard] {
+
+        let mCards = deck.listOfCards.choose(6)
+
+        let finalMemoryCards = divideCards(cards: mCards)
+        
+        return finalMemoryCards
+    }
+    
+    func divideCards(cards:[Card]) -> [MemoryCard] {
+       // split dat array in questions and answers!
+        for card in cards {
+            let answer = card.getAnswer()
+            let question = card.getQuestion()
+            
+            answers.append(MemoryCard(cellText: answer, id: card))
+            questions.append(MemoryCard(cellText: question, id: card))
+        }
+        // shuffle both of the arrays
+        questions.shuffle()
+        answers.shuffle()
+        
+        // combine them to one wonderful Array
+        var finalMemoryCards = questions + answers
+        // shuffle it again - MAXIMUM SHUFFLE
+        finalMemoryCards.shuffle()
+        
+    
+        return finalMemoryCards
+    }
+    
+    func startCards (_ mCards: [MemoryCard], _ cell: MemoryViewCell) {
+        for card in mCards {
+            cell.setCard(mCell: cell, cellText: card.frontCellText, mCard: card)
+        }
+    }
 
     // IBOutlets
     @IBOutlet weak var playButton: UIButton!

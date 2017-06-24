@@ -28,20 +28,11 @@ class MemoryViewCell: UICollectionViewCell {
     var shown: Bool = false
    
     
-    func setCard(mCard: MemoryViewCell, cellText: String){
-        mCard.frontCellLabel.text = cellText
+    func setCard(mCell: MemoryViewCell, cellText: String, mCard: MemoryCard){
+        mCell.mCard = mCard
+        mCell.frontCellLabel.text = cellText
     }
     
-    func hideCards (_ cards: [MemoryCard]) {
-        for _ in cards {
-            UIView.transition(from: frontCellLabel,
-                          to: cellImageView,
-                          duration: 0.5,
-                          options: [.transitionFlipFromRight, .showHideTransitionViews],
-                          completion:  { (finished: Bool) -> () in
-            })
-        }
-    }
 
     func showCard (_ show: Bool, animated: Bool) {
         cellImageView.isHidden = false
