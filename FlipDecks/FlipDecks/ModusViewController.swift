@@ -14,6 +14,9 @@ class ModusViewController: UIViewController {
     @IBOutlet weak var timeModeButton: UIButton!
     var timeMode : Bool = false
     
+    @IBOutlet weak var resetUnitButton: UIButton!
+    
+    
     //current deck and language
     var deck : Deck = Deck(name: "", languageName: "", fileEnding: "")
     var language : Language = Language(name: "")
@@ -37,6 +40,9 @@ class ModusViewController: UIViewController {
         }
     }
     
+    @IBAction func resetUnit(_ sender: Any) {
+        self.deck.resetAllCards()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

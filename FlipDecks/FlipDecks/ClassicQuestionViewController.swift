@@ -17,7 +17,15 @@ class ClassicQuestionViewController: UIViewController {
     var strValue = ""
     var currentCardIndex = 0
     var currentCards = [Card]()
+    
+    //timer functionality
     var timeMode = false
+    var timer : Timer?
+    var secondsCount = 0
+    var overallSecondsCount = 0
+    
+    @IBOutlet weak var timeSpentLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +33,14 @@ class ClassicQuestionViewController: UIViewController {
         currentCards = self.deck.returnAllNotFinishedCards()
         currentCards.shuffle()
         Continue.isHidden = true
+        self.timeSpentLabel.isHidden = true
+        
+        if(timeMode == false) {
+            timeLabel.isHidden = true
+        } else {
+            timeLabel.isHidden = false
+        }
+        
         printQuestion()
         
         //to determine when the Application is entering into background
@@ -60,8 +76,24 @@ class ClassicQuestionViewController: UIViewController {
             Shelve.isHidden = false
             Show.isHidden = false
             self.AnswerView.isHidden = true
+            
+            //starts timer
+            if (timeMode == true) {
+                //save overall seconds and start counter again
+                self.overallSecondsCount = self.overallSecondsCount + self.secondsCount
+                self.secondsCount = 0
+                self.timeLabel.text = "00:00:00"
+
+                timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
+            }
         }
         else {
+            //time mode functionality 
+            if (timeMode == true) {
+                let (secondsStr, minutesStr, hoursStr) = splitSeconds(secondsCount: overallSecondsCount)
+                self.timeSpentLabel.text = "Time spent on this unit: \(hoursStr):\(minutesStr):\(secondsStr)"
+                self.timeSpentLabel.isHidden = false
+            }
             strValue = "Congratulations!"
             QuestionLabel.text = strValue
             Correct.isHidden = true
@@ -72,8 +104,60 @@ class ClassicQuestionViewController: UIViewController {
         }
     }
     
+    func transformToTime(count : Int) -> String {
+        var countStr = ""
+        
+        if (count < 10) {
+            countStr = "0\(count)"
+        } else {
+            countStr = String(count)
+        }
+        return countStr
+    }
+    
+    func splitSeconds(secondsCount : Int) -> (String, String, String) {
+        var minutes = 0
+        var seconds = 0
+        var hours = 0
+        
+        //calculates minutes out of seconds
+        if (secondsCount >= 60) {
+            minutes = secondsCount / 60
+            seconds = secondsCount % 60
+        } else {
+            seconds = secondsCount
+        }
+    
+        //calculates hours out of minutes
+        if (minutes >= 60) {
+            hours = minutes / 60
+            minutes = minutes % 60
+        }
+    
+        //transforms to string
+        let secondsStr = transformToTime(count : seconds)
+        let minutesStr = transformToTime(count : minutes)
+        let hoursStr = transformToTime(count : hours)
+    
+        return (secondsStr, minutesStr, hoursStr)
+    }
+    
+    //counts seconds per card
+    func updateCounter() {
+        secondsCount += 1
+        
+        let (secondsStr, minutesStr, hoursStr) = splitSeconds(secondsCount: secondsCount)
+    
+        //updates time Label
+        self.timeLabel.text = "\(hoursStr):\(minutesStr):\(secondsStr)"
+    }
+    
     //Print answer on label
     @IBAction func printAnswer() {
+        if (timeMode == true) {
+            timer?.invalidate()
+        }
+        
         strValue = currentCards[currentCardIndex].getAnswer()
         AnswerLabel.text = strValue
         Shelve.isHidden = true
@@ -115,6 +199,9 @@ class ClassicQuestionViewController: UIViewController {
     
     // Shelve cards
     @IBAction func shelveCard() {
+        if (timeMode == true) {
+            timer?.invalidate()
+        }
         appendCard()
         currentCardIndex += 1
         printQuestion()
@@ -145,6 +232,9 @@ class ClassicQuestionViewController: UIViewController {
    
     // Show previously played card
     @IBAction func PreviousCard() {
+        if (timeMode == true) {
+            timer?.invalidate()
+        }
         if currentCardIndex > 0 {
             currentCardIndex = currentCardIndex-1
             printQuestion()

@@ -168,4 +168,11 @@ class Deck {
         //recreate deck with current values
         FileManager.default.createFile(atPath: (filePath?.path)!, contents: contentData, attributes: nil)
     }
+    
+    //resets all data for this unit 
+    func resetAllCards() {
+        for card in self.listOfCards {
+            card.resetCounts()
+        }
+    }
 }

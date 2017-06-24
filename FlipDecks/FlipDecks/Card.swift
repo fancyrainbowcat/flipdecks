@@ -60,4 +60,10 @@ class Card {
     func getCorrectCount() -> Int {
         return self.correctCount
     }
+    
+    //resets counts for this card
+    func resetCounts() {
+        self.correctCount = 0
+        self.incorrectCount = 0
+    }
 }

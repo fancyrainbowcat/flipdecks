@@ -290,7 +290,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wJ-XI-Jc6">
-                                <rect key="frame" x="214" y="561" width="123" height="34"/>
+                                <rect key="frame" x="214" y="531" width="123" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Time Mode: off">
@@ -298,6 +298,18 @@
                                 </state>
                                 <connections>
                                     <action selector="timeModeChanged:" destination="1yc-w1-MJt" eventType="touchUpInside" id="9y9-MT-EFP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="poO-A0-RPh">
+                                <rect key="frame" x="214" y="573" width="123" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Reset Unit">
+                                    <color key="titleColor" red="0.82350493930000002" green="0.22429270239999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetUnit:" destination="1yc-w1-MJt" eventType="touchUpInside" id="ao3-XX-umY"/>
+                                    <action selector="timeModeChanged:" destination="1yc-w1-MJt" eventType="touchUpInside" id="AHQ-bd-KeR"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -311,6 +323,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="resetUnitButton" destination="poO-A0-RPh" id="tlT-21-3Kt"/>
                         <outlet property="timeModeButton" destination="9wJ-XI-Jc6" id="qeA-sk-0zb"/>
                     </connections>
                 </viewController>
