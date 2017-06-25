@@ -9,7 +9,12 @@
 import UIKit
 
 //View Controller for the opening of a file
-class OpenFileViewController: UIViewController {
+class OpenFileViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+    
+    // current deck and language
+    var deck : Deck = Deck(name: "", languageName: "", fileEnding: "")
+    var language : Language = Language(name: "")
+    var listOfLanguages = [Language]()
     
     //all IBOutlets
     @IBOutlet weak var okButton: UIButton!
@@ -17,12 +22,17 @@ class OpenFileViewController: UIViewController {
     @IBOutlet weak var browseButton: UIButton!
     @IBOutlet weak var loadedLabel: UILabel!
     @IBOutlet weak var languageNameField: UITextField!
+    @IBOutlet weak var pickerView: UIPickerView!
     
     //contains the currently selected file
     var selectedFile : String = ""
     
     //change buttons and add event listener
     override func viewDidLoad() {
+        
+        for language in listOfLanguages {
+            print("Language: \(language.getName())")
+        }
         super.viewDidLoad()
         okButton.isEnabled = false
         okButton.layer.borderWidth = 2
@@ -30,6 +40,47 @@ class OpenFileViewController: UIViewController {
         browseButton.layer.borderWidth = 2
         browseButton.layer.borderColor = UIColor.blue.cgColor
         fileNameField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
+        
+        //pre-set language if given
+        if (self.language.getName() != "") {
+            self.languageNameField.text = self.language.getName()
+        }
+        pickerView.delegate = self
+    }
+    
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int{
+        return 1
+    }
+    
+    //count of language suggestions
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+        return self.listOfLanguages.count
+    }
+    
+    //change font size
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView
+    {
+        let pickerLabel = UILabel()
+        pickerLabel.textColor = UIColor.black
+        pickerLabel.text = listOfLanguages[row].getName()
+        pickerLabel.font = UIFont(name: "System", size: 17)
+        pickerLabel.textAlignment = NSTextAlignment.center
+        return pickerLabel
+    }
+    
+    //select row of dropdown menu
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.languageNameField.text = self.listOfLanguages[row].getName()
+        self.pickerView.isHidden = true
+    }
+    
+    //start editing text field will remove dropdown menu
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        //stop suggestions when editing is starting
+        if textField == self.languageNameField {
+            self.pickerView.isHidden = false
+            textField.endEditing(true)
+        }
     }
     
     override func didReceiveMemoryWarning() {

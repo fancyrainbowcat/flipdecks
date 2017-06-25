@@ -9,8 +9,14 @@
 import UIKit
 
 //View Controller for manual input
-class ManualInputViewController: UIViewController {
+class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
 
+    // current deck and language
+    var deck : Deck = Deck(name: "", languageName: "", fileEnding: "")
+    var language : Language = Language(name: "")
+    var listOfLanguages = [Language]()
+    var listOfDecks = [Deck(name: "Please choose language", languageName: "", fileEnding: "")]
+    
     //IBOutlets
     @IBOutlet weak var languageNameField: UITextField!
     @IBOutlet weak var deckNameField: UITextField!
@@ -18,9 +24,78 @@ class ManualInputViewController: UIViewController {
     @IBOutlet weak var answerTextView: UITextView!
     @IBOutlet weak var okButton: UIButton!
     @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var languagePickerView: UIPickerView!
+    @IBOutlet weak var deckPickerView: UIPickerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //pre-set deck and language if given 
+        if (self.deck.getName() != "") {
+            self.deckNameField.text = self.deck.getName()
+        }
+        
+        if (self.language.getName() != "") {
+            self.languageNameField.text = self.language.getName()
+        }
+        languagePickerView.delegate = self
+        deckPickerView.delegate = self
+    }
+    
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int{
+        return 1
+    }
+    
+    //count of language suggestions
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+        if (pickerView.tag == 0) {
+            return self.listOfLanguages.count
+        } else  {
+            return self.listOfDecks.count
+        }
+    }
+    
+    //change font size
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView
+    {
+        let pickerLabel = UILabel()
+        pickerLabel.textColor = UIColor.black
+        pickerLabel.font = UIFont(name: "System", size: 17)
+        pickerLabel.textAlignment = NSTextAlignment.center
+        
+        if (pickerView.tag == 0) {
+            pickerLabel.text = listOfLanguages[row].getName()
+        } else if (pickerView.tag == 1) {
+            pickerLabel.text = self.listOfDecks[row].getName()
+        }
+        return pickerLabel
+    }
+    
+    //select row of dropdown menu
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        //now a language is set, and listOfDecks can be replaced
+        if (pickerView.tag == 0) {
+            self.languageNameField.text = self.listOfLanguages[row].getName()
+            pickerView.isHidden = true
+            self.listOfDecks = self.listOfLanguages[row].returnAllDecks()
+            self.viewDidLoad()
+        } else if (pickerView.tag == 1) {
+            self.deckNameField.text = self.listOfDecks[row].getName()
+            pickerView.isHidden = true
+        }
+    }
+    
+    //start editing text field will remove dropdown menu
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        //stop suggestions when editing is starting
+        if textField == self.languageNameField {
+            self.languagePickerView.isHidden = false
+            textField.endEditing(true)
+        }
+        if textField == self.deckNameField {
+            self.deckPickerView.isHidden = false
+            textField.endEditing(true)
+        }
     }
 
     override func didReceiveMemoryWarning() {

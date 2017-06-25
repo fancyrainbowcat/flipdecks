@@ -55,7 +55,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="Import"/>
                                         <connections>
-                                            <segue destination="DfZ-Ca-py6" kind="presentation" id="5YJ-uv-h4T"/>
+                                            <segue destination="DfZ-Ca-py6" kind="presentation" identifier="languageToImport" id="5YJ-uv-h4T"/>
                                         </connections>
                                     </button>
                                 </barButtonItem>
@@ -281,7 +281,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cly-ZM-L1F">
-                                <rect key="frame" x="56" y="563" width="90" height="30"/>
+                                <rect key="frame" x="56" y="531" width="90" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Export"/>
@@ -309,6 +309,15 @@
                                 </state>
                                 <connections>
                                     <action selector="resetUnit:" destination="1yc-w1-MJt" eventType="touchUpInside" id="ao3-XX-umY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Wn-t7-7To">
+                                <rect key="frame" x="67" y="592" width="68" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Import"/>
+                                <connections>
+                                    <segue destination="DfZ-Ca-py6" kind="presentation" identifier="modusToImport" id="0iZ-Yn-TM4"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -404,4 +413,7 @@
             <point key="canvasLocation" x="1084" y="139"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="5YJ-uv-h4T"/>
+    </inferredMetricsTieBreakers>
 </document>

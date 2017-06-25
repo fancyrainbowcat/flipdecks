@@ -93,5 +93,12 @@ class LanguagesTableViewController: UITableViewController {
             let controller = navigationController.viewControllers.first as! UnitsTableViewController
             controller.language = selectedLanguage
         }
+        
+        if segue.identifier == "languageToImport" {
+            //since there is a navigation controller in between, I have to go through it
+            let navigationController = segue.destination as! UINavigationController
+            let controller = navigationController.viewControllers.first as! ImportMainViewController
+            controller.listOfLanguages = self.listOfLanguages
+        }
     }
 }
