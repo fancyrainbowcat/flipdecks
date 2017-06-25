@@ -98,8 +98,7 @@ class ModusViewController: UIViewController {
         if segue.identifier == "modusToListAndSearch" {
             
             //since there is a navigation controller in between, I have to go through it
-            let navigationController = segue.destination as! UINavigationController
-            let controller = navigationController.viewControllers.first as! ListAndSearchTableViewController
+            let controller = segue.destination as! ListAndSearchViewController
             controller.language = self.language
             controller.deck = self.deck
             controller.timeMode = self.timeMode 

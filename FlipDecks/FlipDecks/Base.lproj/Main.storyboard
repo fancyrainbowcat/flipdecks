@@ -275,7 +275,7 @@
                                 <rect key="frame" x="206" y="413" width="113" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="List &amp; Search"/>
+                                <state key="normal" title="All Cards"/>
                                 <connections>
                                     <segue destination="uFf-LD-gfh" kind="presentation" identifier="modusToListAndSearch" id="gF1-xj-rTn"/>
                                 </connections>

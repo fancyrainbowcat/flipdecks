@@ -41,7 +41,7 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         microphoneButton.isEnabled = false
         speechRecognizer?.delegate = self
         
