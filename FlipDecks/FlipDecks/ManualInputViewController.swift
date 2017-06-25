@@ -15,7 +15,7 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
     var deck : Deck = Deck(name: "", languageName: "", fileEnding: "")
     var language : Language = Language(name: "")
     var listOfLanguages = [Language]()
-    var listOfDecks = [Deck(name: "Please choose language", languageName: "", fileEnding: "")]
+    var listOfDecks = [Deck(name: "Choose language", languageName: "", fileEnding: "")]
     
     //IBOutlets
     @IBOutlet weak var languageNameField: UITextField!
@@ -80,8 +80,10 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
             self.listOfDecks = self.listOfLanguages[row].returnAllDecks()
             self.viewDidLoad()
         } else if (pickerView.tag == 1) {
-            self.deckNameField.text = self.listOfDecks[row].getName()
-            pickerView.isHidden = true
+            if (self.listOfDecks[row].getName() != "Choose language") {
+                self.deckNameField.text = self.listOfDecks[row].getName()
+                pickerView.isHidden = true
+            }
         }
     }
     
