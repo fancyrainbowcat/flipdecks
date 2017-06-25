@@ -134,6 +134,7 @@ class MemoryGameViewController: UIViewController, UICollectionViewDelegate, UICo
                 let (secondsStr, minutesStr, hoursStr) = splitSeconds(secondsCount: secondsCount)
                 self.timeSpentLabel.text = "Time spent in modus: \(hoursStr):\(minutesStr):\(secondsStr)"
                 self.timeSpentLabel.isHidden = false
+                self.timeLabel.isHidden = true
             }
             self.MemoryCollectionView.isHidden = true
             self.finishedLabel.isHidden = false
@@ -207,13 +208,9 @@ class MemoryGameViewController: UIViewController, UICollectionViewDelegate, UICo
         if (notFinishedCards.count >= 6) {
             let mCards = notFinishedCards.choose(6)
             self.finalMemoryCards = divideCards(cards: mCards)
-        } else if (notFinishedCards.count > 1) {
-            self.MemoryCollectionView.isHidden = true
-            self.finishedLabel.text = "More than \(notFinishedCards.count) cards needed"
-            self.finishedLabel.isHidden = false
         } else {
             self.MemoryCollectionView.isHidden = true
-            self.finishedLabel.text = "More than 1 card needed"
+            self.finishedLabel.text = "6 cards needed for this modus"
             self.finishedLabel.isHidden = false
         }
     }

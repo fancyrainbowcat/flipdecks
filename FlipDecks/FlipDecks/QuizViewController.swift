@@ -63,8 +63,8 @@ class QuizViewController: UIViewController {
         //this mode is only possible with more than 3 cards
         if (currentCards.count > 3) {
             printQuestion()
-        } else if (currentCards.count > 1) {
-            QuestionQuizLabel.text = "More than \(currentCards.count) cards needed."
+        } else  {
+            QuestionQuizLabel.text = "4 cards needed for this modus"
             QuizAnswerView.isHidden = true
             QuizQuestionView.isHidden = false
             AnswerOne.isHidden = true
@@ -77,20 +77,6 @@ class QuizViewController: UIViewController {
             AnswerFourLabel.isHidden = true
             ShelveQuiz.isHidden = true
             timeLabel.isHidden = true
-        } else {
-            QuestionQuizLabel.text = "More than 1 card needed."
-            QuizAnswerView.isHidden = true
-            QuizQuestionView.isHidden = false
-            AnswerOne.isHidden = true
-            AnswerOneLabel.isHidden = true
-            AnswerTwo.isHidden = true
-            AnswerTwoLabel.isHidden = true
-            AnswerThree.isHidden = true
-            AnswerThreeLabel.isHidden = true
-            AnswerFour.isHidden = true
-            AnswerFourLabel.isHidden = true
-            ShelveQuiz.isHidden = true
-            timeLabel.isHidden = true 
         }
         
         //to determine when the Application is entering into background
