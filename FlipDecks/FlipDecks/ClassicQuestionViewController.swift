@@ -22,7 +22,7 @@ class ClassicQuestionViewController: UIViewController {
     var timeMode = false
     var timer : Timer?
     var secondsCount = 0
-    var overallSecondsCount = 0
+    var previousSecondsCount = 0
     
     @IBOutlet weak var timeSpentLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -39,7 +39,7 @@ class ClassicQuestionViewController: UIViewController {
             timeLabel.isHidden = true
         } else {
             timeLabel.isHidden = false
-            self.overallSecondsCount = self.deck.returnSecondsSpentOnDeck()
+            timeLabel.text = "00:00:00"
         }
         
         printQuestion()
@@ -80,19 +80,14 @@ class ClassicQuestionViewController: UIViewController {
             
             //starts timer
             if (timeMode == true) {
-                //save overall seconds and start counter again
-                self.overallSecondsCount = self.overallSecondsCount + self.secondsCount
-                self.secondsCount = 0
-                self.timeLabel.text = "00:00:00"
-
                 timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
             }
         }
         else {
             //time mode functionality 
             if (timeMode == true) {
-                let (secondsStr, minutesStr, hoursStr) = splitSeconds(secondsCount: overallSecondsCount)
-                self.timeSpentLabel.text = "Time spent: \(hoursStr):\(minutesStr):\(secondsStr)"
+                let (secondsStr, minutesStr, hoursStr) = splitSeconds(secondsCount: secondsCount)
+                self.timeSpentLabel.text = "Time spent in modus: \(hoursStr):\(minutesStr):\(secondsStr)"
                 self.timeSpentLabel.isHidden = false
             }
             self.timeLabel.isHidden = true
@@ -179,7 +174,9 @@ class ClassicQuestionViewController: UIViewController {
     // Card incorrect
     @IBAction func cardIncorrect() {
         if (timeMode == true) {
-            currentCards[currentCardIndex].cardPlayed(result: "incorrect", seconds: secondsCount)
+            let newSecondsCount = secondsCount - previousSecondsCount
+            previousSecondsCount = secondsCount
+            currentCards[currentCardIndex].cardPlayed(result: "incorrect", seconds: newSecondsCount)
         } else {
             currentCards[currentCardIndex].cardPlayed(result: "incorrect")
         }
@@ -194,7 +191,9 @@ class ClassicQuestionViewController: UIViewController {
     // Card correct
     @IBAction func cardCorrect() {
         if (timeMode == true) {
-            currentCards[currentCardIndex].cardPlayed(result: "correct", seconds: secondsCount)
+            let newSecondsCount = secondsCount - previousSecondsCount
+            previousSecondsCount = secondsCount
+            currentCards[currentCardIndex].cardPlayed(result: "correct", seconds: newSecondsCount)
         } else {
             currentCards[currentCardIndex].cardPlayed(result: "correct")
         }

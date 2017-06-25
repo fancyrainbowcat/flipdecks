@@ -91,6 +91,7 @@ class ModusViewController: UIViewController {
             let controller = segue.destination as! MemoryGameViewController
             controller.language = self.language
             controller.deck = self.deck
+            controller.timeMode = self.timeMode
         }
         
         //give language and unit to QuizViewController
@@ -107,6 +108,6 @@ class ModusViewController: UIViewController {
     
     //functionality for cancel button segue
     @IBAction func cancelToModusTableViewController(segue:UIStoryboardSegue) {
-    self.deck.saveToFile()
+        self.deck.saveToFile()
     }
 }

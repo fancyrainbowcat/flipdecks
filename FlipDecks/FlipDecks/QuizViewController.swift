@@ -26,7 +26,7 @@ class QuizViewController: UIViewController {
     var timeMode = false
     var timer : Timer?
     var secondsCount = 0
-    var overallSecondsCount = 0
+    var previousSecondsCount = 0
     
     @IBOutlet weak var timeSpentLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -56,8 +56,8 @@ class QuizViewController: UIViewController {
         if(timeMode == false) {
             timeLabel.isHidden = true
         } else {
+            self.timeLabel.text = "00:00:00"
             timeLabel.isHidden = false
-            self.overallSecondsCount = self.deck.returnSecondsSpentOnDeck()
         }
         
         //this mode is only possible with more than 3 cards
@@ -106,23 +106,17 @@ class QuizViewController: UIViewController {
         if (currentCardIndex < currentCards.count) {
             strValue = currentCards[currentCardIndex].getQuestion()
             QuestionQuizLabel.text = strValue
-            pickRandomAnswer()
-            
-            //starts timer
             if (timeMode == true) {
-                //save overall seconds and start counter again
-                self.overallSecondsCount = self.overallSecondsCount + self.secondsCount
-                self.secondsCount = 0
-                self.timeLabel.text = "00:00:00"
-                
+                //starts timer
                 timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
             }
+            pickRandomAnswer()
         }
         else {
             //time mode functionality
             if (timeMode == true) {
-                let (secondsStr, minutesStr, hoursStr) = splitSeconds(secondsCount: overallSecondsCount)
-                self.timeSpentLabel.text = "Time spent: \(hoursStr):\(minutesStr):\(secondsStr)"
+                let (secondsStr, minutesStr, hoursStr) = splitSeconds(secondsCount: secondsCount)
+                self.timeSpentLabel.text = "Time spent in modus: \(hoursStr):\(minutesStr):\(secondsStr)"
                 self.timeSpentLabel.isHidden = false
             }
             timeLabel.isHidden = true
@@ -265,7 +259,9 @@ class QuizViewController: UIViewController {
     @IBAction func checkCardOne() {
         if (currentCards[currentCardIndex].getAnswer() == AnswerOneLabel.text) {
             if (timeMode == true) {
-                currentCards[currentCardIndex].cardPlayed(result: "correct", seconds: secondsCount)
+                let newSecondsCount = secondsCount - previousSecondsCount
+                previousSecondsCount = secondsCount
+                currentCards[currentCardIndex].cardPlayed(result: "correct", seconds: newSecondsCount)
             } else {
                 currentCards[currentCardIndex].cardPlayed(result: "correct")
             }
@@ -276,7 +272,9 @@ class QuizViewController: UIViewController {
         }
         else {
             if (timeMode == true) {
-                currentCards[currentCardIndex].cardPlayed(result: "incorrect", seconds: secondsCount)
+                let newSecondsCount = secondsCount - previousSecondsCount
+                previousSecondsCount = secondsCount
+                currentCards[currentCardIndex].cardPlayed(result: "incorrect", seconds: newSecondsCount)
             } else {
                 currentCards[currentCardIndex].cardPlayed(result: "incorrect")
             }
@@ -293,7 +291,9 @@ class QuizViewController: UIViewController {
     @IBAction func checkCardTwo() {
         if (currentCards[currentCardIndex].getAnswer() == AnswerTwoLabel.text) {
             if (timeMode == true) {
-                currentCards[currentCardIndex].cardPlayed(result: "correct", seconds: secondsCount)
+                let newSecondsCount = secondsCount - previousSecondsCount
+                previousSecondsCount = secondsCount
+                currentCards[currentCardIndex].cardPlayed(result: "correct", seconds: newSecondsCount)
             } else {
                 currentCards[currentCardIndex].cardPlayed(result: "correct")
             }
@@ -303,7 +303,9 @@ class QuizViewController: UIViewController {
         }
         else {
             if (timeMode == true) {
-                currentCards[currentCardIndex].cardPlayed(result: "incorrect", seconds: secondsCount)
+                let newSecondsCount = secondsCount - previousSecondsCount
+                previousSecondsCount = secondsCount
+                currentCards[currentCardIndex].cardPlayed(result: "incorrect", seconds: newSecondsCount)
             } else {
                 currentCards[currentCardIndex].cardPlayed(result: "incorrect")
             }
@@ -321,7 +323,9 @@ class QuizViewController: UIViewController {
     @IBAction func checkCardThree() {
         if (currentCards[currentCardIndex].getAnswer() == AnswerThreeLabel.text) {
             if (timeMode == true) {
-                currentCards[currentCardIndex].cardPlayed(result: "correct", seconds: secondsCount)
+                let newSecondsCount = secondsCount - previousSecondsCount
+                previousSecondsCount = secondsCount
+                currentCards[currentCardIndex].cardPlayed(result: "correct", seconds: newSecondsCount)
             } else {
                 currentCards[currentCardIndex].cardPlayed(result: "correct")
             }
@@ -331,7 +335,9 @@ class QuizViewController: UIViewController {
         }
         else {
             if (timeMode == true) {
-                currentCards[currentCardIndex].cardPlayed(result: "incorrect", seconds: secondsCount)
+                let newSecondsCount = secondsCount - previousSecondsCount
+                previousSecondsCount = secondsCount
+                currentCards[currentCardIndex].cardPlayed(result: "incorrect", seconds: newSecondsCount)
             } else {
                 currentCards[currentCardIndex].cardPlayed(result: "incorrect")
             }
@@ -348,7 +354,9 @@ class QuizViewController: UIViewController {
     @IBAction func checkCardFour() {
         if (currentCards[currentCardIndex].getAnswer() == AnswerFourLabel.text) {
             if (timeMode == true) {
-                currentCards[currentCardIndex].cardPlayed(result: "correct", seconds: secondsCount)
+                let newSecondsCount = secondsCount - previousSecondsCount
+                previousSecondsCount = secondsCount
+                currentCards[currentCardIndex].cardPlayed(result: "correct", seconds: newSecondsCount)
             } else {
                 currentCards[currentCardIndex].cardPlayed(result: "correct")
             }
@@ -358,7 +366,9 @@ class QuizViewController: UIViewController {
         }
         else {
             if (timeMode == true) {
-                currentCards[currentCardIndex].cardPlayed(result: "incorrect", seconds: secondsCount)
+                let newSecondsCount = secondsCount - previousSecondsCount
+                previousSecondsCount = secondsCount
+                currentCards[currentCardIndex].cardPlayed(result: "incorrect", seconds: newSecondsCount)
             } else {
                 currentCards[currentCardIndex].cardPlayed(result: "incorrect")
             }
