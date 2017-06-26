@@ -212,6 +212,7 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
             NextType.isHidden = true
             ShelveType.isHidden = false
             CheckType.isHidden = false
+            TextFieldType.isHidden = false
             
             //starts timer
             if (timeMode == true) {
@@ -298,6 +299,7 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
         ShelveType.isHidden = true
         CheckType.isHidden = true
         NextType.isHidden = false
+        TextFieldType.isHidden = true
         flip()
     }
   
@@ -331,15 +333,17 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
         if (timeMode == true) {
             timer?.invalidate()
         }
-        if currentCardIndex > 0 {
-            currentCardIndex = currentCardIndex-1
-            printQuestion()
-            self.QuestionTypeView.isHidden = false
-            self.AnswerTypeView.isHidden = true
-            TextFieldType.isHidden = true
-            ShowType.isHidden = false
-            CheckType.isHidden = true
-            ShelveType.isHidden = true
+        if TextFieldType.isHidden == false {
+            if currentCardIndex > 0 {
+                currentCardIndex = currentCardIndex-1
+                printQuestion()
+                self.QuestionTypeView.isHidden = false
+                self.AnswerTypeView.isHidden = true
+                TextFieldType.isHidden = true
+                ShowType.isHidden = false
+                CheckType.isHidden = true
+                ShelveType.isHidden = true
+            }
         }
     }
     

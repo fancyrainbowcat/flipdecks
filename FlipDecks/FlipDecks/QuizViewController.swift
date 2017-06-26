@@ -404,20 +404,22 @@ class QuizViewController: UIViewController {
         if (timeMode == true) {
             timer?.invalidate()
         }
-        if currentCardIndex > 0 {
-            currentCardIndex = currentCardIndex-1
-            printQuestion()
-            ShowQuiz.isHidden = false
-            AnswerOne.isHidden = true
-            AnswerTwo.isHidden = true
-            AnswerThree.isHidden = true
-            AnswerFour.isHidden = true
-            AnswerOneLabel.isHidden = true
-            AnswerTwoLabel.isHidden = true
-            AnswerThreeLabel.isHidden = true
-            AnswerFourLabel.isHidden = true
-            NextQuiz.isHidden = true
-            ShelveQuiz.isHidden = true
+        if ShelveQuiz.isHidden == false {
+            if currentCardIndex > 0 {
+                currentCardIndex = currentCardIndex-1
+                printQuestion()
+                ShowQuiz.isHidden = false
+                AnswerOne.isHidden = true
+                AnswerTwo.isHidden = true
+                AnswerThree.isHidden = true
+                AnswerFour.isHidden = true
+                AnswerOneLabel.isHidden = true
+                AnswerTwoLabel.isHidden = true
+                AnswerThreeLabel.isHidden = true
+                AnswerFourLabel.isHidden = true
+                NextQuiz.isHidden = true
+                ShelveQuiz.isHidden = true
+            }
         }
     }
     
