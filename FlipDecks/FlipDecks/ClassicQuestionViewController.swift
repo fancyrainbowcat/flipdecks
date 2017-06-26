@@ -214,7 +214,7 @@ class ClassicQuestionViewController: UIViewController {
             timer?.invalidate()
         }
         appendCard()
-        currentCardIndex += 1
+        currentCards.remove(at:currentCardIndex)
         printQuestion()
     }
     

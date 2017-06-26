@@ -324,7 +324,7 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
             timer?.invalidate()
         }
         appendCard()
-        currentCardIndex += 1
+        currentCards.remove(at:currentCardIndex)
         printQuestion()
     }
     
