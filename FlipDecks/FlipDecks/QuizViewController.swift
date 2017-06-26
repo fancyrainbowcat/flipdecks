@@ -68,13 +68,9 @@ class QuizViewController: UIViewController {
             QuizAnswerView.isHidden = true
             QuizQuestionView.isHidden = false
             AnswerOne.isHidden = true
-            AnswerOneLabel.isHidden = true
             AnswerTwo.isHidden = true
-            AnswerTwoLabel.isHidden = true
             AnswerThree.isHidden = true
-            AnswerThreeLabel.isHidden = true
             AnswerFour.isHidden = true
-            AnswerFourLabel.isHidden = true
             ShelveQuiz.isHidden = true
             timeLabel.isHidden = true
         }
@@ -108,10 +104,6 @@ class QuizViewController: UIViewController {
             timeLabel.isHidden = true
             strValue = "Congratulations!"
             QuestionQuizLabel.text = strValue
-            AnswerOneLabel.isHidden = true
-            AnswerTwoLabel.isHidden = true
-            AnswerThreeLabel.isHidden = true
-            AnswerFourLabel.isHidden = true
             NextQuiz.isHidden = true
             AnswerOne.isHidden = true
             AnswerTwo.isHidden = true
@@ -220,14 +212,15 @@ class QuizViewController: UIViewController {
         randomAnswerArray.append(currentCards[currentCardIndex])
         randomAnswerArray.shuffle()
     
+        
         strValueOne = randomAnswerArray[0].getAnswer()
-        AnswerOneLabel.text = strValueOne
+        AnswerOne.setTitle(strValueOne, for: .normal)
         strValueTwo = randomAnswerArray[1].getAnswer()
-        AnswerTwoLabel.text = strValueTwo
+        AnswerTwo.setTitle(strValueTwo, for: .normal)
         strValueThree = randomAnswerArray[2].getAnswer()
-        AnswerThreeLabel.text = strValueThree
+        AnswerThree.setTitle(strValueThree, for: .normal)
         strValueFour = randomAnswerArray[3].getAnswer()
-        AnswerFourLabel.text = strValueFour
+        AnswerFour.setTitle(strValueFour, for: .normal)
     }
 
     /*/ Select Answers
@@ -243,7 +236,7 @@ class QuizViewController: UIViewController {
     
     // Check Card One
     @IBAction func checkCardOne() {
-        if (currentCards[currentCardIndex].getAnswer() == AnswerOneLabel.text) {
+        if (currentCards[currentCardIndex].getAnswer() == strValueOne) {
             if (timeMode == true) {
                 let newSecondsCount = secondsCount - previousSecondsCount
                 previousSecondsCount = secondsCount
@@ -275,7 +268,7 @@ class QuizViewController: UIViewController {
     
     // Check Card Two
     @IBAction func checkCardTwo() {
-        if (currentCards[currentCardIndex].getAnswer() == AnswerTwoLabel.text) {
+        if (currentCards[currentCardIndex].getAnswer() == strValueTwo) {
             if (timeMode == true) {
                 let newSecondsCount = secondsCount - previousSecondsCount
                 previousSecondsCount = secondsCount
@@ -307,7 +300,7 @@ class QuizViewController: UIViewController {
     
     // Check Card Three
     @IBAction func checkCardThree() {
-        if (currentCards[currentCardIndex].getAnswer() == AnswerThreeLabel.text) {
+        if (currentCards[currentCardIndex].getAnswer() == strValueThree) {
             if (timeMode == true) {
                 let newSecondsCount = secondsCount - previousSecondsCount
                 previousSecondsCount = secondsCount
@@ -338,7 +331,7 @@ class QuizViewController: UIViewController {
     
     // Check Card Four
     @IBAction func checkCardFour() {
-        if (currentCards[currentCardIndex].getAnswer() == AnswerFourLabel.text) {
+        if (currentCards[currentCardIndex].getAnswer() == strValueFour) {
             if (timeMode == true) {
                 let newSecondsCount = secondsCount - previousSecondsCount
                 previousSecondsCount = secondsCount
@@ -413,10 +406,6 @@ class QuizViewController: UIViewController {
                 AnswerTwo.isHidden = true
                 AnswerThree.isHidden = true
                 AnswerFour.isHidden = true
-                AnswerOneLabel.isHidden = true
-                AnswerTwoLabel.isHidden = true
-                AnswerThreeLabel.isHidden = true
-                AnswerFourLabel.isHidden = true
                 NextQuiz.isHidden = true
                 ShelveQuiz.isHidden = true
             }
@@ -441,10 +430,6 @@ class QuizViewController: UIViewController {
         AnswerTwo.isHidden = false
         AnswerThree.isHidden = false
         AnswerFour.isHidden = false
-        AnswerOneLabel.isHidden = false
-        AnswerTwoLabel.isHidden = false
-        AnswerThreeLabel.isHidden = false
-        AnswerFourLabel.isHidden = false
         self.QuizAnswerView.isHidden = true
         self.QuizQuestionView.isHidden = false
         ShelveQuiz.isHidden = false
@@ -462,11 +447,8 @@ class QuizViewController: UIViewController {
     
     @IBOutlet weak var ContinueQuiz: UIButton!
     @IBOutlet weak var ShowQuiz: UIButton!
-    @IBOutlet weak var AnswerOneLabel: UILabel!
-    @IBOutlet weak var AnswerTwoLabel: UILabel!
+
     @IBOutlet weak var AnswerOne: UIButton!
-    @IBOutlet weak var AnswerThreeLabel: UILabel!
-    @IBOutlet weak var AnswerFourLabel: UILabel!
     @IBOutlet weak var AnswerTwo: UIButton!
     @IBOutlet weak var AnswerThree: UIButton!
     @IBOutlet weak var AnswerFour: UIButton!
