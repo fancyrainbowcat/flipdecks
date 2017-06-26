@@ -138,6 +138,27 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.94092529209999998" blue="0.55933140000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4sk-b9-MXF">
+                                <rect key="frame" x="67" y="385" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Well done!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q0L-fx-JOL">
+                                        <rect key="frame" x="73" y="54" width="94" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Try again" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WCu-hi-DzS">
+                                        <rect key="frame" x="73" y="54" width="94" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.86197469226724288" green="0.95021554897671856" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Cd-jb-tra">
                                 <rect key="frame" x="220" y="327" width="138" height="94"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -158,6 +179,9 @@
                         <outlet property="BackQuiz" destination="HZy-zS-7ir" id="DLl-YB-U7a"/>
                         <outlet property="ContinueQuiz" destination="JuA-NY-maY" id="ZpO-Dj-GSZ"/>
                         <outlet property="NextQuiz" destination="IOJ-d7-zas" id="XEa-Q2-Cbe"/>
+                        <outlet property="PopUpCorrectLabelQuiz" destination="q0L-fx-JOL" id="iZi-kM-35s"/>
+                        <outlet property="PopUpIncorrectLabelQuiz" destination="WCu-hi-DzS" id="N8I-JD-GbY"/>
+                        <outlet property="PopUpViewQuiz" destination="4sk-b9-MXF" id="kfY-al-YqN"/>
                         <outlet property="QuestionQuizLabel" destination="qqX-B9-DRp" id="XtH-YV-SpK"/>
                         <outlet property="QuizAnswerView" destination="TNT-4X-APe" id="Pfk-0K-B27"/>
                         <outlet property="QuizQuestionView" destination="y9I-Sv-zsN" id="WLB-8q-j7E"/>

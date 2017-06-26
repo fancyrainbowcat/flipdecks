@@ -35,6 +35,8 @@ class QuizViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        PopUpViewQuiz.isHidden = true
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -192,6 +194,7 @@ class QuizViewController: UIViewController {
         AnswerFour.isHidden = false
         NextQuiz.isHidden = true
         ShelveQuiz.isHidden = false
+        PopUpViewQuiz.isHidden = true
         printQuestion()
     }
     
@@ -237,6 +240,9 @@ class QuizViewController: UIViewController {
     // Check Card One
     @IBAction func checkCardOne() {
         if (currentCards[currentCardIndex].getAnswer() == strValueOne) {
+            PopUpViewQuiz.isHidden = false
+            PopUpCorrectLabelQuiz.isHidden = false
+            PopUpIncorrectLabelQuiz.isHidden = true
             if (timeMode == true) {
                 let newSecondsCount = secondsCount - previousSecondsCount
                 previousSecondsCount = secondsCount
@@ -250,6 +256,9 @@ class QuizViewController: UIViewController {
             }
         }
         else {
+            PopUpViewQuiz.isHidden = false
+            PopUpCorrectLabelQuiz.isHidden = true
+            PopUpIncorrectLabelQuiz.isHidden = false
             if (timeMode == true) {
                 let newSecondsCount = secondsCount - previousSecondsCount
                 previousSecondsCount = secondsCount
@@ -269,6 +278,9 @@ class QuizViewController: UIViewController {
     // Check Card Two
     @IBAction func checkCardTwo() {
         if (currentCards[currentCardIndex].getAnswer() == strValueTwo) {
+            PopUpViewQuiz.isHidden = false
+            PopUpCorrectLabelQuiz.isHidden = false
+            PopUpIncorrectLabelQuiz.isHidden = true
             if (timeMode == true) {
                 let newSecondsCount = secondsCount - previousSecondsCount
                 previousSecondsCount = secondsCount
@@ -281,6 +293,9 @@ class QuizViewController: UIViewController {
             }
         }
         else {
+            PopUpViewQuiz.isHidden = false
+            PopUpCorrectLabelQuiz.isHidden = true
+            PopUpIncorrectLabelQuiz.isHidden = false
             if (timeMode == true) {
                 let newSecondsCount = secondsCount - previousSecondsCount
                 previousSecondsCount = secondsCount
@@ -301,6 +316,9 @@ class QuizViewController: UIViewController {
     // Check Card Three
     @IBAction func checkCardThree() {
         if (currentCards[currentCardIndex].getAnswer() == strValueThree) {
+            PopUpViewQuiz.isHidden = false
+            PopUpCorrectLabelQuiz.isHidden = false
+            PopUpIncorrectLabelQuiz.isHidden = true
             if (timeMode == true) {
                 let newSecondsCount = secondsCount - previousSecondsCount
                 previousSecondsCount = secondsCount
@@ -313,6 +331,9 @@ class QuizViewController: UIViewController {
             }
         }
         else {
+            PopUpViewQuiz.isHidden = false
+            PopUpCorrectLabelQuiz.isHidden = true
+            PopUpIncorrectLabelQuiz.isHidden = false
             if (timeMode == true) {
                 let newSecondsCount = secondsCount - previousSecondsCount
                 previousSecondsCount = secondsCount
@@ -332,6 +353,9 @@ class QuizViewController: UIViewController {
     // Check Card Four
     @IBAction func checkCardFour() {
         if (currentCards[currentCardIndex].getAnswer() == strValueFour) {
+            PopUpViewQuiz.isHidden = false
+            PopUpCorrectLabelQuiz.isHidden = false
+            PopUpIncorrectLabelQuiz.isHidden = true
             if (timeMode == true) {
                 let newSecondsCount = secondsCount - previousSecondsCount
                 previousSecondsCount = secondsCount
@@ -344,6 +368,9 @@ class QuizViewController: UIViewController {
             }
         }
         else {
+            PopUpViewQuiz.isHidden = false
+            PopUpCorrectLabelQuiz.isHidden = true
+            PopUpIncorrectLabelQuiz.isHidden = false
             if (timeMode == true) {
                 let newSecondsCount = secondsCount - previousSecondsCount
                 previousSecondsCount = secondsCount
@@ -445,6 +472,9 @@ class QuizViewController: UIViewController {
         self.deck.saveToFile()
     }
     
+    @IBOutlet weak var PopUpIncorrectLabelQuiz: UILabel!
+    @IBOutlet weak var PopUpCorrectLabelQuiz: UILabel!
+    @IBOutlet weak var PopUpViewQuiz: UIView!
     @IBOutlet weak var ContinueQuiz: UIButton!
     @IBOutlet weak var ShowQuiz: UIButton!
 
