@@ -44,6 +44,7 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
 
         microphoneButton.isEnabled = false
         speechRecognizer?.delegate = self
+        PopUpViewType.isHidden = true
         
         //reqeust authorization to use speech recognition
         SFSpeechRecognizer.requestAuthorization { (authStatus) in
@@ -212,6 +213,7 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
             NextType.isHidden = true
             ShelveType.isHidden = false
             CheckType.isHidden = false
+            TextFieldType.isHidden = false
             
             //starts timer
             if (timeMode == true) {
@@ -298,6 +300,7 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
         ShelveType.isHidden = true
         CheckType.isHidden = true
         NextType.isHidden = false
+        TextFieldType.isHidden = true
         flip()
     }
   
@@ -322,7 +325,7 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
             timer?.invalidate()
         }
         appendCard()
-        currentCardIndex += 1
+        currentCards.remove(at:currentCardIndex)
         printQuestion()
     }
     
@@ -331,15 +334,17 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
         if (timeMode == true) {
             timer?.invalidate()
         }
-        if currentCardIndex > 0 {
-            currentCardIndex = currentCardIndex-1
-            printQuestion()
-            self.QuestionTypeView.isHidden = false
-            self.AnswerTypeView.isHidden = true
-            TextFieldType.isHidden = true
-            ShowType.isHidden = false
-            CheckType.isHidden = true
-            ShelveType.isHidden = true
+        if TextFieldType.isHidden == false {
+            if currentCardIndex > 0 {
+                currentCardIndex = currentCardIndex-1
+                printQuestion()
+                self.QuestionTypeView.isHidden = false
+                self.AnswerTypeView.isHidden = true
+                TextFieldType.isHidden = true
+                ShowType.isHidden = false
+                CheckType.isHidden = true
+                ShelveType.isHidden = true
+            }
         }
     }
     
@@ -356,6 +361,7 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
     ShowType.isHidden = true
     ContinueType.isHidden = false
     NextType.isHidden = true
+    PopUpViewType.isHidden = true
     }
 
     //Continue Lection
@@ -385,6 +391,7 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
         printQuestion()
         self.QuestionTypeView.isHidden = false
         self.AnswerTypeView.isHidden = true
+        PopUpViewType.isHidden = true
     }
 
     // Append current card to retry later
@@ -398,6 +405,9 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
     let userInput = TextFieldType.text!
         
         if userInput == currentCards[currentCardIndex].getAnswer() {
+            PopUpViewType.isHidden = false
+            PopUpCorrectLabelType.isHidden = false
+            PopUpIncorrectLabelType.isHidden = true
             if (timeMode == true) {
                 let newSecondsCount = secondsCount - previousSecondsCount
                 previousSecondsCount = secondsCount
@@ -410,6 +420,10 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
             }
         }
         else {
+            PopUpViewType.isHidden = false
+            PopUpViewType.tintColor = UIColor.red
+            PopUpCorrectLabelType.isHidden = true
+            PopUpIncorrectLabelType.isHidden = false
             if (timeMode == true) {
                 let newSecondsCount = secondsCount - previousSecondsCount
                 previousSecondsCount = secondsCount
@@ -432,6 +446,9 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
         self.deck.saveToFile()
     }
 
+    @IBOutlet weak var PopUpIncorrectLabelType: UILabel!
+    @IBOutlet weak var PopUpCorrectLabelType: UILabel!
+    @IBOutlet weak var PopUpViewType: UIView!
     @IBOutlet weak var ContinueType: UIButton!
     @IBOutlet weak var ShowType: UIButton!
     @IBOutlet weak var AnswerTypeView: UIView!

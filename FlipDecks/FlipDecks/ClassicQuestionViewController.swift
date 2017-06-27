@@ -214,7 +214,7 @@ class ClassicQuestionViewController: UIViewController {
             timer?.invalidate()
         }
         appendCard()
-        currentCardIndex += 1
+        currentCards.remove(at:currentCardIndex)
         printQuestion()
     }
     
@@ -246,16 +246,18 @@ class ClassicQuestionViewController: UIViewController {
         if (timeMode == true) {
             timer?.invalidate()
         }
-        if currentCardIndex > 0 {
-            currentCardIndex = currentCardIndex-1
-            printQuestion()
-            self.QuestionView.isHidden = false
-            self.AnswerView.isHidden = true
-            Incorrect.isHidden = true
-            Correct.isHidden = true
-            Continue.isHidden = false
-            Continue.tintColor = UIColor.white
-            Shelve.isHidden = true
+        if Shelve.isHidden == false {
+            if currentCardIndex > 0 {
+                currentCardIndex = currentCardIndex-1
+                printQuestion()
+                self.QuestionView.isHidden = false
+                self.AnswerView.isHidden = true
+                Incorrect.isHidden = true
+                Correct.isHidden = true
+                Continue.isHidden = false
+                Continue.tintColor = UIColor.white
+                Shelve.isHidden = true
+            }
         }
     }
     
