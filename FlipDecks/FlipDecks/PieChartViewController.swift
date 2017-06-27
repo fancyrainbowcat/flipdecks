@@ -36,14 +36,14 @@ class PieChartViewController: UIViewController {
         let pieChartData = PieChartData(dataSet: pieChartDataSet)
         pieChartView.data = pieChartData
         
-        var colors: [UIColor] = []
+        var colors: [UIColor] = [UIColor.green, UIColor.red]
         
         for _ in 0..<dataPoints.count {
-            let red = Double(arc4random_uniform(256))
-            let green = Double(arc4random_uniform(256))
-            let blue = Double(arc4random_uniform(256))
+           // let red = Double(arc4random_uniform(256))
+            //let green = Double(arc4random_uniform(256))
+            //let blue = Double(arc4random_uniform(256))
             
-            let color = UIColor(red: CGFloat(red/255), green: CGFloat(green/255), blue: CGFloat(blue/255), alpha: 1)
+            let color = UIColor.green //UIColor(red: CGFloat(red/255), green: CGFloat(green/255), blue: CGFloat(blue/255), alpha: 1)
             colors.append(color)        }
         
         pieChartDataSet.colors = colors
