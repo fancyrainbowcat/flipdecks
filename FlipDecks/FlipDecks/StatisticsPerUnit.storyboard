@@ -18,41 +18,41 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="y2J-L7-BZ9" kind="relationship" relationship="rootViewController" id="A6U-on-0sV"/>
+                        <segue destination="isn-g9-nZX" kind="relationship" relationship="rootViewController" id="1ri-z0-GOx"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cvb-Dy-x72" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4494" y="-702"/>
         </scene>
-        <!--Bar Chart View Controller-->
-        <scene sceneID="ae9-nl-iGa">
+        <!--Pie Chart View Controller-->
+        <scene sceneID="bPj-nV-npI">
             <objects>
-                <viewController id="y2J-L7-BZ9" customClass="BarChartViewController" customModule="FlipDecks" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="isn-g9-nZX" customClass="PieChartViewController" customModule="FlipDecks" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ffT-Ps-qk5"/>
-                        <viewControllerLayoutGuide type="bottom" id="OcV-Yr-Yh4"/>
+                        <viewControllerLayoutGuide type="top" id="edF-KS-lNn"/>
+                        <viewControllerLayoutGuide type="bottom" id="G3K-Vc-dvy"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="cuU-kp-Bgw">
+                    <view key="view" contentMode="scaleToFill" id="kva-pC-3LI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ndO-XR-mo5" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="36" y="80" width="323" height="567"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y0E-b2-DSj" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="32" y="154" width="343" height="448"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="GXQ-5l-Ohl"/>
+                    <navigationItem key="navigationItem" id="QeB-0H-kgs"/>
                     <connections>
-                        <outlet property="barChartView" destination="ndO-XR-mo5" id="FDt-hJ-MMZ"/>
+                        <outlet property="pieChartView" destination="Y0E-b2-DSj" id="iro-dc-3m3"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mgM-oo-Ium" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LiX-61-TXl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5288.8000000000002" y="-702.09895052473769"/>
+            <point key="canvasLocation" x="5456.8000000000002" y="-704.79760119940033"/>
         </scene>
     </scenes>
 </document>
