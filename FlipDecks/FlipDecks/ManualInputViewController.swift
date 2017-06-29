@@ -179,13 +179,20 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 }
             }
             
-            self.deck.appendCard(card : newCard)
-            
-            //inform user and reset text fields
-            questionTextView.text = ""
-            answerTextView.text = ""
-            messageLabel.text = "Card successfully imported"
-            messageLabel.textColor = UIColor.green
+            if (self.deck.appendCard(card : newCard)) {
+                //inform user and reset text fields
+                questionTextView.text = ""
+                answerTextView.text = ""
+                messageLabel.text = "Card successfully imported"
+                messageLabel.textColor = UIColor.green
+            } else {
+                //inform user and reset text fields
+                questionTextView.text = ""
+                answerTextView.text = ""
+                messageLabel.text = "Card does already exist"
+                messageLabel.textColor = UIColor.red
+            }
+
 
         } //if the file does not exist create it and write into it
         else {

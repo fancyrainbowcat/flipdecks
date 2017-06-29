@@ -194,8 +194,14 @@ class Deck {
     }
     
     //appends a card 
-    func appendCard(card: Card) {
+    func appendCard(card: Card) -> Bool {
+        for c in listOfCards {
+            if c.getQuestion() == card.getQuestion() && c.getAnswer() == card.getAnswer() {
+                return false
+            }
+        }
         self.listOfCards.append(card)
         self.saveToFile()
+        return true 
     }
 }
