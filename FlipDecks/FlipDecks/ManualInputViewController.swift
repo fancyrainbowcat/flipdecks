@@ -9,13 +9,15 @@
 import UIKit
 
 //View Controller for manual input
-class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UITextViewDelegate {
 
     // current deck and language
     var deck : Deck = Deck(name: "", languageName: "", fileEnding: "")
     var language : Language = Language(name: "")
     var listOfLanguages = [Language]()
-    var listOfDecks = [Deck(name: "Choose language", languageName: "", fileEnding: "")]
+    var listOfDecks = [Deck]()
+    var deckPath = URL(string:"")
+
     
     //IBOutlets
     @IBOutlet weak var languageNameField: UITextField!
@@ -32,6 +34,8 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
         
         languagePickerView.delegate = self
         deckPickerView.delegate = self
+        questionTextView.delegate = self
+        answerTextView.delegate = self
         
         //pre-set deck and language if given 
         if (self.deck.getName() != "") {
@@ -42,7 +46,11 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
         if (self.language.getName() != "") {
             self.languageNameField.text = self.language.getName()
             languagePickerView.isHidden = true
+            deckPickerView.isHidden = false
+        } else {
+            deckPickerView.isHidden = true
         }
+        
         
         //to cancel keyboard when screen is tapped
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -76,7 +84,7 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
         pickerLabel.textAlignment = NSTextAlignment.center
         
         if (pickerView.tag == 0) {
-            pickerLabel.text = listOfLanguages[row].getName()
+            pickerLabel.text = self.listOfLanguages[row].getName()
         } else if (pickerView.tag == 1) {
             pickerLabel.text = self.listOfDecks[row].getName()
         }
@@ -88,12 +96,14 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
         //now a language is set, and listOfDecks can be replaced
         if (pickerView.tag == 0) {
             self.languageNameField.text = self.listOfLanguages[row].getName()
+            self.language = self.listOfLanguages[row]
             pickerView.isHidden = true
             self.listOfDecks = self.listOfLanguages[row].returnAllDecks()
             self.viewDidLoad()
         } else if (pickerView.tag == 1) {
-            if (self.listOfDecks[row].getName() != "Choose language") {
+            if (self.language.getName() != "") {
                 self.deckNameField.text = self.listOfDecks[row].getName()
+                self.deck = self.listOfDecks[row]
                 pickerView.isHidden = true
             }
         }
@@ -110,6 +120,10 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
             self.deckPickerView.isHidden = false
             textField.endEditing(true)
         }
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        self.messageLabel.text = ""
     }
 
     override func didReceiveMemoryWarning() {
@@ -140,38 +154,60 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
     //load data from file in documents folder into internal storage
     func loadData(deckName : String, languageName : String, question: String, answer: String) {
         //add correct and incorrect count to the given input
-        let newContent = "\(question);\(answer);0;0;0\n"
-        
+        let newCard = Card(question: question, answer: answer, correctCount: 0, incorrectCount: 0, secondsSpentOnCard: 0)
+    
+        //set language name if necessary
+        if (self.language.getName() == "") {
+            for language in self.listOfLanguages {
+                if languageName == language.getName() {
+                    self.language = language
+                }
+            }
+        }
+            
         //path for the file in internal storage
-        let deckPath = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true).appendingPathComponent(languageName, isDirectory: true).appendingPathComponent(deckName).appendingPathExtension("txt")
+        self.deckPath = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true).appendingPathComponent(languageName, isDirectory: true).appendingPathComponent("\(deckName).txt")
         
         //if the file for this deck does already exist append the data
-        if FileManager.default.fileExists(atPath: deckPath.path) {
-            do {
-                let fileHandle = try FileHandle.init(forWritingTo: deckPath)
-                fileHandle.seekToEndOfFile()
-                let contentData = newContent.data(using: .utf8)
-                fileHandle.write(contentData!)
-                fileHandle.closeFile()
-                
-                //inform user and reset text fields
-                questionTextView.text = ""
-                answerTextView.text = ""
-                messageLabel.text = "Card successfully imported"
-                messageLabel.textColor = UIColor.green
-            } catch {
-                print("ManualInputViewController: Cannot open fileHandle")
+        if FileManager.default.fileExists(atPath: (deckPath?.path)!) {
+
+            if (self.deck.getName() == "") {
+                for deck in self.listOfDecks {
+                    if deckName == deck.getName() {
+                        self.deck = deck
+                    }
+                }
             }
-        } //if the file does not exist create it and write into it
-        else {
-            let contentData = newContent.data(using: .utf8)
-            FileManager.default.createFile(atPath: deckPath.path, contents: contentData, attributes: nil)
+            
+            self.deck.appendCard(card : newCard)
             
             //inform user and reset text fields
             questionTextView.text = ""
             answerTextView.text = ""
             messageLabel.text = "Card successfully imported"
             messageLabel.textColor = UIColor.green
+
+        } //if the file does not exist create it and write into it
+        else {
+            //write current data into content string
+            let content = "\(question);\(answer);0;0;0\n"
+
+            //convert content string to data
+            let contentData = content.data(using: .utf8)
+            
+            //recreate deck with current values
+            if (FileManager.default.createFile(atPath: (deckPath?.path)!, contents: contentData, attributes: nil)) {
+                //inform user and reset text fields
+                questionTextView.text = ""
+                answerTextView.text = ""
+                messageLabel.text = "Card successfully imported"
+                messageLabel.textColor = UIColor.green
+            }
+            else {
+                messageLabel.text = "Error"
+                messageLabel.textColor = UIColor.red
+            }
+
         }
     }
     
@@ -179,10 +215,10 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
     @IBAction func saveInput(_ sender: Any) {
         //button can only be pressed if all fields are filled
         if(languageNameField.text != "" && deckNameField.text != "" && questionTextView.text != "" && answerTextView.text != "") {
-            let languageName = languageNameField.text
-            let deckName = deckNameField.text
-            let question = questionTextView.text
-            let answer = answerTextView.text
+            let languageName = self.languageNameField.text
+            let deckName = self.deckNameField.text
+            let question = self.questionTextView.text
+            let answer = self.answerTextView.text
             
             //path of internal languages folder
             let allLanguagesURL = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true).appendingPathComponent(languageName!, isDirectory: true)

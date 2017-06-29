@@ -49,7 +49,8 @@ class Deck {
         if (fileName != "") {
             filePath = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true).appendingPathComponent(self.languageName, isDirectory: true).appendingPathComponent(fileName)
     
-            print("File path: \(filePath!)")
+           // print("File path: \(filePath!)")
+            
             
             do
             {
@@ -162,17 +163,9 @@ class Deck {
     
     //saves the current status in file 
     func saveToFile() {
-        //remove deck
-        do {
-            try FileManager.default.removeItem(atPath: (filePath?.path)!)
-        }
-        catch let error as NSError {
-            print("\(error)")
-        }
-        
         //write current data into content string
         var content = ""
-        for card in listOfCards {
+        for card in self.listOfCards {
             content = content.appending("\(card.getQuestion());\(card.getAnswer());\(card.getCorrectCount());\(card.getIncorrectCount());\(card.getTimeSpentOnCard())\n")
         }
         //convert content string to data
@@ -198,5 +191,11 @@ class Deck {
         }
         
         return timeSpentOnDeck
+    }
+    
+    //appends a card 
+    func appendCard(card: Card) {
+        self.listOfCards.append(card)
+        self.saveToFile()
     }
 }
