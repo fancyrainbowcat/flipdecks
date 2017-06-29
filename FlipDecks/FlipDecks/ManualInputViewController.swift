@@ -30,16 +30,28 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        languagePickerView.delegate = self
+        deckPickerView.delegate = self
+        
         //pre-set deck and language if given 
         if (self.deck.getName() != "") {
             self.deckNameField.text = self.deck.getName()
+            deckPickerView.isHidden = true
         }
         
         if (self.language.getName() != "") {
             self.languageNameField.text = self.language.getName()
+            languagePickerView.isHidden = true
         }
-        languagePickerView.delegate = self
-        deckPickerView.delegate = self
+        
+        //to cancel keyboard when screen is tapped
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    //closes keyboard when screen is tapped anywhere
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     public func numberOfComponents(in pickerView: UIPickerView) -> Int{

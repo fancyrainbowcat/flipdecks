@@ -29,10 +29,6 @@ class OpenFileViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     //change buttons and add event listener
     override func viewDidLoad() {
-        
-        for language in listOfLanguages {
-            print("Language: \(language.getName())")
-        }
         super.viewDidLoad()
         okButton.isEnabled = false
         okButton.layer.borderWidth = 2
@@ -40,12 +36,22 @@ class OpenFileViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         browseButton.layer.borderWidth = 2
         browseButton.layer.borderColor = UIColor.blue.cgColor
         fileNameField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
-        
+        pickerView.delegate = self
+
         //pre-set language if given
         if (self.language.getName() != "") {
             self.languageNameField.text = self.language.getName()
+            pickerView.isHidden = true 
         }
-        pickerView.delegate = self
+
+        //to cancel keyboard when screen is tapped
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    //closes keyboard when screen is tapped anywhere
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     public func numberOfComponents(in pickerView: UIPickerView) -> Int{

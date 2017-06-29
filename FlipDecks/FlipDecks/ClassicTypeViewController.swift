@@ -34,14 +34,14 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
     
-    //create speech recognizer for english !!! attention: we need to switch the language according to the unit
+    //create speech recognizer for english language
     private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))
-
+    
     @IBOutlet weak var microphoneButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         microphoneButton.isEnabled = false
         speechRecognizer?.delegate = self
         PopUpViewType.isHidden = true
@@ -100,7 +100,15 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
         
         //to determine when the Application is terminated
         NotificationCenter.default.addObserver(self, selector: #selector(willTerminate), name: .UIApplicationWillTerminate, object: nil)
-
+        
+        //to cancel keyboard when screen is tapped
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    //closes keyboard when screen is tapped anywhere
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     //records user input from microphone
@@ -145,9 +153,13 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
             //check if recognition is finished
             var isFinal = false
             
+            var audioTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.didFinishTalk), userInfo: nil, repeats: false)
+            
             //if there is a result it will be printed into textFieldType
             if result != nil {
-                self.TextFieldType.text = result?.bestTranscription.formattedString
+                self.TextFieldType.text = result?.bestTranscription.formattedString.lowercased()
+                audioTimer.invalidate()
+                audioTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.didFinishTalk), userInfo: nil, repeats: false)
                 isFinal = (result?.isFinal)!
             }
             
@@ -181,6 +193,16 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
         
     }
     
+    //stops audio recognition after 2 seconds of silence
+    func didFinishTalk() {
+        if audioEngine.isRunning {
+            audioEngine.stop()
+            recognitionRequest?.endAudio()
+            microphoneButton.isEnabled = false
+            microphoneButton.setTitle("Start Recording", for: .normal)
+        }
+    }
+    
     //changes status of microphone button
     func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
         if available {
@@ -207,7 +229,14 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
     
     //Print question on label
     @IBAction func printQuestion() {
+        //stop audio engine if still running
         if (currentCardIndex < currentCards.count) {
+            TextFieldType.text = ""
+            
+            //microphone button should appear
+            microphoneButton.isEnabled = true
+            microphoneButton.isHidden = false
+            
             strValue = currentCards[currentCardIndex].getQuestion()
             QuestionTypeLabel.text = strValue
             NextType.isHidden = true
@@ -292,9 +321,16 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
     
     //Print answer on label
     @IBAction func printAnswer() {
+        didFinishTalk()
+
         if (timeMode == true) {
             timer?.invalidate()
         }
+        
+        //microphoneButton should not be used
+        microphoneButton.isEnabled = false
+        microphoneButton.isHidden = true
+        
         strValue = currentCards[currentCardIndex].getAnswer()
         AnswerTypeLabel.text = strValue
         ShelveType.isHidden = true
@@ -321,9 +357,16 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
     
     // Shelve cards
     @IBAction func shelveCard() {
+        didFinishTalk()
+
         if (timeMode == true) {
             timer?.invalidate()
         }
+        
+        //microphoneButton should not be used
+        microphoneButton.isEnabled = false
+        microphoneButton.isHidden = true
+        
         appendCard()
         currentCards.remove(at:currentCardIndex)
         printQuestion()
@@ -331,13 +374,25 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
     
     // Show previously played card
     @IBAction func PreviousCard() {
+        didFinishTalk()
+
         if (timeMode == true) {
             timer?.invalidate()
         }
+        
+        //microphoneButton should not be used
+        microphoneButton.isEnabled = false
+        microphoneButton.isHidden = true
+        
         if TextFieldType.isHidden == false {
             if currentCardIndex > 0 {
                 currentCardIndex = currentCardIndex-1
                 printQuestion()
+                
+                //microphoneButton should not be used
+                microphoneButton.isEnabled = false
+                microphoneButton.isHidden = true
+                
                 self.QuestionTypeView.isHidden = false
                 self.AnswerTypeView.isHidden = true
                 TextFieldType.isHidden = true
