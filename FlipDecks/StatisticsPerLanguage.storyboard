@@ -46,7 +46,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="6pf-aX-9UM">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="Yr3-Y5-uHW"/>
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="36f-RA-QCi">
+                            <connections>
+                                <segue destination="c1z-oQ-iT6" kind="show" id="jOj-zp-wny"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="BarChartView" destination="QJJ-Lj-FUY" id="5I6-oo-3ad"/>
@@ -55,6 +59,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2pq-6H-k53" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4464.8000000000002" y="846.9265367316342"/>
+        </scene>
+        <!--UnitsTableViewController-->
+        <scene sceneID="9ui-Xe-3Sz">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="UnitsTableViewController" id="c1z-oQ-iT6" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b1q-Sj-dET" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5307" y="846"/>
         </scene>
     </scenes>
 </document>

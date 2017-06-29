@@ -11,7 +11,11 @@ import Charts
 
 class PieChartViewController: UIViewController {
 
+
     @IBOutlet weak var pieChartView: PieChartView!
+    
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,7 +24,6 @@ class PieChartViewController: UIViewController {
         setChart(dataPoints: answer, values: score)
     }
 
-    
     func setChart(dataPoints: [String], values: [Int]) {
         
         var dataEntries: [ChartDataEntry] = []

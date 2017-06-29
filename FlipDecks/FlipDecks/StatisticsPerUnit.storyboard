@@ -13,6 +13,7 @@
         <scene sceneID="1Rk-VW-bmc">
             <objects>
                 <navigationController id="g97-xm-Hpo" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="TCC-Xl-aby"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ydm-gl-gJh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -45,7 +46,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="QeB-0H-kgs"/>
+                    <navigationItem key="navigationItem" id="QeB-0H-kgs">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="tYp-3w-LqS">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rqr-dA-kqz">
+                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <segue destination="Goh-55-cje" kind="show" id="dKI-g3-TeT"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="pieChartView" destination="Y0E-b2-DSj" id="iro-dc-3m3"/>
                     </connections>
@@ -53,6 +65,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LiX-61-TXl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5456.8000000000002" y="-704.79760119940033"/>
+        </scene>
+        <!--ModusViewController-->
+        <scene sceneID="KSu-gX-yEk">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="ModusViewController" id="Goh-55-cje" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K7x-wt-S2E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6477" y="-699"/>
         </scene>
     </scenes>
 </document>
