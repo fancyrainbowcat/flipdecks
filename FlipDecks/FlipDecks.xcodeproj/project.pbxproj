@@ -347,6 +347,7 @@
 				TargetAttributes = {
 					C00A523A1EE2B0F6009B3075 = {
 						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = ZUTT392356;
 						ProvisioningStyle = Automatic;
 					};
 					C00A524E1EE2B0F6009B3075 = {
@@ -742,6 +743,7 @@
 			baseConfigurationReference = 4A779D381DAEB88AC54B636C /* Pods-FlipDecks.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = ZUTT392356;
 				INFOPLIST_FILE = FlipDecks/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -756,6 +758,7 @@
 			baseConfigurationReference = C03F1CF604B0900D147B25A0 /* Pods-FlipDecks.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = ZUTT392356;
 				INFOPLIST_FILE = FlipDecks/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
