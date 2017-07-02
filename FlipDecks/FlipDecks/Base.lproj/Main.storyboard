@@ -259,7 +259,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Show Statistik"/>
                                 <connections>
-                                    <segue destination="lw6-Y2-X46" kind="presentation" id="BJv-E0-EKf"/>
+                                    <segue destination="lw6-Y2-X46" kind="presentation" identifier="StatisticsPerUnit" id="BJv-E0-EKf"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ILR-D6-Jrz">
@@ -414,6 +414,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="5YJ-uv-h4T"/>
+        <segue reference="0iZ-Yn-TM4"/>
     </inferredMetricsTieBreakers>
 </document>

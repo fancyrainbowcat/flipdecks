@@ -11,16 +11,25 @@ import Charts
 
 class PieChartViewController: UIViewController {
 
+    var deck : Deck = Deck(name: "", languageName: "", fileEnding: "")
+    var language : Language = Language(name: "")
+    var listOfCards = [Card]()
 
     @IBOutlet weak var pieChartView: PieChartView!
     
-   
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let answer = ["True", "False"]
-        let score = [10, 2]
+        var correct = 0
+        var incorrect = 0
+        self.listOfCards =  self.deck.returnAllCards()
+        for card in self.listOfCards
+        {
+            correct += card.getCorrectCount()
+            incorrect += card.getIncorrectCount()
+        }
+        let answer = ["Correct", "Incorrect"]
+        let score = [correct, incorrect]
         setChart(dataPoints: answer, values: score)
     }
 
