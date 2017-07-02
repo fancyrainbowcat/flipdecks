@@ -16,6 +16,7 @@ class LanguagesTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
     }
 
     //gets list of all languages = all folders in internal folder "Languages"
@@ -38,6 +39,7 @@ class LanguagesTableViewController: UITableViewController {
                     self.listOfLanguages.append(newLanguage)
                 }
             }
+            
         } //this should never be reached: case that there are no languages yet (we will provide default languages)
         catch {
             print("LanguagesTableViewController: There are no languages yet")

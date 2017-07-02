@@ -44,6 +44,15 @@ class ListAndSearchViewController: UIViewController, UITableViewDataSource, UITa
         } else {
             sortByTimeButton.isEnabled = true
         }
+        
+        //to cancel keyboard when screen is tapped
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    //closes keyboard when screen is tapped anywhere
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     //function that will be called when there is input in the search bar
