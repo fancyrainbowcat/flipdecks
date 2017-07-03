@@ -14,6 +14,7 @@ class Language {
     //language name and list of decks for this language
     var name = "" 
     var listOfDecks = [Deck]()
+    var languagesFolderPath = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first?.appendingPathComponent("Languages", isDirectory: true)
     
     //new Language
     init(name: String) {
@@ -23,11 +24,11 @@ class Language {
     
     //gets all decks for this language from folder
     func refreshDeckList() {
-        //URL of internal "Languages" folder where we store all data
-        let directoryURL = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory:true).appendingPathComponent(self.name, isDirectory: true)
+        let currentLanguageFolderPath = languagesFolderPath?.appendingPathComponent(self.name, isDirectory: true)
+        
         do {
             //loop over all files in this directory and append it as decks into listOfDecks (without fileEnding)
-            let allFiles = try FileManager.default.contentsOfDirectory(atPath: directoryURL.path)
+            let allFiles = try FileManager.default.contentsOfDirectory(atPath: (currentLanguageFolderPath?.path)!)
             for file in allFiles {
                 //if it is really a file
                 if file.contains(".") {
