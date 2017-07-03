@@ -35,9 +35,7 @@ class Language {
                     let index = file.index(file.endIndex, offsetBy: -4)
                     let fileWithoutEnding = file.substring(to: index)
                     let fileEnding = file.substring(from: index)
-                    
-                    print(fileWithoutEnding)
-                    
+                
                     let newDeck = Deck(name: fileWithoutEnding, languageName: self.name, fileEnding: fileEnding)
 
                     //check if deck is already in list

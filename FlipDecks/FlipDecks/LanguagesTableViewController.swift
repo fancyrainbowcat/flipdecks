@@ -22,7 +22,6 @@ class LanguagesTableViewController: UITableViewController {
 
     //gets list of all languages = all folders in internal folder "Languages"
     func getListOfLanguages() {
-        
         do {
             //get the content of folder "Languages"
             let allDicts = try FileManager.default.contentsOfDirectory(atPath: (languagesFolderPath?.path)!)
