@@ -30,23 +30,32 @@ class PieChartViewController: UIViewController {
         }
         let answer = ["Correct", "Incorrect"]
         let score = [correct, incorrect]
+        pieChartView.descriptionText = "";
+        pieChartView.centerText = "Statistic Per Unit"
+
+        
         setChart(dataPoints: answer, values: score)
     }
 
     func setChart(dataPoints: [String], values: [Int]) {
-        
+ 
         var dataEntries: [ChartDataEntry] = []
         
         for i in 0..<dataPoints.count {
            let dataEntry1 = ChartDataEntry(x: Double(Int(i)), y: Double(values[i]), data: dataPoints[i] as AnyObject)
-            
-
             dataEntries.append(dataEntry1)
         }
+        
         print(dataEntries[0].data)
+        
         let pieChartDataSet = PieChartDataSet(values: dataEntries, label: "Score")
         let pieChartData = PieChartData(dataSet: pieChartDataSet)
+        
         pieChartView.data = pieChartData
+        
+        
+        let legend = pieChartView.legend
+        legend.setCustom(colors: [UIColor.green, UIColor.red], labels: ["Correct", "Incorrect"])
         
         var colors: [UIColor] = [UIColor.green, UIColor.red]
         
@@ -59,6 +68,11 @@ class PieChartViewController: UIViewController {
             colors.append(color)        }
         
         pieChartDataSet.colors = colors
+        
+        
+        self.pieChartView.data = pieChartData
+        self.pieChartView.animate(xAxisDuration: TimeInterval(2))
+ 
     }
     
     
