@@ -30,6 +30,7 @@ class PieChartViewController: UIViewController {
         }
         let answer = ["Correct", "Incorrect"]
         let score = [correct, incorrect]
+        pieChartView.holeRadiusPercent = 0.5
         pieChartView.descriptionText = "";
         pieChartView.centerText = "Statistic Per Unit"
 
@@ -55,6 +56,7 @@ class PieChartViewController: UIViewController {
         
         
         let legend = pieChartView.legend
+      //  legend.font = UIFont(name: "Score", size: 10)!
         legend.setCustom(colors: [UIColor.green, UIColor.red], labels: ["Correct", "Incorrect"])
         
         var colors: [UIColor] = [UIColor.green, UIColor.red]
