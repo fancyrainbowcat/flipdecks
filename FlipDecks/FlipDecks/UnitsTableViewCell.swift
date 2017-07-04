@@ -12,6 +12,7 @@ class UnitsTableViewCell: UITableViewCell {
     @IBOutlet weak var Label: UILabel!
     @IBOutlet weak var ProgressBar: UIProgressView!
     
+    //set color of progress bar 
     func returnColor() -> UIColor {
         if (self.ProgressBar.progress > 0.66) {
             return UIColor.green

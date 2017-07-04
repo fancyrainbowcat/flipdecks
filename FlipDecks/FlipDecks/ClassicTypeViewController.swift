@@ -34,6 +34,8 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
     
+    var audioTimer = Timer()
+    
     //create speech recognizer for english language
     private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))
     
@@ -71,17 +73,12 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
                 self.microphoneButton.isEnabled = isButtonEnabled
             }
         }
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         //only not finished cards are relevant
         currentCards = self.deck.returnAllNotFinishedCards()
         currentCards.shuffle()
         
+        //time modus
         self.timeSpentLabel.isHidden = true
         
         if(timeMode == false) {
@@ -113,13 +110,12 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
     
     //records user input from microphone
     func startRecording() {
-        
         //can not double start a recognition task
         if recognitionTask != nil {
             recognitionTask?.cancel()
             recognitionTask = nil
         }
-        
+    
         //AV Audio Session prepares for audio recording
         let audioSession = AVAudioSession.sharedInstance()
         do {
@@ -132,7 +128,6 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
         
         //create new request object
         recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-        
         
         //check for audio input
         guard let inputNode = audioEngine.inputNode else {
@@ -147,31 +142,32 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
         //partial results should be recorded while the user speaks
         recognitionRequest.shouldReportPartialResults = true
         
-        
         //do speech recognition
         recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
             //check if recognition is finished
             var isFinal = false
             
-            var audioTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.didFinishTalk), userInfo: nil, repeats: false)
-            
             //if there is a result it will be printed into textFieldType
             if result != nil {
                 self.TextFieldType.text = result?.bestTranscription.formattedString.lowercased()
-                audioTimer.invalidate()
-                audioTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.didFinishTalk), userInfo: nil, repeats: false)
+                self.audioTimer.invalidate()
+                self.audioTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.didFinishTalk), userInfo: nil, repeats: false)
                 isFinal = (result?.isFinal)!
             }
-            
+
             //ifstop audio engine and recognition task when input is finished
             if error != nil || isFinal {
                 self.audioEngine.stop()
                 inputNode.removeTap(onBus: 0)
                 
+                //this method has to be called before setting it to nil. Otherwise I will get an error "Error Domain=kAFAssistantErrorDomain Code=1101" every 5 to 10 cards!!! :(
+                self.recognitionRequest?.endAudio()
+                
                 self.recognitionRequest = nil
                 self.recognitionTask = nil
                 
                 self.microphoneButton.isEnabled = true
+                self.audioTimer.invalidate()
             }
         })
         
@@ -189,17 +185,17 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
             print("audioEngine couldn't start because of an error.")
         }
         
-        TextFieldType.text = "Say something, I'm listening!"
-        
+        //inform user about speech recognition running
+        TextFieldType.text = "I'm listening!"
     }
     
-    //stops audio recognition after 2 seconds of silence
+    //stops audio recognition
     func didFinishTalk() {
         if audioEngine.isRunning {
             audioEngine.stop()
             recognitionRequest?.endAudio()
-            microphoneButton.isEnabled = false
             microphoneButton.setTitle("Start Recording", for: .normal)
+            self.audioTimer.invalidate()
         }
     }
     
@@ -214,11 +210,11 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
     
     //use speech input instead of text
     @IBAction func useSpeechInput(_ sender: Any) {
+
         //stop audio engine if already running and start recording
         if audioEngine.isRunning {
             audioEngine.stop()
             recognitionRequest?.endAudio()
-            microphoneButton.isEnabled = false
             microphoneButton.setTitle("Start Recording", for: .normal)
         } //start recording
         else {

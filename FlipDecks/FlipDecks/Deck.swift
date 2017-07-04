@@ -31,6 +31,8 @@ class Deck {
     var listOfCards = [Card]()
     var languageName = ""
     var fileName = ""
+    
+    //paths to folders and files 
     var languagesFolderPath = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first?.appendingPathComponent("Languages", isDirectory: true)
     var currentLanguageFolderPath = URL(string: "")
     var deckFolderPath = URL(string: "")

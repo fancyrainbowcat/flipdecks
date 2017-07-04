@@ -42,6 +42,7 @@ class LanguagesTableViewController: UITableViewController {
             let pathToPreparedLections = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true)
             
             do {
+                //get contents of the project folder
                 let allLanguageFiles = try FileManager.default.contentsOfDirectory(atPath: (pathToPreparedLections.path))
                 
                 for languageFile in allLanguageFiles {
