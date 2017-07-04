@@ -31,13 +31,18 @@ class Deck {
     var listOfCards = [Card]()
     var languageName = ""
     var fileName = ""
-    var filePath = URL(string:"")
+    var languagesFolderPath = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first?.appendingPathComponent("Languages", isDirectory: true)
+    var currentLanguageFolderPath = URL(string: "")
+    var deckFolderPath = URL(string: "")
+
     
     //new Deck
     init(name: String, languageName: String, fileEnding: String) {
         self.name = name
         self.fileEnding = fileEnding
         self.languageName = languageName
+        self.currentLanguageFolderPath = languagesFolderPath?.appendingPathComponent(languageName, isDirectory: true)
+        self.deckFolderPath = currentLanguageFolderPath?.appendingPathComponent("\(self.name).txt")
         refreshDeck()
     }
     
@@ -47,15 +52,10 @@ class Deck {
         fileName = self.name + fileEnding
         
         if (fileName != "") {
-            filePath = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true).appendingPathComponent(self.languageName, isDirectory: true).appendingPathComponent(fileName)
-    
-           // print("File path: \(filePath!)")
-            
-            
             do
             {
                 //get content of file and split it in lines
-                let contents = try String(contentsOfFile: (filePath?.path)!)
+                let contents = try String(contentsOfFile: (deckFolderPath?.path)!)
                 let lines = contents.components(separatedBy: NSCharacterSet.newlines)
             
                 //loop over lines and split into elements
@@ -172,7 +172,7 @@ class Deck {
         let contentData = content.data(using: .utf8)
         
         //recreate deck with current values
-        FileManager.default.createFile(atPath: (filePath?.path)!, contents: contentData, attributes: nil)
+        FileManager.default.createFile(atPath: (deckFolderPath?.path)!, contents: contentData, attributes: nil)
     }
     
     //resets all data for this unit 

@@ -13,21 +13,18 @@ class LanguagesTableViewController: UITableViewController {
 
     //contains all languages
     var listOfLanguages = [Language]()
+    var languagesFolderPath = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first?.appendingPathComponent("Languages", isDirectory: true)
     
     override func viewDidLoad() {
+        getListOfLanguages()
         super.viewDidLoad()
-
     }
 
     //gets list of all languages = all folders in internal folder "Languages"
     func getListOfLanguages() {
-        
-        //URL for internal folder "Languages"
-        let directoryURL = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true)
-        
         do {
             //get the content of folder "Languages"
-            let allDicts = try FileManager.default.contentsOfDirectory(atPath: directoryURL.path)
+            let allDicts = try FileManager.default.contentsOfDirectory(atPath: (languagesFolderPath?.path)!)
             
             //check for all folders if any of those is a new language, that is not contained in listOfLanguages yet
             for dict in allDicts {
@@ -40,10 +37,45 @@ class LanguagesTableViewController: UITableViewController {
                 }
             }
             
-        } //this should never be reached: case that there are no languages yet (we will provide default languages)
+        } //if there are no languages yet, this is the first start of our app and we have to copy our prepared languages. This should only be reached once.
         catch {
-            print("LanguagesTableViewController: There are no languages yet")
+            let pathToPreparedLections = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true)
+            
+            do {
+                let allLanguageFiles = try FileManager.default.contentsOfDirectory(atPath: (pathToPreparedLections.path))
+                
+                for languageFile in allLanguageFiles {
+                    //create language subfolder
+                    let currentLanguageFolderPath = languagesFolderPath?.appendingPathComponent(languageFile, isDirectory: true)
+                    try FileManager.default.createDirectory(atPath: (currentLanguageFolderPath?.path)!, withIntermediateDirectories: true, attributes: nil)
+                    
+                    //get all available decks
+                    let previousLanguageFolderPath = pathToPreparedLections.appendingPathComponent(languageFile, isDirectory: true)
+                    do {
+                        let allDictFiles = try FileManager.default.contentsOfDirectory(atPath: (previousLanguageFolderPath.path))
+                    
+                        for dictFile in allDictFiles {
+                            //copy deck file
+                            let deckFolderPath = currentLanguageFolderPath?.appendingPathComponent(dictFile)
+                            let previousDeckFolderPath = previousLanguageFolderPath.appendingPathComponent(dictFile)
+                        
+                            do {
+                                try FileManager.default.copyItem(at: previousDeckFolderPath, to:    deckFolderPath!)
+                            }
+                            catch let error as NSError {
+                                print("LanguagesTableViewController, first import: \(error)")
+                            }
+                        }
+                    } catch {
+                        print("Error: no dicts")
+                    }
+                }
+
+            } catch {
+                print("Could not read contents of languagesFolderPath")
+            }
         }
+        self.tableView.reloadData()
     }
     
     //refresh data when view is appearing

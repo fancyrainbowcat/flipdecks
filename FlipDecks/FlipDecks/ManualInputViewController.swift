@@ -16,9 +16,8 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
     var language : Language = Language(name: "")
     var listOfLanguages = [Language]()
     var listOfDecks = [Deck]()
-    var deckPath = URL(string:"")
+    var languagesFolderPath = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first?.appendingPathComponent("Languages", isDirectory: true)
 
-    
     //IBOutlets
     @IBOutlet weak var languageNameField: UITextField!
     @IBOutlet weak var deckNameField: UITextField!
@@ -132,12 +131,9 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
 
     //checks if language is already existent
     func checkForLanguageExistence(languageName : String) -> String {
-        //URL of internal "Languages" folder
-        let allLanguagesURL = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true)
-        
         //loop over all folders = languages in "Languages" folder
         do {
-            let allDicts = try FileManager.default.contentsOfDirectory(atPath: allLanguagesURL.path)
+            let allDicts = try FileManager.default.contentsOfDirectory(atPath: (languagesFolderPath?.path)!)
             for dict in allDicts {
                 //if there is already a folder name that is the same as the new languageName use this name
                 if dict.lowercased() == languageName.lowercased() {
@@ -164,13 +160,14 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 }
             }
         }
-            
-        //path for the file in internal storage
-        self.deckPath = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true).appendingPathComponent(languageName, isDirectory: true).appendingPathComponent("\(deckName).txt")
-        
-        //if the file for this deck does already exist append the data
-        if FileManager.default.fileExists(atPath: (deckPath?.path)!) {
 
+        let currentLanguageFolderPath = languagesFolderPath?.appendingPathComponent(languageName, isDirectory: true)
+        
+        let deckFolderPath = currentLanguageFolderPath?.appendingPathComponent("\(deckName).txt")
+
+        //if the file for this deck does already exist append the data
+        if FileManager.default.fileExists(atPath: (deckFolderPath?.path)!) {
+            
             if (self.deck.getName() == "") {
                 for deck in self.listOfDecks {
                     if deckName == deck.getName() {
@@ -203,8 +200,9 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
             let contentData = content.data(using: .utf8)
             
             //recreate deck with current values
-            if (FileManager.default.createFile(atPath: (deckPath?.path)!, contents: contentData, attributes: nil)) {
-                //inform user and reset text fields
+            if (FileManager.default.createFile(atPath: (deckFolderPath?.path)!, contents: contentData, attributes: nil)) {
+
+                //inform user and reset file 
                 questionTextView.text = ""
                 answerTextView.text = ""
                 messageLabel.text = "Card successfully imported"
@@ -227,9 +225,6 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
             let question = self.questionTextView.text
             let answer = self.answerTextView.text
             
-            //path of internal languages folder
-            let allLanguagesURL = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true).appendingPathComponent(languageName!, isDirectory: true)
-            
             //check if languages is existend currently
             let checkResult = checkForLanguageExistence(languageName: languageName!)
             
@@ -239,7 +234,9 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
             } //if language odes not exist create a folder for the new language
             else {
                 do {
-                    try FileManager.default.createDirectory(atPath: allLanguagesURL.path, withIntermediateDirectories: true, attributes: nil)
+                    let currentLanguageFolderPath = languagesFolderPath?.appendingPathComponent(languageName!, isDirectory: true)
+                    
+                    try FileManager.default.createDirectory(atPath: (currentLanguageFolderPath?.path)!, withIntermediateDirectories: true, attributes: nil)
                     loadData(deckName: deckName!, languageName: languageName!, question: question!, answer: answer!)
                 } // should never be reached, there was problem with folder creationg
                 catch  {
