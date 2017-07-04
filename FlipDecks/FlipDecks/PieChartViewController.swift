@@ -49,15 +49,26 @@ class PieChartViewController: UIViewController {
         
         print(dataEntries[0].data)
         
+        // custonize the dataentries
         let pieChartDataSet = PieChartDataSet(values: dataEntries, label: "Score")
+        pieChartDataSet.valueFont = UIFont( name: "HelveticaNeue-Bold", size: 15.0)!
+        pieChartDataSet.colors = [UIColor.black]
         let pieChartData = PieChartData(dataSet: pieChartDataSet)
         
         pieChartView.data = pieChartData
         
-        
+        //customize the legend
         let legend = pieChartView.legend
-      //  legend.font = UIFont(name: "Score", size: 10)!
         legend.setCustom(colors: [UIColor.green, UIColor.red], labels: ["Correct", "Incorrect"])
+        legend.font = UIFont( name: "HelveticaNeue-Bold", size: 15.0)!
+        
+        
+        //customize the centre Text
+        let myCenterText = [ NSFontAttributeName: UIFont(name: "HelveticaNeue-Bold", size: 20.0)! ]
+        let myAttrString = NSAttributedString(string: "Statistic Per Unit", attributes: myCenterText)
+        pieChartView.centerAttributedText = myAttrString
+        
+        
         
         var colors: [UIColor] = [UIColor.green, UIColor.red]
         
