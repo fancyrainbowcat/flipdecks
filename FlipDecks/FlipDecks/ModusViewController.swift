@@ -21,10 +21,17 @@ class ModusViewController: UIViewController {
     var deck : Deck = Deck(name: "", languageName: "", fileEnding: "")
     var language : Language = Language(name: "")
     
-    //set title when view was loaded
+    //set title + reset button when view was loaded
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.resetUnitButton.isUserInteractionEnabled = true
+        self.resetUnitButton.setTitleColor(UIColor.cyan, for: UIControlState.normal)
         self.title = "\(self.language.getName()) - \(self.deck.getName())"
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.resetUnitButton.isUserInteractionEnabled = true
+        self.resetUnitButton.setTitleColor(UIColor.cyan, for: UIControlState.normal)
     }
     
     //turn time mode on and off
@@ -42,6 +49,8 @@ class ModusViewController: UIViewController {
     
     @IBAction func resetUnit(_ sender: Any) {
         self.deck.resetAllCards()
+        self.resetUnitButton.setTitleColor(UIColor.gray, for: UIControlState.normal)
+        self.resetUnitButton.isUserInteractionEnabled = false
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

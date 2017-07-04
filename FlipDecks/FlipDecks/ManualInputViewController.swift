@@ -11,11 +11,15 @@ import UIKit
 //View Controller for manual input
 class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UITextViewDelegate {
 
-    // current deck and language
+    // current deck and language (filled via segue)
     var deck : Deck = Deck(name: "", languageName: "", fileEnding: "")
     var language : Language = Language(name: "")
+    
+    //input for pickerViews
     var listOfLanguages = [Language]()
     var listOfDecks = [Deck]()
+    
+    //path for languages folder in internal storage
     var languagesFolderPath = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first?.appendingPathComponent("Languages", isDirectory: true)
 
     //IBOutlets
@@ -35,6 +39,8 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
         deckPickerView.delegate = self
         questionTextView.delegate = self
         answerTextView.delegate = self
+        okButton.isUserInteractionEnabled = false
+        okButton.setTitleColor(UIColor.gray, for: UIControlState.normal)
         
         //pre-set deck and language if given 
         if (self.deck.getName() != "") {
@@ -42,10 +48,16 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
             deckPickerView.isHidden = true
         }
         
-        if (self.language.getName() != "") {
+        if (self.language.getName() != "" ) {
             self.languageNameField.text = self.language.getName()
             languagePickerView.isHidden = true
-            deckPickerView.isHidden = false
+            //don't show deckPickerView if there is already a name entered
+            if (self.deckNameField.text != "") {
+                deckPickerView.isHidden = true
+            } //show deckPickerView if there is no name entered yet
+            else {
+                deckPickerView.isHidden = false
+            }
         } else {
             deckPickerView.isHidden = true
         }
@@ -65,7 +77,7 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
         return 1
     }
     
-    //count of language suggestions
+    //count of language/deck suggestions
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
         if (pickerView.tag == 0) {
             return self.listOfLanguages.count
@@ -74,7 +86,7 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
         }
     }
     
-    //change font size
+    //change font size and content of both pickerViews
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView
     {
         let pickerLabel = UILabel()
@@ -92,18 +104,21 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     //select row of dropdown menu
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        //now a language is set, and listOfDecks can be replaced
+        //language is set, and listOfDecks can be replaced and deckPickerView will be enabled
         if (pickerView.tag == 0) {
             self.languageNameField.text = self.listOfLanguages[row].getName()
             self.language = self.listOfLanguages[row]
             pickerView.isHidden = true
             self.listOfDecks = self.listOfLanguages[row].returnAllDecks()
             self.viewDidLoad()
-        } else if (pickerView.tag == 1) {
+            changeOKButtonState()
+        } //deck is set as well
+        else if (pickerView.tag == 1) {
             if (self.language.getName() != "") {
                 self.deckNameField.text = self.listOfDecks[row].getName()
                 self.deck = self.listOfDecks[row]
                 pickerView.isHidden = true
+                changeOKButtonState()
             }
         }
     }
@@ -112,17 +127,30 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
     func textFieldDidBeginEditing(_ textField: UITextField) {
         //stop suggestions when editing is starting
         if textField == self.languageNameField {
-            self.languagePickerView.isHidden = false
-            textField.endEditing(true)
+            self.languagePickerView.isHidden = true
         }
         if textField == self.deckNameField {
-            self.deckPickerView.isHidden = false
-            textField.endEditing(true)
+            self.deckPickerView.isHidden = true
+        }
+        changeOKButtonState()
+    }
+    
+    //active buton if all fields are filled
+    func changeOKButtonState() {
+        //activate ok button if all fields are filled
+        if (self.languageNameField.text != "" && self.deckNameField.text != "" && self.questionTextView.text != "" && self.answerTextView.text != "") {
+            okButton.isUserInteractionEnabled = true
+            okButton.setTitleColor(UIColor.cyan, for: UIControlState.normal)
+        } else {
+            okButton.isUserInteractionEnabled = false
+            okButton.setTitleColor(UIColor.gray, for: UIControlState.normal)
         }
     }
     
+    //if user is beginning to enter a new card, the message text will be deleted
     func textViewDidChange(_ textView: UITextView) {
         self.messageLabel.text = ""
+        changeOKButtonState()
     }
 
     override func didReceiveMemoryWarning() {
@@ -131,7 +159,7 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
 
     //checks if language is already existent
     func checkForLanguageExistence(languageName : String) -> String {
-        //loop over all folders = languages in "Languages" folder
+        //loop over all folders = languages
         do {
             let allDicts = try FileManager.default.contentsOfDirectory(atPath: (languagesFolderPath?.path)!)
             for dict in allDicts {
@@ -168,6 +196,7 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
         //if the file for this deck does already exist append the data
         if FileManager.default.fileExists(atPath: (deckFolderPath?.path)!) {
             
+            //set deck if necessary
             if (self.deck.getName() == "") {
                 for deck in self.listOfDecks {
                     if deckName == deck.getName() {
@@ -176,20 +205,22 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 }
             }
             
+            //append card to the current deck
             if (self.deck.appendCard(card : newCard)) {
                 //inform user and reset text fields
                 questionTextView.text = ""
                 answerTextView.text = ""
                 messageLabel.text = "Card successfully imported"
                 messageLabel.textColor = UIColor.green
+                changeOKButtonState()
             } else {
                 //inform user and reset text fields
                 questionTextView.text = ""
                 answerTextView.text = ""
                 messageLabel.text = "Card does already exist"
                 messageLabel.textColor = UIColor.red
+                changeOKButtonState()
             }
-
 
         } //if the file does not exist create it and write into it
         else {
@@ -207,19 +238,20 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 answerTextView.text = ""
                 messageLabel.text = "Card successfully imported"
                 messageLabel.textColor = UIColor.green
+                changeOKButtonState()
             }
             else {
                 messageLabel.text = "Error"
                 messageLabel.textColor = UIColor.red
+                changeOKButtonState()
             }
-
         }
     }
     
     //save the input into internal file
     @IBAction func saveInput(_ sender: Any) {
         //button can only be pressed if all fields are filled
-        if(languageNameField.text != "" && deckNameField.text != "" && questionTextView.text != "" && answerTextView.text != "") {
+        if(languageNameField.text != "" &&  deckNameField.text != "" && questionTextView.text != "" && answerTextView.text != "") {
             let languageName = self.languageNameField.text
             let deckName = self.deckNameField.text
             let question = self.questionTextView.text
@@ -243,7 +275,7 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
                     print("ManualInputViewController: Could not create directory")
                 }
             }
-        } //user is informed to fill all fields
+        } //user is informed to fill all fields, should never be reached since ok button is disabled
         else {
             messageLabel.text = "Please enter information into all fields"
             messageLabel.textColor = UIColor.red

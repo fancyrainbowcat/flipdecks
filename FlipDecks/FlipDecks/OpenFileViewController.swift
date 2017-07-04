@@ -11,10 +11,14 @@ import UIKit
 //View Controller for the opening of a file
 class OpenFileViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
-    // current deck and language
+    // current deck and language (will be filled via segue)
     var deck : Deck = Deck(name: "", languageName: "", fileEnding: "")
     var language : Language = Language(name: "")
+    
+    //list of languages for PickerView
     var listOfLanguages = [Language]()
+    
+    //internal storage path
     var languagesFolderPath = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first?.appendingPathComponent("Languages", isDirectory: true)
     
     //all IBOutlets
@@ -25,7 +29,7 @@ class OpenFileViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBOutlet weak var languageNameField: UITextField!
     @IBOutlet weak var pickerView: UIPickerView!
     
-    //contains the currently selected file
+    //contains the currently selected file (will be filled via segue)
     var selectedFile : String = ""
     
     //change buttons and add event listener
@@ -36,10 +40,14 @@ class OpenFileViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         okButton.layer.borderColor = UIColor.lightGray.cgColor
         browseButton.layer.borderWidth = 2
         browseButton.layer.borderColor = UIColor.blue.cgColor
+        
+        //add event listener for textfields to enable load button
         fileNameField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
+        languageNameField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
+        
         pickerView.delegate = self
 
-        //pre-set language if given
+        //pre-set language if given through segue
         if (self.language.getName() != "") {
             self.languageNameField.text = self.language.getName()
             pickerView.isHidden = true 
@@ -55,6 +63,7 @@ class OpenFileViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         view.endEditing(true)
     }
     
+    //count of components
     public func numberOfComponents(in pickerView: UIPickerView) -> Int{
         return 1
     }
@@ -64,7 +73,7 @@ class OpenFileViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         return self.listOfLanguages.count
     }
     
-    //change font size
+    //change font size of pickerView
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView
     {
         let pickerLabel = UILabel()
@@ -75,9 +84,10 @@ class OpenFileViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         return pickerLabel
     }
     
-    //select row of dropdown menu
+    //select row of dropdown menu and hide pickerView
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.languageNameField.text = self.listOfLanguages[row].getName()
+        editingChanged(self.languageNameField)
         self.pickerView.isHidden = true
     }
     
@@ -94,14 +104,14 @@ class OpenFileViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         super.didReceiveMemoryWarning()
     }
     
-    //function for event listener on fileNameField
+    //function for event listener on fileNameField and languageNameField
     @IBAction func editingChanged(_ fileNameField: UITextField) {
-        //when the field is not empty okButton should be enabled
-        if(fileNameField.text != "") {
+        //when the fields are not empty okButton should be enabled
+        if(self.fileNameField.text != "" && languageNameField.text != "") {
             okButton.isEnabled = true
             okButton.layer.borderColor = UIColor.blue.cgColor
             loadedLabel.text = ""
-        } //when the field is empty okButton should be disabled
+        } //when the fields are empty okButton should be disabled
         else {
             okButton.isEnabled = false
             loadedLabel.text = ""
@@ -120,9 +130,14 @@ class OpenFileViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     //sets selectedFile and enables button
     @IBAction func useFile(segue:UIStoryboardSegue) {
-        self.fileNameField.text = selectedFile
-        okButton.isEnabled = true
-        okButton.layer.borderColor = UIColor.blue.cgColor
+        if (selectedFile != "") {
+            self.fileNameField.text = selectedFile
+            
+            if(self.languageNameField.text != "") {
+                okButton.isEnabled = true
+                okButton.layer.borderColor = UIColor.blue.cgColor
+            }
+        }
     }
     
     //checks if language is already existent
@@ -150,19 +165,10 @@ class OpenFileViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         //content that will be written into internal storage
         var newContent = ""
-        var fileWithoutEnding = ""
-        
-        //this will remove the file ending but only if there is a fileEnding
-        if (filename.contains(".")) {
-            let index = filename.index(filename.endIndex, offsetBy: -4)
-            fileWithoutEnding = filename.substring(to: index)
-        } else {
-            fileWithoutEnding = filename
-        }
             
         let currentLanguageFolderPath = languagesFolderPath?.appendingPathComponent(languageName, isDirectory: true)
         
-        let deckFolderPath = currentLanguageFolderPath?.appendingPathComponent("\(fileWithoutEnding).txt")
+        let deckFolderPath = currentLanguageFolderPath?.appendingPathComponent(filename)
         
         do {
             //split content of original file into lines
@@ -202,44 +208,42 @@ class OpenFileViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         } //if language is valid
         else {
             do {
+                //path to source Folder documents
                 let documentsPath = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
 
-                //name of file
-                let filename = fileNameField.text
+                //name of given file
+                var filename = fileNameField.text
             
-                //URL of file, here it is only initialized with the directory URL, it will be changed later
+                //URL of file, initalized with documentsPath
                 var fileURL:URL = documentsPath
             
-                //name of the target language
+                //name of the given language
                 let languageName = languageNameField.text
             
                 //check if the file it in a valid format e.g. .txt or .csv
                 var valid = false
         
-                //if the given filename is a valid .txt/.csv file create fileURL
-                if (filename!.contains(".txt") || filename!.contains(".csv")) {
+                //if the given filename is a valid .txt file create fileURL
+                if (filename!.contains(".txt")) {
                     fileURL = fileURL.appendingPathComponent(filename!)
                     valid = true
-                } //test for invalid file format e.g. everything with a fileEnding indicated by "." but not txt or csv
+                } //test for invalid file format e.g. everything with a fileEnding indicated by "." but not txt
                 else if (filename!.contains(".")) {
                     print("OpenFileViewController: File Ending is not valid, please use .txt files")
-                } //missing file ending - we have to add the correct ending e.g. .txt or .csv
+                } //missing file ending - we have to add the correct .txt ending
                 else {
                     do {
-                    //loop over all files in directory and find the one with our filename, then add the correct fileEnding
+                        //loop over all files and check if the given fileName is valid
                         let allFiles = try FileManager.default.contentsOfDirectory(atPath: documentsPath.path)
                         for file in allFiles {
-                            if file.contains(filename!) {
-                                if (file.contains(".txt") || file.contains(".csv")) {
-                                    fileURL = fileURL.appendingPathComponent(file)
-                                    valid = true
-                                }
+                            if (file.contains(filename!)) {
+                                filename = file
+                                fileURL = fileURL.appendingPathComponent(file)
+                                valid = true
                             }
                         }
-                    } //if this is printed then the file is not existent and has to be created yet
-                    catch {
-                        print("OpenFileViewController: File does not exist")
-                
+                    } catch {
+                        print("No files in documents folder")
                     }
                 }
             

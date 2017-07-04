@@ -11,13 +11,14 @@ import UIKit
 //View Controller for main import options
 class ImportMainViewController: UIViewController {
 
-    // current deck and language
+    // current deck and language (filled via segue)
     var deck : Deck = Deck(name: "", languageName: "", fileEnding: "")
     var language : Language = Language(name: "")
     var listOfLanguages = [Language]()
     
     @IBOutlet weak var toUnitButton: UIBarButtonItem!
     
+    //you can only exit to unit if you came from a unit -> deckname should be filled
     override func viewDidLoad() {
         super.viewDidLoad()
         
