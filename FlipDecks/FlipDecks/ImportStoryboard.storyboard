@@ -304,6 +304,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="deckNameFieldEditingChanged:" destination="qsT-Lp-525" eventType="editingChanged" id="3lO-Ha-Z96"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7VQ-Ck-a81">
                                 <rect key="frame" x="201" y="127" width="144" height="30"/>
@@ -311,6 +314,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="languageNameFieldEditingChanged:" destination="qsT-Lp-525" eventType="editingChanged" id="4Kw-lb-Ppq"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bp6-2e-NdS">
                                 <rect key="frame" x="164" y="514" width="46" height="44"/>

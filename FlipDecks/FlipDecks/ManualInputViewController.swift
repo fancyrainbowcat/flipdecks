@@ -9,7 +9,7 @@
 import UIKit
 
 //View Controller for manual input
-class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UITextViewDelegate {
+class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate {
 
     // current deck and language (filled via segue)
     var deck : Deck = Deck(name: "", languageName: "", fileEnding: "")
@@ -123,15 +123,15 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
         }
     }
     
-    //start editing text field will remove dropdown menu
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        //stop suggestions when editing is starting
-        if textField == self.languageNameField {
-            self.languagePickerView.isHidden = true
-        }
-        if textField == self.deckNameField {
-            self.deckPickerView.isHidden = true
-        }
+    
+    @IBAction func languageNameFieldEditingChanged(_ sender: Any) {
+        self.languagePickerView.isHidden = true
+        self.deckPickerView.isHidden = true
+        changeOKButtonState()
+    }
+    
+    @IBAction func deckNameFieldEditingChanged(_ sender: Any) {
+        self.deckPickerView.isHidden = true
         changeOKButtonState()
     }
     
