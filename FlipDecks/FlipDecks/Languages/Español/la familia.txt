@@ -1,0 +1,26 @@
+Guten Morgen;buenos días;0;0;0
+Guten Abend;buenas noches;0;0;0
+Guten Tag;buenas tardes;0;0;0
+Bis bald;hasta luego;0;0;0
+Hallo;hola;0;0;0
+Willkommen;bienvenido;0;0;0
+Bruder;hermano;0;0;0
+Frau;mujer;0;0;0
+Mann;marido;0;0;0
+Eltern;padres;0;0;0
+Enkel;nieto;0;0;0
+Enkelin;nieta;0;0;0
+Familie;familia;0;0;0
+Freund;amigo;0;0;0
+Freundin;amiga;0;0;0
+Großvater;abuelo;0;0;0
+Großmutter;abuela;0;0;0
+heiraten;casarse;0;0;0
+Hochzeit;boda;0;0;0
+küssen;besar;0;0;0
+lieben;amar;0;0;0
+Mutter;madre;0;0;0
+Schwester;hermana;0;0;0
+Sohn;hijo;0;0;0
+Tochter;hija;0;0;0
+Vater;padre;0;0;0

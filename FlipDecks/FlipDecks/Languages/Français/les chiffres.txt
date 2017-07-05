@@ -1,0 +1,15 @@
+eins;un;0;0;0
+zwei;deux;0;0;0
+drei;trois;0;0;0
+vier;quatre;0;0;0
+fünf;cinq;0;0;0
+sechs;six;0;0;0
+sieben;sept;0;0;0
+acht;huit;0;0;0
+neun;neuf;0;0;0
+zehn;dix;0;0;0
+elf;onze;0;0;0
+zwölf;douze;0;0;0
+zwanzig;vingt;0;0;0
+hundert;cent;0;0;0
+tausend;mille;0;0;0

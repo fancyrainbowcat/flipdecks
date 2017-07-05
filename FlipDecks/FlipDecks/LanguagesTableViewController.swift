@@ -28,12 +28,15 @@ class LanguagesTableViewController: UITableViewController {
             
             //check for all folders if any of those is a new language, that is not contained in listOfLanguages yet
             for dict in allDicts {
-                let newLanguage = Language(name: dict)
-                let checkLanguageExists = listOfLanguages.contains(where: { $0.getName() == newLanguage.getName() })
+                //for safety reasons, take only folders (no file ending)
+                if (dict != "" && !(dict.contains("."))) {
+                    let newLanguage = Language(name: dict)
+                    let checkLanguageExists = listOfLanguages.contains(where: { $0.getName() == newLanguage.getName() })
                 
-                //if it is a new language append it to listOfLanguages
-                if (checkLanguageExists == false) {
-                    self.listOfLanguages.append(newLanguage)
+                    //if it is a new language append it to listOfLanguages
+                    if (checkLanguageExists == false) {
+                        self.listOfLanguages.append(newLanguage)
+                    }
                 }
             }
             

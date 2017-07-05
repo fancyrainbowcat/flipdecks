@@ -127,11 +127,21 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
     @IBAction func languageNameFieldEditingChanged(_ sender: Any) {
         self.languagePickerView.isHidden = true
         self.deckPickerView.isHidden = true
+        
+        self.messageLabel.text = ""
+        
+        //reset language
+        self.language = Language(name: "")
         changeOKButtonState()
     }
     
     @IBAction func deckNameFieldEditingChanged(_ sender: Any) {
         self.deckPickerView.isHidden = true
+        
+        self.messageLabel.text = ""
+        
+        //reset deck
+        self.deck = Deck(name: "", languageName: "", fileEnding: "")
         changeOKButtonState()
     }
     
@@ -261,9 +271,9 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
             let checkResult = checkForLanguageExistence(languageName: languageName!)
             
             //if language does exist load data
-            if (checkResult != "not found") {
+            if (checkResult != "not found" && checkResult != "") {
                 loadData(deckName: deckName!, languageName: checkResult, question: question!, answer: answer!)
-            } //if language odes not exist create a folder for the new language
+            } //if language does not exist create a folder for the new language
             else {
                 do {
                     let currentLanguageFolderPath = languagesFolderPath?.appendingPathComponent(languageName!, isDirectory: true)
@@ -281,6 +291,4 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
             messageLabel.textColor = UIColor.red
         }
     }
-    
-   
 }
