@@ -91,6 +91,7 @@ class ListAndSearchViewController: UIViewController, UITableViewDataSource, UITa
     func sortArrayOfCards(oldListOfCards : [Card]) -> [Card] {
         var newListOfCards = [Card]()
     
+        //switch the sort modus 
         if (self.sortingCriterium == "Question" && self.sortingOrder == "asc") {
             newListOfCards = oldListOfCards.sorted(by: {$0.getQuestion() < $1.getQuestion()})
         } else if (self.sortingCriterium == "Answer" && self.sortingOrder == "asc") {

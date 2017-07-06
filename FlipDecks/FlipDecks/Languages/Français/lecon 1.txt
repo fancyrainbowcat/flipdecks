@@ -14,7 +14,6 @@ wann;quand;0;0;0
 was;qu'est-ce que;0;0;0
 Herr;Monsieur;0;0;0
 Fräulein;Mademoiselle;0;0;0
-meine Damen und Herren;Messieurs-dames;0;0;0
 guten Abend;bonsoir;0;0;0
 Abend;soir;0;0;0
 Nacht;nuit;0;0;0

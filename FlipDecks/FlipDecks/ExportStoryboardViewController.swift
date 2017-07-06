@@ -33,7 +33,7 @@ class ExportStoryboardViewController: UIViewController {
     
     //exports the given list of cards
     func export(listOfCards : [Card], modus: String) {
-        //Directory Documents/Export/...
+        //Directory Documents
         let documentsFolderURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
         
         //check if export directory exists at this point
