@@ -207,16 +207,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJR-E6-bda">
-                                <rect key="frame" x="41" y="66" width="120" height="155"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Classic Flip" image="flipIcon2"/>
-                                <connections>
-                                    <segue destination="FS5-MJ-T2i" kind="presentation" identifier="modusToClassicQuestion" id="Upe-7f-Lwj"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pdk-q6-zKk">
-                                <rect key="frame" x="41" y="235" width="120" height="153"/>
+                                <rect key="frame" x="53" y="232" width="108" height="137"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Quiz" image="quizIcon2"/>
                                 <connections>
@@ -224,7 +216,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PFe-q7-ftc">
-                                <rect key="frame" x="196" y="64" width="123" height="157"/>
+                                <rect key="frame" x="206" y="81" width="102" height="122"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Classic Type" image="TypeIcon2"/>
                                 <connections>
@@ -240,7 +232,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ILR-D6-Jrz">
-                                <rect key="frame" x="196" y="235" width="123" height="153"/>
+                                <rect key="frame" x="206" y="232" width="107" height="141"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Memory" image="memoryIcon2"/>
                                 <connections>
@@ -266,6 +258,17 @@
                                     <segue destination="dd2-UB-ahz" kind="presentation" identifier="modusToExport" id="uHX-hw-aWS"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wJ-XI-Jc6">
+                                <rect key="frame" x="196" y="555" width="162" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Time Mode: off">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="timeModeChanged:" destination="1yc-w1-MJt" eventType="touchUpInside" id="9y9-MT-EFP"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="poO-A0-RPh">
                                 <rect key="frame" x="206" y="613" width="123" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -288,15 +291,12 @@
                                     <segue destination="DfZ-Ca-py6" kind="presentation" identifier="modusToImport" id="0iZ-Yn-TM4"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wJ-XI-Jc6">
-                                <rect key="frame" x="196" y="555" width="162" height="34"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJR-E6-bda">
+                                <rect key="frame" x="59" y="82" width="97" height="119"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Time Mode: off">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
+                                <state key="normal" title="Classic Flip" image="flipIcon2"/>
                                 <connections>
-                                    <action selector="timeModeChanged:" destination="1yc-w1-MJt" eventType="touchUpInside" id="9y9-MT-EFP"/>
+                                    <segue destination="FS5-MJ-T2i" kind="presentation" identifier="modusToClassicQuestion" id="Upe-7f-Lwj"/>
                                 </connections>
                             </button>
                         </subviews>

@@ -48,6 +48,12 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
         speechRecognizer?.delegate = self
         PopUpViewType.isHidden = true
         
+        // DESIGN - Background
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundDark.jpg")!)
+        self.AnswerTypeView.backgroundColor = UIColor(patternImage: UIImage(named: "indexCard.jpg")!)
+        self.QuestionTypeView.backgroundColor = UIColor(patternImage: UIImage(named: "indexCard.jpg")!)
+        self.PopUpViewType.backgroundColor = UIColor(patternImage: UIImage(named: "buttonBLight.png")!)
+        
         //reqeust authorization to use speech recognition
         SFSpeechRecognizer.requestAuthorization { (authStatus) in
             var isButtonEnabled = false
