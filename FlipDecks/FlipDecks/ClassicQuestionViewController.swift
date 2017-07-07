@@ -29,6 +29,12 @@ class ClassicQuestionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // DESIGN - Background
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundDark.jpg")!)
+        self.AnswerView.backgroundColor = UIColor(patternImage: UIImage(named: "indexCard.jpg")!)
+        self.QuestionView.backgroundColor = UIColor(patternImage: UIImage(named: "indexCard.jpg")!)
+
+        
         //only not finished cards are relevant
         currentCards = self.deck.returnAllNotFinishedCards()
         currentCards.shuffle()

@@ -24,8 +24,11 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="99" sectionHeaderHeight="28" sectionFooterHeight="28" id="A64-HX-34s">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="eJI-lq-Ev2">
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.65216493109999996" green="1" blue="0.29376087099999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="sectionIndexColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="sectionIndexBackgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" id="eJI-lq-Ev2">
                             <rect key="frame" x="0.0" y="127" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <items>
@@ -49,6 +52,8 @@
                                     </button>
                                 </barButtonItem>
                             </items>
+                            <color key="tintColor" red="0.65216493109999996" green="1" blue="0.29376087099999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="barTintColor" white="0.15771484375" alpha="1" colorSpace="calibratedWhite"/>
                         </toolbar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="languageCell" rowHeight="99" id="kEZ-Cx-pnU" customClass="LanguagesTableViewCell" customModule="FlipDecks" customModuleProvider="target">
@@ -68,10 +73,12 @@
                                             <rect key="frame" x="23" y="25" width="328" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="tintColor" red="0.65216493109999996" green="1" blue="0.29376087099999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="Label" destination="arl-zD-bhE" id="9oY-1Z-3wC"/>
@@ -98,7 +105,11 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="118" sectionHeaderHeight="28" sectionFooterHeight="28" id="0mh-9T-nz9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.65216493109999996" green="1" blue="0.29376087099999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="sectionIndexColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexBackgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexTrackingBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="unitCell" rowHeight="118" id="W2A-wX-wgs" customClass="UnitsTableViewCell" customModule="FlipDecks" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="118"/>
@@ -121,7 +132,11 @@
                                             <color key="trackTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </progressView>
                                     </subviews>
+                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.65216493109999996" green="1" blue="0.29376087099999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="Label" destination="Fr6-YO-nMu" id="bJT-I7-Fdj"/>
                                     <outlet property="ProgressBar" destination="OAd-1B-aXh" id="5Gz-F6-ILZ"/>
@@ -136,6 +151,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="8FX-HE-lZ2">
                         <barButtonItem key="rightBarButtonItem" title="Item" systemItem="cancel" id="P0W-KV-Usg">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="heW-96-tzL" kind="unwind" unwindAction="cancelToLanguageTableViewControllerWithSegue:" id="Zz6-vc-tZT"/>
                             </connections>
@@ -191,105 +207,104 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJR-E6-bda">
-                                <rect key="frame" x="33" y="130" width="113" height="34"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJR-E6-bda">
+                                <rect key="frame" x="41" y="66" width="120" height="155"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Classic Flip"/>
+                                <state key="normal" title="Classic Flip" image="flipIcon2"/>
                                 <connections>
                                     <segue destination="FS5-MJ-T2i" kind="presentation" identifier="modusToClassicQuestion" id="Upe-7f-Lwj"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pdk-q6-zKk">
-                                <rect key="frame" x="56" y="284" width="90" height="33"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pdk-q6-zKk">
+                                <rect key="frame" x="41" y="235" width="120" height="153"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Quiz"/>
+                                <state key="normal" title="Quiz" image="quizIcon2"/>
                                 <connections>
                                     <segue destination="rk1-yr-bzD" kind="presentation" identifier="modusToQuizViewController" id="mLa-jO-s1P"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PFe-q7-ftc">
-                                <rect key="frame" x="214" y="130" width="111" height="35"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PFe-q7-ftc">
+                                <rect key="frame" x="196" y="64" width="123" height="157"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Classic Type"/>
+                                <state key="normal" title="Classic Type" image="TypeIcon2"/>
                                 <connections>
                                     <segue destination="DLF-mg-1Jf" kind="presentation" identifier="modusToClassicType" id="lYo-VR-h3b"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pdL-9L-kan">
-                                <rect key="frame" x="27" y="427" width="149" height="28"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pdL-9L-kan">
+                                <rect key="frame" x="50" y="396" width="103" height="127"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Show Statistik"/>
+                                <state key="normal" title="Show Statistik" image="statisticsIcon2"/>
                                 <connections>
                                     <segue destination="lw6-Y2-X46" kind="presentation" identifier="StatisticsPerUnit" id="BJv-E0-EKf"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ILR-D6-Jrz">
-                                <rect key="frame" x="214" y="284" width="96" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ILR-D6-Jrz">
+                                <rect key="frame" x="196" y="235" width="123" height="153"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Memory"/>
+                                <state key="normal" title="Memory" image="memoryIcon2"/>
                                 <connections>
                                     <segue destination="0xK-m1-Zwv" kind="presentation" identifier="modusToMemoryGame" id="Ufb-tX-g8i"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="omU-g3-ly8">
-                                <rect key="frame" x="206" y="413" width="113" height="55"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="omU-g3-ly8">
+                                <rect key="frame" x="206" y="396" width="102" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="All Cards"/>
+                                <state key="normal" title="All Cards" image="allCardsIcon2"/>
                                 <connections>
                                     <segue destination="uFf-LD-gfh" kind="presentation" identifier="modusToListAndSearch" id="gF1-xj-rTn"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cly-ZM-L1F">
-                                <rect key="frame" x="56" y="531" width="90" height="30"/>
+                                <rect key="frame" x="56" y="555" width="90" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Export"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Export">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <segue destination="dd2-UB-ahz" kind="presentation" identifier="modusToExport" id="uHX-hw-aWS"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wJ-XI-Jc6">
-                                <rect key="frame" x="214" y="531" width="123" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Time Mode: off">
-                                    <color key="titleColor" red="1" green="0.2735167215" blue="0.2575843437" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="timeModeChanged:" destination="1yc-w1-MJt" eventType="touchUpInside" id="9y9-MT-EFP"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="poO-A0-RPh">
-                                <rect key="frame" x="214" y="573" width="123" height="34"/>
+                                <rect key="frame" x="206" y="613" width="123" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="Reset Unit">
-                                    <color key="titleColor" red="0.82350493930000002" green="0.22429270239999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="1" green="0.67319169540107548" blue="0.030127419902973407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="resetUnit:" destination="1yc-w1-MJt" eventType="touchUpInside" id="ao3-XX-umY"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Wn-t7-7To">
-                                <rect key="frame" x="67" y="592" width="68" height="30"/>
+                                <rect key="frame" x="56" y="613" width="79" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Import"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Import">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <segue destination="DfZ-Ca-py6" kind="presentation" identifier="modusToImport" id="0iZ-Yn-TM4"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wJ-XI-Jc6">
+                                <rect key="frame" x="196" y="555" width="162" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Time Mode: off">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="timeModeChanged:" destination="1yc-w1-MJt" eventType="touchUpInside" id="9y9-MT-EFP"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="ZvX-03-fiX">
                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="Iff-ys-6K9">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="EfP-76-ROi" kind="unwind" unwindAction="cancelToUnitsTableViewControllerWithSegue:" id="8A2-5y-rfh"/>
                             </connections>
@@ -378,7 +393,15 @@
             <point key="canvasLocation" x="1084" y="139"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="TypeIcon2" width="151" height="198"/>
+        <image name="allCardsIcon2" width="151" height="198"/>
+        <image name="flipIcon2" width="151" height="198"/>
+        <image name="memoryIcon2" width="151" height="198"/>
+        <image name="quizIcon2" width="151" height="198"/>
+        <image name="statisticsIcon2" width="151" height="198"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5YJ-uv-h4T"/>
+        <segue reference="0iZ-Yn-TM4"/>
     </inferredMetricsTieBreakers>
 </document>

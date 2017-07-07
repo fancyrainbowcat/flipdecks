@@ -15,7 +15,7 @@ extension Array {
         var elements = self
         return elements.shuffle()
     }
-   // Shuffles this sequence in place
+    // Shuffles this sequence in place
     @discardableResult
     mutating func shuffle() -> Array {
         indices.dropLast().forEach {
@@ -39,10 +39,8 @@ class MemoryGameViewController: UIViewController, UICollectionViewDelegate, UICo
     var questions: [MemoryCard] = [MemoryCard]()
     
     var finalMemoryCards = [MemoryCard]()
+    var gameController = MemoryGame()
     
-    
-    
-    let gameController = MemoryGame()
 
     
     //timer functionality
@@ -50,21 +48,35 @@ class MemoryGameViewController: UIViewController, UICollectionViewDelegate, UICo
     var timer : Timer?
     var secondsCount = 0
     
+    // IBOutlets
+    @IBOutlet weak var MemoryCollectionView: UICollectionView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var timeSpentLabel: UILabel!
     @IBOutlet weak var finishedLabel: UILabel!
+    @IBOutlet weak var restartButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        finalMemoryCards = [MemoryCard]()
+        gameController = MemoryGame()
+        answers = [MemoryCard]()
+        questions = [MemoryCard]()
+        
         self.MemoryCollectionView.delegate = self
         self.MemoryCollectionView.dataSource = self
         self.finishedLabel.isHidden = true
+        self.restartButton.isHidden = true
+        self.MemoryCollectionView.isHidden = false
         
+        //background image
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background.jpg")!)
+        
+        // new Cards for new Game
         setupNewCards()
         
         //starts timer
         self.timeSpentLabel.isHidden = true
-
+        
         if (timeMode == true && self.finalMemoryCards.count > 0) {
             //save overall seconds and start counter again
             self.secondsCount = 0
@@ -80,7 +92,7 @@ class MemoryGameViewController: UIViewController, UICollectionViewDelegate, UICo
         
         //to determine when the Application is terminated
         NotificationCenter.default.addObserver(self, selector: #selector(willTerminate), name: .UIApplicationWillTerminate, object: nil)
-
+        
     }
     
     //function that will be called once the app is entering into background
@@ -96,15 +108,15 @@ class MemoryGameViewController: UIViewController, UICollectionViewDelegate, UICo
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+    // number of viewCells
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return finalMemoryCards.count
     }
-    
+    // set Cells in collectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let mcell = collectionView.dequeueReusableCell(withReuseIdentifier: "mCell", for: indexPath) as! MemoryViewCell
-
-       
+        
+        
         //set Labels to cells
         startCards(finalMemoryCards[indexPath.row], mcell as MemoryViewCell)
         // set back image to cells
@@ -113,16 +125,18 @@ class MemoryGameViewController: UIViewController, UICollectionViewDelegate, UICo
         mcell.showCard(false, animated: false)
         return mcell
     }
-    
+    // if one Cell is selected
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! MemoryViewCell
-        
+        // if already shown
         if cell.shown { return }
         
         if (gameController.getCountCalled() < 2) {
+            // turn Card
             cell.showCard(true, animated: true)
             gameController.selectCard(cell : cell, mCard: cell.mCard!, time: self.secondsCount, timeMode: timeMode)
         }
+        
         collectionView.deselectItem(at: indexPath, animated:true)
         
         if (gameController.gameWon()) {
@@ -138,6 +152,10 @@ class MemoryGameViewController: UIViewController, UICollectionViewDelegate, UICo
             }
             self.MemoryCollectionView.isHidden = true
             self.finishedLabel.isHidden = false
+            if (self.deck.returnAllNotFinishedCards().count >= 6){
+                self.restartButton.isHidden = false
+                restartButton.addTarget(self, action: #selector(MemoryGameViewController.restartGame(_:)), for: .touchUpInside)
+            }
         }
     }
     
@@ -190,7 +208,7 @@ class MemoryGameViewController: UIViewController, UICollectionViewDelegate, UICo
         //updates time Label
         self.timeLabel.text = "\(hoursStr):\(minutesStr):\(secondsStr)"
     }
-
+    
     
     // TODO: Layout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -201,7 +219,7 @@ class MemoryGameViewController: UIViewController, UICollectionViewDelegate, UICo
         return CGSize(width: itemWidth, height: itemWidth)
     }
     
-
+    
     
     func setupNewCards() {
         let notFinishedCards = self.deck.returnAllNotFinishedCards()
@@ -216,7 +234,7 @@ class MemoryGameViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func divideCards(cards:[Card]) -> [MemoryCard] {
-       // split dat array in questions and answers!
+        // split array in questions and answers!
         for card in cards {
             let answer = card.getAnswer()
             let question = card.getQuestion()
@@ -233,17 +251,21 @@ class MemoryGameViewController: UIViewController, UICollectionViewDelegate, UICo
         // shuffle it again - MAXIMUM SHUFFLE
         finalMemoryCards.shuffle()
         
-    
+        
         return finalMemoryCards
     }
     
     func startCards (_ mCard: MemoryCard, _ cell: MemoryViewCell) {
         cell.setCard(mCell:cell, cellText: mCard.frontCellText, mCard: mCard)
     }
+    
+    
+    // restart Function
+    @IBAction func restartGame(_ sender: Any) {
+        viewDidLoad()
+        self.MemoryCollectionView.reloadData()
+    }
 
-    // IBOutlets
-    @IBOutlet weak var playButton: UIButton!
-    @IBOutlet weak var MemoryCollectionView: UICollectionView!
-
+    
 }
 
