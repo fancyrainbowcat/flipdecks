@@ -20,16 +20,26 @@ class PieChartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var correct = 0
-        var incorrect = 0
+        var unfinished = 0
+        var NotPlayed = 0
+        var finished = 0
+        var counter = 0
+        
         self.listOfCards =  self.deck.returnAllCards()
         for card in self.listOfCards
+            
         {
-            correct += card.getCorrectCount()
-            incorrect += card.getIncorrectCount()
+            counter = card.getCorrectCount() + card.getIncorrectCount()
+            if  card.getFinishedStatus() == true
+                {finished += 1}
+            if (card.getCorrectCount() == 0 && card.getIncorrectCount() == 0 )
+                {NotPlayed += 1}
+            if (counter < 3 && counter > 0 )
+                {unfinished += 1}
         }
-        let answer = ["Correct", "Incorrect"]
-        let score = [correct, incorrect]
+        
+        let answer = ["Finished", "Unfinished", "Not-Played"]
+        let score = [finished, unfinished, NotPlayed]
         pieChartView.holeRadiusPercent = 0.5
         pieChartView.descriptionText = "";
         pieChartView.centerText = "Statistic Per Unit"
@@ -59,7 +69,7 @@ class PieChartViewController: UIViewController {
         
         //customize the legend
         let legend = pieChartView.legend
-        legend.setCustom(colors: [UIColor.green, UIColor.red], labels: ["Correct", "Incorrect"])
+        legend.setCustom(colors: [UIColor.green, UIColor.red , UIColor.gray], labels: ["Finished", "Unfinished", "Not-Played"])
         legend.font = UIFont( name: "HelveticaNeue-Bold", size: 15.0)!
         
         
@@ -70,7 +80,7 @@ class PieChartViewController: UIViewController {
         
         
         
-        var colors: [UIColor] = [UIColor.green, UIColor.red]
+        var colors: [UIColor] = [UIColor.green, UIColor.red , UIColor.gray]
         
         for _ in 0..<dataPoints.count {
            // let red = Double(arc4random_uniform(256))
