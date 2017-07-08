@@ -42,6 +42,7 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
         okButton.isUserInteractionEnabled = false
         okButton.setTitleColor(UIColor.gray, for: UIControlState.normal)
         
+        
         //pre-set deck and language if given 
         if (self.deck.getName() != "") {
             self.deckNameField.text = self.deck.getName()

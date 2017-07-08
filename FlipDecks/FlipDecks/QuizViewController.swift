@@ -43,6 +43,13 @@ class QuizViewController: UIViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
+        // DESIGN - Background
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "backgroundDark.jpg")!)
+        self.QuizAnswerView.backgroundColor = UIColor(patternImage: UIImage(named: "indexCard.jpg")!)
+        self.QuizQuestionView.backgroundColor = UIColor(patternImage: UIImage(named: "indexCard.jpg")!)
+        self.PopUpViewQuiz.backgroundColor = UIColor(patternImage: UIImage(named: "buttonBLight.png")!)
+        
+        
         //only not finished cards are relevant
         currentCards = self.deck.returnAllNotFinishedCards()
         currentCards.shuffle()

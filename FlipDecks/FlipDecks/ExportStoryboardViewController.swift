@@ -25,6 +25,9 @@ class ExportStoryboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Export - \(self.deck.getName())"
+        
+        // DESIGN - Background
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background.jpg")!)
     }
 
     override func didReceiveMemoryWarning() {

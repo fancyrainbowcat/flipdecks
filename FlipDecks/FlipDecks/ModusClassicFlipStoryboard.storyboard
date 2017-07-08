@@ -32,7 +32,7 @@
                                                 <action selector="PreviousCard" destination="APM-nd-4K1" id="Mka-QW-ibl"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Quit" id="Sdh-Ma-wrf">
+                                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="Sdh-Ma-wrf">
                                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <segue destination="BLx-bh-X6G" kind="unwind" unwindAction="cancelToModusTableViewControllerWithSegue:" id="NtR-vD-kId"/>

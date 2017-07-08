@@ -41,6 +41,9 @@ class OpenFileViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         browseButton.layer.borderWidth = 2
         browseButton.layer.borderColor = UIColor.blue.cgColor
         
+        // DESIGN - Background
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background.jpg")!)
+        
         //add event listener for textfields to enable load button
         fileNameField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         languageNameField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)

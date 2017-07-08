@@ -22,6 +22,9 @@ class ImportMainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // DESIGN - Background
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background.jpg")!)
+        
         if (self.deck.getName() == "") {
             toUnitButton.isEnabled = false
             toUnitButton.title = ""
