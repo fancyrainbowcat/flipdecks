@@ -10,37 +10,76 @@ import UIKit
 import Charts
 
 
-//var answer: [String]!
+
 
 
 class BarChartViewController1: UIViewController {
 @IBOutlet weak var barChartView: BarChartView!
     
+        var deck : Deck = Deck(name: "", languageName: "", fileEnding: "")
+        var language : Language = Language(name: "")
+        var listOfCards = [Card]()
+        var listOfUnits = [Deck]()
+
+    func getListOfUnits() {
+        if (self.language.getName() != "") {
+            self.listOfUnits = (language.returnAllDecks())
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getListOfUnits()
+        print(self.listOfUnits)
         
-        let answer = ["True", "False"]
-        let units = [20.0, 4.0]
+        
+        var answer: [String] = []
+        var score: [Int] = []
+        var labels: [String] = []
+        
+        for unit in self.listOfUnits
+        {
+            
+            var correct = 0
+            var incorrect = 0
+            
+            self.listOfCards =  unit.returnAllCards()
+            for card in self.listOfCards
+            {
+                
+                correct += card.getCorrectCount()
+                incorrect += card.getIncorrectCount()
+            }
+            answer+=(["Correct", "Incorrect"])
+            score += ([correct, incorrect])
+            //labels countains animal economics profession ...
+            labels.append(unit.getName())
+
+        }
         
         
-        setChart(dataPoints: answer, values: units)
+        setChart(dataPoints: answer, values: score)
 
          }
         
-        func setChart(dataPoints: [String], values: [Double]) {
+        func setChart(dataPoints: [String], values: [Int]) {
             barChartView.noDataText = "There is no Data"
             
             var dataEntries: [BarChartDataEntry] = []
+            var colors: [UIColor] = []
             
             for i in 0..<dataPoints.count
             {
-                let dataEntry = BarChartDataEntry(x: Double(i), y: values[i])
+                let dataEntry = BarChartDataEntry(x: Double(i), y: Double(values[i]))
                 dataEntries.append(dataEntry)
+                let status = dataPoints[i]
+                if status == "Correct"
+                    {colors.append(UIColor.green)}
+                else
+                    {colors.append(UIColor.red)}
+                
             }
             
-            
-            var colors: [UIColor] = [UIColor.green, UIColor.red]
             
             for _ in 0..<dataPoints.count {
                 // let red = Double(arc4random_uniform(256))
@@ -72,8 +111,5 @@ class BarChartViewController1: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-
 
 }

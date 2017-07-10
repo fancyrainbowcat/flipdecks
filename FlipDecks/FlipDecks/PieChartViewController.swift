@@ -23,27 +23,30 @@ class PieChartViewController: UIViewController {
         var unfinished = 0
         var NotPlayed = 0
         var finished = 0
-        var counter = 0
+     
         
         self.listOfCards =  self.deck.returnAllCards()
         for card in self.listOfCards
             
         {
-            counter = card.getCorrectCount() + card.getIncorrectCount()
-            if  card.getFinishedStatus() == true
+          
+            if card.getCorrectCount() >= 3
                 {finished += 1}
+            
             if (card.getCorrectCount() == 0 && card.getIncorrectCount() == 0 )
                 {NotPlayed += 1}
-            if (counter < 3 && counter > 0 )
+            else
                 {unfinished += 1}
         }
         
         let answer = ["Finished", "Unfinished", "Not-Played"]
-        let score = [finished, unfinished, NotPlayed]
+        let score  = [finished, unfinished, NotPlayed]
+
         pieChartView.holeRadiusPercent = 0.5
-        pieChartView.descriptionText = "";
+        pieChartView.chartDescription = nil
         pieChartView.centerText = "Statistic Per Unit"
 
+        
         
         setChart(dataPoints: answer, values: score)
     }
@@ -63,6 +66,11 @@ class PieChartViewController: UIViewController {
         let pieChartDataSet = PieChartDataSet(values: dataEntries, label: "Score")
         pieChartDataSet.valueFont = UIFont( name: "HelveticaNeue-Bold", size: 15.0)!
         pieChartDataSet.colors = [UIColor.black]
+        
+        let noZeroFormatter = NumberFormatter()
+        noZeroFormatter.zeroSymbol = ""
+        pieChartDataSet.valueFormatter = DefaultValueFormatter(formatter: noZeroFormatter)
+        
         let pieChartData = PieChartData(dataSet: pieChartDataSet)
         
         pieChartView.data = pieChartData

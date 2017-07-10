@@ -117,9 +117,22 @@ class ModusViewController: UIViewController {
             let navigationController = segue.destination as! UINavigationController
             let controller = navigationController.viewControllers.first as! PieChartViewController
             controller.deck = self.deck
+            print(self.language)
             controller.language = self.language
             
         }
+        //give language and unit to BarChartViewController
+        if segue.identifier == "StatisticsPerLanguage" {
+            //since there is a navigation controller in between, I have to go through it
+            let navigationController = segue.destination as! UINavigationController
+            let controller = navigationController.viewControllers.first as! BarChartViewController1
+            print(self.language)
+            controller.deck = self.deck
+            controller.language = self.language
+            
+        }
+        
+        
     }
     
     //functionality for cancel button segue

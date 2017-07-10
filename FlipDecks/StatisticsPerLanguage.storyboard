@@ -22,6 +22,7 @@
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dzF-TV-Mhe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Xcg-Pv-SoR" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3566" y="847"/>
         </scene>
@@ -48,7 +49,7 @@
                     <navigationItem key="navigationItem" id="6pf-aX-9UM">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="36f-RA-QCi">
                             <connections>
-                                <segue destination="c1z-oQ-iT6" kind="show" id="jOj-zp-wny"/>
+                                <segue destination="Xcg-Pv-SoR" kind="unwind" unwindAction="cancelToUnitsTableViewControllerWithSegue:" id="1Ki-zv-Jz7"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
