@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FlipDecks/PieChartViewController.swift"
-            timestampString = "521468713.840998"
+            timestampString = "521581198.827471"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138">
+            startingLineNumber = "266"
+            endingLineNumber = "266">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -40,13 +40,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FlipDecks/PieChartViewController.swift"
-            timestampString = "521468713.840998"
+            timestampString = "521581198.827471"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
-            landmarkName = "didReceiveMemoryWarning()"
-            landmarkType = "7">
+            startingLineNumber = "242"
+            endingLineNumber = "242">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -56,11 +54,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FlipDecks/PieChartViewController.swift"
-            timestampString = "521468713.840998"
+            timestampString = "521581198.827471"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120">
+            startingLineNumber = "248"
+            endingLineNumber = "248">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -70,11 +68,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FlipDecks/PieChartViewController.swift"
-            timestampString = "521468713.840998"
+            timestampString = "521581198.827471"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121">
+            startingLineNumber = "249"
+            endingLineNumber = "249">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -91,70 +89,6 @@
             endingLineNumber = "109"
             landmarkName = "setChart(dataPoints:values:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "FlipDecks/PieChartViewController.swift"
-            timestampString = "521375423.023994"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "setChart(dataPoints:values:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "FlipDecks/PieChartViewController.swift"
-            timestampString = "521375423.023994"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "setChart(dataPoints:values:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "FlipDecks.PieChartViewController.viewDidLoad () -&gt; ()"
-                  moduleName = "FlipDecks"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/admin/Desktop/flipdecks/FlipDecks/FlipDecks/PieChartViewController.swift"
-                  timestampString = "521211970.770484"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "54"
-                  endingLineNumber = "54"
-                  offsetFromSymbolStart = "2956">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "FlipDecks.PieChartViewController.viewDidLoad () -&gt; ()"
-                  moduleName = "FlipDecks"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/admin/Desktop/flipdecks/FlipDecks/FlipDecks/PieChartViewController.swift"
-                  timestampString = "521211970.773658"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "54"
-                  endingLineNumber = "54"
-                  offsetFromSymbolStart = "3067">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
