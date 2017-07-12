@@ -67,6 +67,7 @@ class PieChartViewController: UIViewController {
         pieChartDataSet.valueFont = UIFont( name: "HelveticaNeue-Bold", size: 15.0)!
         pieChartDataSet.colors = [UIColor.black]
         
+        // hide dataentries when = 0.0
         let noZeroFormatter = NumberFormatter()
         noZeroFormatter.zeroSymbol = ""
         pieChartDataSet.valueFormatter = DefaultValueFormatter(formatter: noZeroFormatter)
