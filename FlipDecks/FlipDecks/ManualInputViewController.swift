@@ -18,6 +18,8 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
     //input for pickerViews
     var listOfLanguages = [Language]()
     var listOfDecks = [Deck]()
+    var listOfLanguagesPV = ["<new>"]
+    var listOfDecksPV = ["<new>"]
     
     //path for languages folder in internal storage
     var languagesFolderPath = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first?.appendingPathComponent("Languages", isDirectory: true)
@@ -42,6 +44,19 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
         okButton.isUserInteractionEnabled = false
         okButton.setTitleColor(UIColor.gray, for: UIControlState.normal)
         
+        //set list of languages for picker view
+        listOfLanguagesPV = ["<new>"]
+        
+        for language in self.listOfLanguages {
+            listOfLanguagesPV.append(language.getName())
+        }
+        
+        //set list of decks for picker view
+        listOfDecksPV = ["<new>"]
+        
+        for deck in self.listOfDecks {
+            listOfDecksPV.append(deck.getName())
+        }
         
         //pre-set deck and language if given 
         if (self.deck.getName() != "") {
@@ -81,9 +96,9 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
     //count of language/deck suggestions
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
         if (pickerView.tag == 0) {
-            return self.listOfLanguages.count
+            return self.listOfLanguagesPV.count
         } else  {
-            return self.listOfDecks.count
+            return self.listOfDecksPV.count
         }
     }
     
@@ -96,9 +111,9 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
         pickerLabel.textAlignment = NSTextAlignment.center
         
         if (pickerView.tag == 0) {
-            pickerLabel.text = self.listOfLanguages[row].getName()
+            pickerLabel.text = self.listOfLanguagesPV[row]
         } else if (pickerView.tag == 1) {
-            pickerLabel.text = self.listOfDecks[row].getName()
+            pickerLabel.text = self.listOfDecksPV[row]
         }
         return pickerLabel
     }
@@ -107,19 +122,31 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         //language is set, and listOfDecks can be replaced and deckPickerView will be enabled
         if (pickerView.tag == 0) {
-            self.languageNameField.text = self.listOfLanguages[row].getName()
-            self.language = self.listOfLanguages[row]
-            pickerView.isHidden = true
-            self.listOfDecks = self.listOfLanguages[row].returnAllDecks()
-            self.viewDidLoad()
-            changeOKButtonState()
-        } //deck is set as well
-        else if (pickerView.tag == 1) {
-            if (self.language.getName() != "") {
-                self.deckNameField.text = self.listOfDecks[row].getName()
-                self.deck = self.listOfDecks[row]
+            if (self.listOfLanguagesPV[row] != "<new>") { //if the user chose a valid language
+                self.languageNameField.text = self.listOfLanguagesPV[row]
+                self.language = self.listOfLanguages[row-1] //because of the <new> it is the row after this
+                pickerView.isHidden = true
+                self.listOfDecks = self.listOfLanguages[row-1].returnAllDecks()
+                self.viewDidLoad()
+                changeOKButtonState()
+            } else { //user wants to enter new value
+                self.languageNameField.text = ""
                 pickerView.isHidden = true
                 changeOKButtonState()
+            }
+        } //deck is set as well
+        else if (pickerView.tag == 1) {
+            if (self.language.getName() != "") { //if the user chose a valid language
+                if (self.listOfDecksPV[row] != "<new>") {
+                    self.deckNameField.text = self.listOfDecksPV[row]
+                    self.deck = self.listOfDecks[row-1] //because of the <new> it is the row after this
+                    pickerView.isHidden = true
+                    changeOKButtonState()
+                } else { //user wants to enter new value
+                    self.deckNameField.text = ""
+                    pickerView.isHidden = true
+                    changeOKButtonState()
+                }
             }
         }
     }

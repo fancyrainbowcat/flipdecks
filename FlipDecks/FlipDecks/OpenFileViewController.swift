@@ -17,6 +17,7 @@ class OpenFileViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     //list of languages for PickerView
     var listOfLanguages = [Language]()
+    var listOfLanguagesPV = ["<new>"]
     
     //internal storage path
     var languagesFolderPath = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first?.appendingPathComponent("Languages", isDirectory: true)
@@ -53,7 +54,15 @@ class OpenFileViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         //pre-set language if given through segue
         if (self.language.getName() != "") {
             self.languageNameField.text = self.language.getName()
-            pickerView.isHidden = true 
+            pickerView.isHidden = true
+        } else {
+            //set entries for UI Picker View
+            listOfLanguagesPV = ["<new>"]
+            
+            for language in self.listOfLanguages {
+                self.listOfLanguagesPV.append(language.getName())
+            }
+            pickerView.isHidden = false 
         }
 
         //to cancel keyboard when screen is tapped
@@ -73,7 +82,7 @@ class OpenFileViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     //count of language suggestions
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
-        return self.listOfLanguages.count
+        return self.listOfLanguagesPV.count
     }
     
     //change font size of pickerView
@@ -81,7 +90,7 @@ class OpenFileViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     {
         let pickerLabel = UILabel()
         pickerLabel.textColor = UIColor.black
-        pickerLabel.text = listOfLanguages[row].getName()
+        pickerLabel.text = listOfLanguagesPV[row]
         pickerLabel.font = UIFont(name: "System", size: 17)
         pickerLabel.textAlignment = NSTextAlignment.center
         return pickerLabel
@@ -89,9 +98,15 @@ class OpenFileViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     //select row of dropdown menu and hide pickerView
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.languageNameField.text = self.listOfLanguages[row].getName()
-        editingChanged(self.languageNameField)
-        self.pickerView.isHidden = true
+        if self.listOfLanguagesPV[row] != "<new>" {
+            self.languageNameField.text = self.listOfLanguagesPV[row]
+            editingChanged(self.languageNameField)
+            self.pickerView.isHidden = true
+        } else {
+            self.languageNameField.text = ""
+            editingChanged(self.languageNameField)
+            self.pickerView.isHidden = true
+        }
     }
     
     //start editing text field will remove dropdown menu
@@ -195,10 +210,13 @@ class OpenFileViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             //send message
             loadedLabel.text = "File successfully loaded"
             loadedLabel.textColor = UIColor.green
+            self.viewDidLoad()
         } catch {
             //send message if file could not be loaded e.g. incorrect format
             loadedLabel.text = "File could not be loaded"
             loadedLabel.textColor = UIColor.red
+            self.pickerView.isHidden = false
+            self.viewDidLoad()
         }
     }
     
