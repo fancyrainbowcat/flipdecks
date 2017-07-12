@@ -25,13 +25,13 @@ class ModusViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.resetUnitButton.isUserInteractionEnabled = true
-        self.resetUnitButton.setTitleColor(UIColor.cyan, for: UIControlState.normal)
+        self.resetUnitButton.setTitleColor(UIColor.orange, for: UIControlState.normal)
         self.title = "\(self.language.getName()) - \(self.deck.getName())"
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.resetUnitButton.isUserInteractionEnabled = true
-        self.resetUnitButton.setTitleColor(UIColor.cyan, for: UIControlState.normal)
+        self.resetUnitButton.setTitleColor(UIColor.orange, for: UIControlState.normal)
     }
     
     //turn time mode on and off
@@ -39,7 +39,7 @@ class ModusViewController: UIViewController {
         if (self.timeMode == true) {
             self.timeMode = false
             self.timeModeButton.setTitle("Time Mode: off", for: UIControlState.normal)
-            self.timeModeButton.setTitleColor(UIColor.red, for: UIControlState.normal)
+            self.timeModeButton.setTitleColor(UIColor.darkGray, for: UIControlState.normal)
         } else {
             self.timeMode = true
             self.timeModeButton.setTitle("Time Mode: on", for: UIControlState.normal)
