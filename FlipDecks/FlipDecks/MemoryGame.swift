@@ -28,7 +28,7 @@ class MemoryGame {
         let firstCard = cardsShown.last
         
         if twoCardsShown() {
-            // aufgedeckte karte mit zuvor aufgedeckter vergleichen
+            // compare selected card with first picked card
             if mCard.equals(firstCard!) {
                 cardsShown.append(mCard)
                 if (timeMode) {
@@ -75,16 +75,6 @@ class MemoryGame {
         isPlaying = true
         cell = MemoryViewCell()
         
- //       let cardsData = randomCards(cardsData)
- //       for n in mCards {
- //       cell.setCard(mCard: cell, cellText: cardsData[n])
- //       }
-    }
-    
-    func endGame() {
-        isPlaying = false
-        
-        // save deck?
     }
     
     func wonGame() {
@@ -103,18 +93,6 @@ class MemoryGame {
     }
     func twoCardsShown() -> Bool {
         return cardsShown.count % 2 != 0
-    }
-    func threeCardsShown() -> Bool {
-        return cardsShown.count % 3 != 0
-    }
-
-    func indexForCard(_ card: MemoryCard) -> Int? {
-        for index in 0...mCards.count-1 {
-            if card === mCards[index] {
-                return index
-            }
-        }
-        return nil
     }
     
     func getCountCalled() -> Int {
