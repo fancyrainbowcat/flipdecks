@@ -33,7 +33,7 @@ class PieChartViewController: UIViewController {
             if card.getCorrectCount() >= 3
                 {finished += 1}
             
-            if (card.getCorrectCount() == 0 && card.getIncorrectCount() == 0 )
+            else if (card.getCorrectCount() == 0 && card.getIncorrectCount() == 0 )
                 {NotPlayed += 1}
             else
                 {unfinished += 1}
