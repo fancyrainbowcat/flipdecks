@@ -9,7 +9,7 @@
 import UIKit
 
 //View Controller for manual input
-class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate {
+class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate, UITextFieldDelegate {
 
     // current deck and language (filled via segue)
     var deck : Deck = Deck(name: "", languageName: "", fileEnding: "")
@@ -36,6 +36,9 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.languageNameField.delegate = self
+        self.deckNameField.delegate = self
         
         languagePickerView.delegate = self
         deckPickerView.delegate = self
@@ -100,6 +103,21 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
         } else  {
             return self.listOfDecksPV.count
         }
+    }
+    
+    //keyboard should be removed on press of return button
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
+    //keyboard should be removed on press of return button 
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
     }
     
     //change font size and content of both pickerViews

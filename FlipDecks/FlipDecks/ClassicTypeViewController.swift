@@ -10,7 +10,7 @@ import UIKit
 import Speech
 
 
-class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
+class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate, UITextFieldDelegate {
     
     // current deck and language
     var deck : Deck = Deck(name: "", languageName: "", fileEnding: "")
@@ -43,6 +43,8 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.TextFieldType.delegate = self;
         
         microphoneButton.isEnabled = false
         speechRecognizer?.delegate = self
@@ -110,6 +112,12 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
         //to cancel keyboard when screen is tapped
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
+    }
+    
+    //keyboard should be removed on press of return button
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     //closes keyboard when screen is tapped anywhere

@@ -118,6 +118,12 @@ class OpenFileViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         }
     }
     
+    //keyboard should be removed on press of return button
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
