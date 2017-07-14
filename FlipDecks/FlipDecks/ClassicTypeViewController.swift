@@ -80,6 +80,9 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
             }
         }
         
+        //stop audio engine when textfield is clicked
+        self.TextFieldType.addTarget(self, action: #selector(textfieldClicked), for: UIControlEvents.allTouchEvents)
+        
         //only not finished cards are relevant
         currentCards = self.deck.returnAllNotFinishedCards()
         currentCards.shuffle()
@@ -195,12 +198,20 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
         TextFieldType.text = "I'm listening!"
     }
     
+    func textfieldClicked(textField: UITextField) {
+        //stop audioengine and remove text 
+        if audioEngine.isRunning {
+            didFinishTalk()
+            self.TextFieldType.text = ""
+        }
+    }
+    
     //stops audio recognition
     func didFinishTalk() {
         if audioEngine.isRunning {
+            self.microphoneButton.isEnabled = false
             audioEngine.stop()
             recognitionRequest?.endAudio()
-            microphoneButton.setTitle("Start Recording", for: .normal)
             self.audioTimer.invalidate()
         }
     }
@@ -221,16 +232,16 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate {
         if audioEngine.isRunning {
             audioEngine.stop()
             recognitionRequest?.endAudio()
-            microphoneButton.setTitle("Start Recording", for: .normal)
         } //start recording
         else {
             startRecording()
-            microphoneButton.setTitle("Stop Recording", for: .normal)
         }
     }
     
     //Print question on label
     @IBAction func printQuestion() {
+        self.microphoneButton.isEnabled = true
+        
         //stop audio engine if still running
         if (currentCardIndex < currentCards.count) {
             TextFieldType.text = ""

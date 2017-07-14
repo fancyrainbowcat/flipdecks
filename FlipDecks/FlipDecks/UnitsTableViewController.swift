@@ -37,6 +37,11 @@ class UnitsTableViewController: UITableViewController {
         cell.Label?.text = listOfUnits[indexPath.row].getName()
         cell.ProgressBar?.progress = progress
         cell.ProgressBar?.progressTintColor = cell.returnColor()
+        if progress == 0 {
+            cell.ProgressBar.isHidden = true
+        } else {
+            cell.ProgressBar.isHidden = false
+        }
         return cell
     }
     
