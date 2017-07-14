@@ -39,12 +39,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y0E-b2-DSj" customClass="PieChartView" customModule="Charts">
-                                <rect key="frame" x="16" y="64" width="380" height="313"/>
+                                <rect key="frame" x="16" y="64" width="343" height="291"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KXS-Ve-w4c" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="26" y="399" width="343" height="277"/>
+                                <rect key="frame" x="22" y="381" width="333" height="270"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -71,7 +71,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LiX-61-TXl" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="cHV-v7-kge" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5456.8000000000002" y="-704.79760119940033"/>
+            <point key="canvasLocation" x="5440.8000000000002" y="-702.09895052473769"/>
         </scene>
     </scenes>
 </document>
