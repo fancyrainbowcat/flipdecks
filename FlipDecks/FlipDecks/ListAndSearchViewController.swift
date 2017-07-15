@@ -48,6 +48,13 @@ class ListAndSearchViewController: UIViewController, UITableViewDataSource, UITa
         //to cancel keyboard when screen is tapped
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
+        
+        //reset all button colors 
+        self.sortByTimeButton.tintColor = UIColor.green
+        self.sortByQuestionButton.tintColor = UIColor.green
+        self.sortByAnswerButton.tintColor = UIColor.green
+        self.sortByCorrectButton.tintColor = UIColor.green
+        self.sortByIncorrectButton.tintColor = UIColor.green
     }
     
     //closes keyboard when screen is tapped anywhere
@@ -203,6 +210,13 @@ class ListAndSearchViewController: UIViewController, UITableViewDataSource, UITa
     
     //all sorting functionality buttons
     @IBAction func sortByQuestion(_ sender: Any) {
+        //set orange color to chosen button
+        self.sortByTimeButton.tintColor = UIColor.green
+        self.sortByQuestionButton.tintColor = UIColor.orange
+        self.sortByAnswerButton.tintColor = UIColor.green
+        self.sortByCorrectButton.tintColor = UIColor.green
+        self.sortByIncorrectButton.tintColor = UIColor.green
+        
         self.sortingCriterium = "Question"
         
         if (self.sortingOrder == "asc") {
@@ -215,6 +229,13 @@ class ListAndSearchViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     @IBAction func sortByAnswer(_ sender: Any) {
+        //set orange color to chosen button
+        self.sortByTimeButton.tintColor = UIColor.green
+        self.sortByQuestionButton.tintColor = UIColor.green
+        self.sortByAnswerButton.tintColor = UIColor.orange
+        self.sortByCorrectButton.tintColor = UIColor.green
+        self.sortByIncorrectButton.tintColor = UIColor.green
+        
         self.sortingCriterium = "Answer"
         
         if (self.sortingOrder == "asc") {
@@ -227,6 +248,13 @@ class ListAndSearchViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     @IBAction func sortByCorrect(_ sender: Any) {
+        //set orange color to chosen button
+        self.sortByTimeButton.tintColor = UIColor.green
+        self.sortByQuestionButton.tintColor = UIColor.green
+        self.sortByAnswerButton.tintColor = UIColor.green
+        self.sortByCorrectButton.tintColor = UIColor.orange
+        self.sortByIncorrectButton.tintColor = UIColor.green
+        
         self.sortingCriterium = "Correct"
         
         if (self.sortingOrder == "asc") {
@@ -239,6 +267,13 @@ class ListAndSearchViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     @IBAction func sortByIncorrect(_ sender: Any) {
+        //set orange color to chosen button
+        self.sortByTimeButton.tintColor = UIColor.green
+        self.sortByQuestionButton.tintColor = UIColor.green
+        self.sortByAnswerButton.tintColor = UIColor.green
+        self.sortByCorrectButton.tintColor = UIColor.green
+        self.sortByIncorrectButton.tintColor = UIColor.orange
+        
         self.sortingCriterium = "Incorrect"
         
         if (self.sortingOrder == "asc") {
@@ -251,6 +286,13 @@ class ListAndSearchViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     @IBAction func sortByTime(_ sender: Any) {
+        //set orange color to chosen button
+        self.sortByTimeButton.tintColor = UIColor.orange
+        self.sortByQuestionButton.tintColor = UIColor.green
+        self.sortByAnswerButton.tintColor = UIColor.green
+        self.sortByCorrectButton.tintColor = UIColor.green
+        self.sortByIncorrectButton.tintColor = UIColor.green
+        
         self.sortingCriterium = "Time"
         
         if (self.sortingOrder == "asc") {

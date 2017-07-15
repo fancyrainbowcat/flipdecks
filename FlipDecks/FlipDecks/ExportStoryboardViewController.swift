@@ -66,10 +66,8 @@ class ExportStoryboardViewController: UIViewController {
         FileManager.default.createFile(atPath: fileURL.path, contents: contentData, attributes: nil)
         
         //send message that export was successful
-        messageLabel.text = "Export for modus \(modus) created successfully"
+        messageLabel.text = "Export created successfully"
         messageLabel.textColor = UIColor.green
-        
-        print("ExportStoryboardViewController: Export created at \(documentsFolderURL)")
     }
     
     //export all cards in deck

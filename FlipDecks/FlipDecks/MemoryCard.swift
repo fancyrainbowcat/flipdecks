@@ -25,7 +25,7 @@ class MemoryCard {
         if (mCard.id === self.id) {
             return true
         }else{
-        return false
+            return false
         } 
     }
 }

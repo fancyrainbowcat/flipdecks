@@ -37,6 +37,11 @@ class UnitsTableViewController: UITableViewController {
         cell.Label?.text = listOfUnits[indexPath.row].getName()
         cell.ProgressBar?.progress = progress
         cell.ProgressBar?.progressTintColor = cell.returnColor()
+        if progress == 0 {
+            cell.ProgressBar.isHidden = true
+        } else {
+            cell.ProgressBar.isHidden = false
+        }
         return cell
     }
     
@@ -77,6 +82,17 @@ class UnitsTableViewController: UITableViewController {
             let controller = navigationController.viewControllers.first as! ModusViewController
             controller.deck = selectedUnit
             controller.language = self.language
+        }
+        
+        //give language and unit to BarChartViewController
+        if segue.identifier == "StatisticsPerLanguage" {
+            //since there is a navigation controller in between, I have to go through it
+            let navigationController = segue.destination as! UINavigationController
+            let controller = navigationController.viewControllers.first as! BarChartViewController1
+            print(self.language)
+            //controller.deck = self.deck
+            controller.language = self.language
+            
         }
     }
 
