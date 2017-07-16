@@ -42,12 +42,12 @@
                                         <rect key="frame" x="0.0" y="43" width="375" height="44"/>
                                         <items>
                                             <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="iMs-87-EnT"/>
-                                            <barButtonItem title="Qu" id="4Ac-uf-ONo">
+                                            <barButtonItem title="Front" id="4Ac-uf-ONo">
                                                 <connections>
                                                     <action selector="sortByQuestion:" destination="CSV-az-DMo" id="J3I-Vq-Nbs"/>
                                                 </connections>
                                             </barButtonItem>
-                                            <barButtonItem title="Ans" id="vCE-Lm-e50">
+                                            <barButtonItem title="Back" id="vCE-Lm-e50">
                                                 <connections>
                                                     <action selector="sortByAnswer:" destination="CSV-az-DMo" id="UxR-RW-84p"/>
                                                 </connections>
@@ -170,6 +170,7 @@
                             <constraint firstItem="Vl7-4e-a97" firstAttribute="top" secondItem="njk-tO-uCo" secondAttribute="bottom" id="M8t-fL-NnH"/>
                         </constraints>
                     </view>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="listAndSearchTableView" destination="H7X-ys-rwI" id="Ouu-Ni-JCS"/>
                         <outlet property="searchBar" destination="gIc-j2-LUj" id="Spa-lm-v1t"/>

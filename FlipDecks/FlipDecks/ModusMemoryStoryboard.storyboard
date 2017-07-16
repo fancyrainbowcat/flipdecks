@@ -44,7 +44,7 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Title" id="zVS-ie-Tu6">
-                                        <barButtonItem key="rightBarButtonItem" title="Quit" id="Trc-pp-RP4">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="Trc-pp-RP4">
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <connections>
                                                 <segue destination="IWb-7l-ZuI" kind="unwind" unwindAction="cancelToModusTableViewControllerWithSegue:" id="0IS-02-cfo"/>

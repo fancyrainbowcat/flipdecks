@@ -51,7 +51,7 @@ class ListAndSearchViewController: UIViewController, UITableViewDataSource, UITa
         
         //reset all button colors 
         self.sortByTimeButton.tintColor = UIColor.green
-        self.sortByQuestionButton.tintColor = UIColor.green
+        self.sortByQuestionButton.tintColor = UIColor.orange
         self.sortByAnswerButton.tintColor = UIColor.green
         self.sortByCorrectButton.tintColor = UIColor.green
         self.sortByIncorrectButton.tintColor = UIColor.green
@@ -99,26 +99,63 @@ class ListAndSearchViewController: UIViewController, UITableViewDataSource, UITa
         var newListOfCards = [Card]()
     
         //switch the sort modus 
+        //if the sort criterium is not question or answer it will sort by the criterium and then by question, to make the sorting order distinct
         if (self.sortingCriterium == "Question" && self.sortingOrder == "asc") {
             newListOfCards = oldListOfCards.sorted(by: {$0.getQuestion() < $1.getQuestion()})
         } else if (self.sortingCriterium == "Answer" && self.sortingOrder == "asc") {
             newListOfCards = oldListOfCards.sorted(by: {$0.getAnswer() < $1.getAnswer()})
         } else if (self.sortingCriterium == "Correct" && self.sortingOrder == "asc") {
-            newListOfCards = oldListOfCards.sorted(by: {$0.getCorrectCount() < $1.getCorrectCount()})
+            newListOfCards = oldListOfCards.sorted(by:{
+                if ($0.getCorrectCount() != $1.getCorrectCount()) {
+                    return $0.getCorrectCount() < $1.getCorrectCount()
+                } else {
+                    return $0.getQuestion() < $1.getQuestion()
+                }
+            })
         } else if (self.sortingCriterium == "Incorrect" && self.sortingOrder == "asc") {
-            newListOfCards = oldListOfCards.sorted(by: {$0.getIncorrectCount() < $1.getIncorrectCount()})
+            newListOfCards = oldListOfCards.sorted(by:{
+                if ($0.getIncorrectCount() != $1.getIncorrectCount()) {
+                    return $0.getIncorrectCount() < $1.getIncorrectCount()
+                } else {
+                    return $0.getQuestion() < $1.getQuestion()
+                }
+            })
         } else if (self.sortingCriterium == "Time" && self.sortingOrder == "asc"){
-            newListOfCards = oldListOfCards.sorted(by: {$0.getTimeSpentOnCard() < $1.getTimeSpentOnCard()})
+            newListOfCards = oldListOfCards.sorted(by:{
+                if ($0.getTimeSpentOnCard() != $1.getTimeSpentOnCard()) {
+                    return $0.getTimeSpentOnCard() < $1.getTimeSpentOnCard()
+                } else {
+                    return $0.getQuestion() < $1.getQuestion()
+                }
+            })
         } else if (self.sortingCriterium == "Question" && self.sortingOrder == "desc") {
             newListOfCards = oldListOfCards.sorted(by: {$0.getQuestion() > $1.getQuestion()})
         } else if (self.sortingCriterium == "Answer" && self.sortingOrder == "desc") {
             newListOfCards = oldListOfCards.sorted(by: {$0.getAnswer() > $1.getAnswer()})
         } else if (self.sortingCriterium == "Correct" && self.sortingOrder == "desc") {
-            newListOfCards = oldListOfCards.sorted(by: {$0.getCorrectCount() > $1.getCorrectCount()})
+            newListOfCards = oldListOfCards.sorted(by:{
+                if ($0.getCorrectCount() != $1.getCorrectCount()) {
+                    return $0.getCorrectCount() > $1.getCorrectCount()
+                } else {
+                    return $0.getQuestion() > $1.getQuestion()
+                }
+            })
         } else if (self.sortingCriterium == "Incorrect" && self.sortingOrder == "desc") {
-            newListOfCards = oldListOfCards.sorted(by: {$0.getIncorrectCount() > $1.getIncorrectCount()})
+            newListOfCards = oldListOfCards.sorted(by:{
+                if ($0.getIncorrectCount() != $1.getIncorrectCount()) {
+                    return $0.getIncorrectCount() > $1.getIncorrectCount()
+                } else {
+                    return $0.getQuestion() > $1.getQuestion()
+                }
+            })
         } else if (self.sortingCriterium == "Time" && self.sortingOrder == "desc"){
-            newListOfCards = oldListOfCards.sorted(by: {$0.getTimeSpentOnCard() > $1.getTimeSpentOnCard()})
+            newListOfCards = oldListOfCards.sorted(by:{
+                if ($0.getTimeSpentOnCard() != $1.getTimeSpentOnCard()) {
+                    return $0.getTimeSpentOnCard() > $1.getTimeSpentOnCard()
+                } else {
+                    return $0.getQuestion() > $1.getQuestion()
+                }
+            })
         }
         
         return newListOfCards
