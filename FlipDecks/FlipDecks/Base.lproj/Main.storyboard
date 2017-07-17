@@ -38,6 +38,9 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="Info"/>
+                                        <connections>
+                                            <segue destination="ZzX-8h-arm" kind="presentation" id="e6c-Gp-Bsi"/>
+                                        </connections>
                                     </button>
                                 </barButtonItem>
                                 <barButtonItem style="plain" id="nsg-9a-Ilc">
@@ -60,7 +63,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="99"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kEZ-Cx-pnU" id="WWt-0n-J61">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="98.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ee3-8f-xKG">
@@ -97,6 +100,59 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eSk-hu-IDD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1781.5999999999999" y="138.98050974512745"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="6bX-Oj-QQE">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zYP-Zr-cWj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="ZzX-8h-arm" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qM4-Ce-coa"/>
+                        <viewControllerLayoutGuide type="bottom" id="WhT-Rk-Cda"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="654-wC-Rrl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xRo-T8-ieF">
+                                <rect key="frame" x="170" y="617" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <segue destination="O26-CO-VuD" kind="presentation" id="yVw-07-8Zw"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="EIk-Cd-Mfi">
+                                <rect key="frame" x="16" y="28" width="343" height="581"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <mutableString key="text">Hey there and welcome to Flipdecks. Thank you for using our app, we hope we can help you with your studies. 
+
+Right now, you are in the overview. Here, you can either import data or continue with what you already have here. I
+
+1. Import Data: If you click this button, the app will let you import new data for your studies. You have two options here: 
+    1. Open File: Please keep in mind that if you import a file, the data needs to be a CVS file to succeed. You can easily import whatever files you want via iTunes.
+    2. Manual: If you want to study already by typing your data in (yes, your brain really already starts to learn while typing ), select Manual and start typing.
+2. Existing data: If you stay with existing data, choose here which overall language package you want to study today. 
+
+Once you choose one, Flipdecks will show you your different lectures within this language (for example „Lecture 1“, „Lecture 2“ „…“ or „Animals“, „Jobs“, „…“, depending on how you or your teacher/professor structur(s) your studies.
+After that you can choose from different modi on how to play the lecture. But first, you need to determine wether you want to keep time (switch the time mode on). Then select one out of the four modi. There are
+1. Flip (Classic, see the term you want to learn, think about it and rate your answer)
+2. Type (See the term, type in the answer and let the app rate you)
+3. Quiz (See the term and choose the right answer amongst four possibilities, let the app rate you)
+4. Memory (Classic, play memory by trying to pair term and answer together respectively)
+At all times, you can also Import new data or Export your existing data. The app will let you choose from All Cards or just Most Intense Cards.
+
+Thank you again for using Flipdecks and happy studying!</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1775.2" y="858.62068965517244"/>
         </scene>
         <!--Units Table View Controller-->
         <scene sceneID="Pkx-ol-BPm">
@@ -411,6 +467,7 @@
         <image name="statisticsIcon2" width="151" height="198"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0iZ-Yn-TM4"/>
+        <segue reference="yVw-07-8Zw"/>
+        <segue reference="5YJ-uv-h4T"/>
     </inferredMetricsTieBreakers>
 </document>
