@@ -12,7 +12,7 @@ import Speech
 
 class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate, UITextFieldDelegate {
     
-    // current deck and language
+    // deck and language
     var deck : Deck = Deck(name: "", languageName: "", fileEnding: "")
     var language : Language = Language(name: "")
     var array = [String] ()
@@ -43,6 +43,8 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        RequestAnswer.isHidden = true
         
         self.TextFieldType.delegate = self;
         
@@ -337,8 +339,6 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate, U
         //updates time Label
         self.timeLabel.text = "\(hoursStr):\(minutesStr):\(secondsStr)"
     }
-
-
     
     //Print answer on label
     @IBAction func printAnswer() {
@@ -360,8 +360,6 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate, U
         TextFieldType.isHidden = true
         flip()
     }
-  
-    
     
     //Flip Label
     func flip() {
@@ -480,6 +478,11 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate, U
     @IBAction func checkInput() {
     let userInput = TextFieldType.text!
         
+        if TextFieldType.text == "" {
+            RequestAnswer.isHidden = false
+        }
+        
+        else {
         if userInput == currentCards[currentCardIndex].getAnswer() {
             PopUpViewType.isHidden = false
             PopUpCorrectLabelType.isHidden = false
@@ -510,6 +513,7 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate, U
         appendCard()
         }
     printAnswer()
+        }
     }
     
     //function that will be called once the app is entering into background
@@ -537,4 +541,5 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate, U
 
     @IBOutlet weak var NextType: UIButton!
     @IBOutlet weak var TextFieldType: UITextField!
+    @IBOutlet weak var RequestAnswer: UILabel!
 }

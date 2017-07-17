@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3KT-EP-wPi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3KT-EP-wPi">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -245,7 +245,7 @@
                                     <color key="titleColor" red="1" green="0.67319169540107548" blue="0.030127419902973407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="resetUnit:" destination="1yc-w1-MJt" eventType="touchUpInside" id="ao3-XX-umY"/>
+                                    <action selector="showAlert" destination="1yc-w1-MJt" eventType="touchUpInside" id="GzP-gO-oqx"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Wn-t7-7To">
@@ -403,7 +403,7 @@
     </scenes>
     <resources>
         <image name="TypeIcon2" width="151" height="198"/>
-        <image name="allCardsIcon2" width="151" height="198"/>
+        <image name="allCardsIcon2" width="303" height="397"/>
         <image name="buttonBLight" width="150" height="75"/>
         <image name="flipIcon2" width="151" height="198"/>
         <image name="memoryIcon2" width="151" height="198"/>

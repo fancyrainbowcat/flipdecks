@@ -47,6 +47,21 @@ class ModusViewController: UIViewController {
         }
     }
     
+    @IBAction func showAlert() {
+    let alert = UIAlertController (title: "Are you sure?", message: "This resets everything to zero!", preferredStyle: .alert)
+        
+    let action = UIAlertAction(title: "Cancel", style: .default,
+                                   handler: nil)
+        
+    let cancel = UIAlertAction (title: "Yes", style: .default) { UIAlertAction in self.resetUnit(sender: (Any).self)
+        }
+        
+        alert.addAction(action)
+        alert.addAction(cancel)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
     @IBAction func resetUnit(_ sender: Any) {
         self.deck.resetAllCards()
         self.resetUnitButton.setTitleColor(UIColor.gray, for: UIControlState.normal)

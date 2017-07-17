@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="wWr-VT-Qwl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="wWr-VT-Qwl">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -170,6 +170,13 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please enter your answer!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lvF-Ek-hzP">
+                                <rect key="frame" x="83" y="328" width="197" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -184,6 +191,7 @@
                         <outlet property="PopUpViewType" destination="gpb-Bq-fwu" id="1zI-c0-xD9"/>
                         <outlet property="QuestionTypeLabel" destination="veg-6j-M0I" id="vL1-Px-dLZ"/>
                         <outlet property="QuestionTypeView" destination="8dy-Gr-Cac" id="T6M-WT-wF8"/>
+                        <outlet property="RequestAnswer" destination="lvF-Ek-hzP" id="C7Q-kY-Bxj"/>
                         <outlet property="ShelveType" destination="cC8-vp-J0l" id="dcH-TF-Dzs"/>
                         <outlet property="ShowType" destination="z8G-36-wUb" id="7MU-Ns-dmS"/>
                         <outlet property="TextFieldType" destination="lbq-Rj-DMH" id="DnB-ax-Rtk"/>
@@ -200,6 +208,6 @@
     </scenes>
     <resources>
         <image name="buttonBLight" width="150" height="75"/>
-        <image name="micIcon" width="200" height="200"/>
+        <image name="micIcon" width="100" height="100"/>
     </resources>
 </document>
