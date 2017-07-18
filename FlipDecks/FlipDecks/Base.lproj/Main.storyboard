@@ -131,14 +131,14 @@
 Right now, you are in the overview. Here, you can either import data or continue with what you already have here. I
 
 1. Import Data: If you click this button, the app will let you import new data for your studies. You have two options here: 
-    1. Open File: Please keep in mind that if you import a file, the data needs to be a CVS file to succeed. You can easily import whatever files you want via iTunes.
+    1. Open File: Please keep in mind that if you import a file, the data needs to be a TXT file to succeed. Please also make sure that it all has the right format, which is easy: One term and its respective answer per row, seperated by an semicolon, no spaces (e.g.: apple;apfel [new row] pear;birne ...). You can easily import whatever files you want via iTunes.
     2. Manual: If you want to study already by typing your data in (yes, your brain really already starts to learn while typing ), select Manual and start typing.
 2. Existing data: If you stay with existing data, choose here which overall language package you want to study today. 
 
 Once you choose one, Flipdecks will show you your different lectures within this language (for example „Lecture 1“, „Lecture 2“ „…“ or „Animals“, „Jobs“, „…“, depending on how you or your teacher/professor structur(s) your studies.
 After that you can choose from different modi on how to play the lecture. But first, you need to determine wether you want to keep time (switch the time mode on). Then select one out of the four modi. There are
 1. Flip (Classic, see the term you want to learn, think about it and rate your answer)
-2. Type (See the term, type in the answer and let the app rate you)
+2. Type (See the term, type in or record the answer and let the app rate you)
 3. Quiz (See the term and choose the right answer amongst four possibilities, let the app rate you)
 4. Memory (Classic, play memory by trying to pair term and answer together respectively)
 At all times, you can also Import new data or Export your existing data. The app will let you choose from All Cards or just Most Intense Cards.
