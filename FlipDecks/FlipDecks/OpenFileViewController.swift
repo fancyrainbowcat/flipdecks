@@ -250,20 +250,15 @@ class OpenFileViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                 //check if the file it in a valid format e.g. .txt or .csv
                 var valid = false
         
-                //if the given filename is a valid .txt file create fileURL
-                if (filename!.contains(".txt")) {
-                    fileURL = fileURL.appendingPathComponent(filename!)
-                    valid = true
-                } //test for invalid file format e.g. everything with a fileEnding indicated by "." but not txt
-                else if (filename!.contains(".")) {
+                //if the given filename is not a valid .txt file
+                if (filename!.contains(".") && !filename!.contains("txt")) {
                     print("OpenFileViewController: File Ending is not valid, please use .txt files")
-                } //missing file ending - we have to add the correct .txt ending
-                else {
+                } else {
                     do {
                         //loop over all files and check if the given fileName is valid
                         let allFiles = try FileManager.default.contentsOfDirectory(atPath: documentsPath.path)
                         for file in allFiles {
-                            if (file.contains(filename!)) {
+                            if (file.lowercased().contains(filename!.lowercased())) {
                                 filename = file
                                 fileURL = fileURL.appendingPathComponent(file)
                                 valid = true

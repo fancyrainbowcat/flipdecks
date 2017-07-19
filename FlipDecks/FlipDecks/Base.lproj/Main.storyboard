@@ -119,11 +119,12 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <mutableString key="text">Hey there and welcome to Flipdecks. Thank you for using our app, we hope we can help you with your studies. 
 
-Right now, you are in the overview. Here, you can either import data or continue with what you already have here. I
+Right now, you are in the overview. Here, you can either import data or continue with what you already have here.
 
 1. Import Data: If you click this button, the app will let you import new data for your studies. You have two options here: 
     1. Open File: Please keep in mind that if you import a file, the data needs to be a TXT file to succeed. Please also make sure that it all has the right format, which is easy: One term and its respective answer per row, seperated by an semicolon, no spaces (e.g.: apple;apfel [new row] pear;birne ...). You can easily import whatever files you want via iTunes.
     2. Manual: If you want to study already by typing your data in (yes, your brain really already starts to learn while typing ), select Manual and start typing.      
+
 2. Existing data: If you stay with existing data, choose here which overall language package you want to study today. 
 
 Once you choose one, Flipdecks will show you your different lectures within this language (for example „Lecture 1“, „Lecture 2“ „…“ or „Animals“, „Jobs“, „…“, depending on how you or your teacher/professor structur(s) your studies.
