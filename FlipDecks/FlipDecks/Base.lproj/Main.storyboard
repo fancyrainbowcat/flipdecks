@@ -116,8 +116,8 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="EIk-Cd-Mfi">
                                 <rect key="frame" x="16" y="28" width="343" height="581"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">Hey there and welcome to Flipdecks. Thank you for using our app, we hope we can help you with your studies. 
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <string key="text">Hey there and welcome to Flipdecks. Thank you for using our app, we hope we can help you with your studies. 
 
 Right now, you are in the overview. Here, you can either import data or continue with what you already have here.
 
@@ -135,23 +135,26 @@ After that you can choose from different modi on how to play the lecture. But fi
 4. Memory (Classic, play memory by trying to pair term and answer together respectively)
 At all times, you can also Import new data or Export your existing data. The app will let you choose from All Cards or just Most Intense Cards.
 
-Thank you again for using Flipdecks and happy studying!</mutableString>
+Thank you again for using Flipdecks and happy studying!</string>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xRo-T8-ieF">
-                                <rect key="frame" x="135" y="629" width="105" height="30"/>
+                                <rect key="frame" x="135" y="617" width="105" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <state key="normal" title="Back">
-                                    <color key="titleColor" red="0.29075162840000002" green="1" blue="0.2569352889" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.65755277540000001" green="1" blue="0.28028668350000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Back" backgroundImage="buttonBLight">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="2ey-2M-l97" kind="unwind" unwindAction="cancelToLanguageTableViewControllerWithSegue:" id="lxC-kI-Zob"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zYP-Zr-cWj" userLabel="First Responder" sceneMemberID="firstResponder"/>
