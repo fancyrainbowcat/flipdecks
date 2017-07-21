@@ -53,6 +53,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="QeB-0H-kgs">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="cancel" id="tYp-3w-LqS">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="cHV-v7-kge" kind="unwind" unwindAction="cancelToModusTableViewControllerWithSegue:" id="Hy3-Mn-Cb8"/>
                             </connections>
