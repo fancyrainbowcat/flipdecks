@@ -39,7 +39,7 @@ class MemoryViewCell: UICollectionViewCell {
         frontCellLabel.isHidden = false
         shown = show
         
-        // flip animation for CollectionViewCells yay
+        // flip animation for CollectionViewCells
         if animated {
             if show {
                 UIView.transition(from: cellImageView,

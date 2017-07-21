@@ -210,11 +210,10 @@ class MemoryGameViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     
-    // TODO: Layout
+    // Layout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        //let numberOfColumns:Int = self.collectionView(collectionView, numberOfItemsInSection: indexPath.section)
         
-        let itemWidth: CGFloat = collectionView.frame.width / 3.0 - 15.0 //numberOfColumns as CGFloat - 10 //- (minimumInteritemSpacing * numberOfColumns))
+        let itemWidth: CGFloat = collectionView.frame.width / 3.0 - 15.0
         
         return CGSize(width: itemWidth, height: itemWidth)
     }
@@ -234,7 +233,7 @@ class MemoryGameViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func divideCards(cards:[Card]) -> [MemoryCard] {
-        // split array in questions and answers!
+        // split array in questions and answers
         for card in cards {
             let answer = card.getAnswer()
             let question = card.getQuestion()
@@ -246,9 +245,9 @@ class MemoryGameViewController: UIViewController, UICollectionViewDelegate, UICo
         questions.shuffle()
         answers.shuffle()
         
-        // combine them to one wonderful Array
+        // combine them to one Array
         var finalMemoryCards = questions + answers
-        // shuffle it again - MAXIMUM SHUFFLE
+        // shuffle it again
         finalMemoryCards.shuffle()
         
         

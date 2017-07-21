@@ -114,9 +114,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cqQ-8w-y8w">
-                                <rect key="frame" x="164" y="444" width="46" height="30"/>
+                                <rect key="frame" x="164" y="444" width="68" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Show"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Show" backgroundImage="buttonBLight">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="showAnswerForPreviousCard" destination="RBG-z1-Xsd" eventType="touchUpInside" id="VZR-n1-KpJ"/>
                                 </connections>

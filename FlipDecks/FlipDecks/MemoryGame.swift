@@ -66,7 +66,7 @@ class MemoryGame {
             self.cell = cell
         }
         
-        if cardsShown.count == 12 { // finalMemoryCards.count
+        if cardsShown.count == 12 {
             wonGame()
         }
     }
