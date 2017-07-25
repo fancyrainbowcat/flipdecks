@@ -11,7 +11,7 @@ import UIKit
 //TableViewController that contains all units/decks for one language
 class UnitsTableViewController: UITableViewController {
 
-    //current language
+    //current language (filled via segue)
     var language : Language = Language(name: "")
     
     //list of all decks/units
@@ -23,7 +23,7 @@ class UnitsTableViewController: UITableViewController {
         self.title = language.getName()
     }
 
-    //get all Units for ViewController > store in listOfUnits
+    //get all Units for ViewController from current language > store in listOfUnits
     func getListOfUnits() {
         if (self.language.getName() != "") {
             self.listOfUnits = (language.returnAllDecks())
@@ -32,11 +32,19 @@ class UnitsTableViewController: UITableViewController {
     
     //show available units in tableView
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UnitsTableViewCell {
+        
+        //current cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "unitCell", for: indexPath) as! UnitsTableViewCell
+        
+        //progress is the percentage of finished cards (<=3x correct) by all cards of the unit
         let progress = Float(listOfUnits[indexPath.row].getCountOfFinishedCards()) / Float(listOfUnits[indexPath.row].getCountOfCards())
+        
+        //add name of unit and progress bar - progress bar's color will switch (<33% red, >66% green, in between: yellow)
         cell.Label?.text = listOfUnits[indexPath.row].getName()
         cell.ProgressBar?.progress = progress
         cell.ProgressBar?.progressTintColor = cell.returnColor()
+        
+        //if there are no finished cards yet, the progress bar will not be visible
         if progress == 0 {
             cell.ProgressBar.isHidden = true
         } else {
@@ -65,7 +73,7 @@ class UnitsTableViewController: UITableViewController {
         return listOfUnits.count
     }
     
-    //functionality for cancel button segue
+    //functionality for cancel button segue - for other controllers to cancel into the current tableview controller
     @IBAction func cancelToUnitsTableViewController(segue:UIStoryboardSegue) {
         
     }
@@ -82,17 +90,6 @@ class UnitsTableViewController: UITableViewController {
             let controller = navigationController.viewControllers.first as! ModusViewController
             controller.deck = selectedUnit
             controller.language = self.language
-        }
-        
-        //give language and unit to BarChartViewController
-        if segue.identifier == "StatisticsPerLanguage" {
-            //since there is a navigation controller in between, I have to go through it
-            let navigationController = segue.destination as! UINavigationController
-            let controller = navigationController.viewControllers.first as! BarChartViewController1
-            print(self.language)
-            //controller.deck = self.deck
-            controller.language = self.language
-            
         }
     }
 

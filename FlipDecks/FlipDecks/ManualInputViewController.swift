@@ -37,19 +37,21 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //current view controller is delegate for the following
         self.languageNameField.delegate = self
         self.deckNameField.delegate = self
-        
         languagePickerView.delegate = self
         deckPickerView.delegate = self
         questionTextView.delegate = self
         answerTextView.delegate = self
+        
+        //ok button is disabled
         okButton.isUserInteractionEnabled = false
-        okButton.setTitleColor(UIColor.gray, for: UIControlState.normal)
         
         //set list of languages for picker view
         listOfLanguagesPV = ["<new>"]
         
+        //add of languages to pickerview
         for language in self.listOfLanguages {
             listOfLanguagesPV.append(language.getName())
         }
@@ -57,6 +59,7 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
         //set list of decks for picker view
         listOfDecksPV = ["<new>"]
         
+        //add all decks to pickerview
         for deck in self.listOfDecks {
             listOfDecksPV.append(deck.getName())
         }
@@ -98,6 +101,7 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     //count of language/deck suggestions
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+        //identify pickerview via tag
         if (pickerView.tag == 0) {
             return self.listOfLanguagesPV.count
         } else  {
@@ -120,7 +124,7 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
         return true
     }
     
-    //change font size and content of both pickerViews
+    //change design of both pickerViews
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView
     {
         let pickerLabel = UILabel()
@@ -169,8 +173,9 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
         }
     }
     
-    
+    //editing has changed in languageNameField
     @IBAction func languageNameFieldEditingChanged(_ sender: Any) {
+        //hide pickerviews
         self.languagePickerView.isHidden = true
         self.deckPickerView.isHidden = true
         
@@ -191,7 +196,7 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
         changeOKButtonState()
     }
     
-    //active buton if all fields are filled
+    //activate button if all fields are filled
     func changeOKButtonState() {
         //activate ok button if all fields are filled
         if (self.languageNameField.text != "" && self.deckNameField.text != "" && self.questionTextView.text != "" && self.answerTextView.text != "") {
@@ -286,7 +291,7 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
             //convert content string to data
             let contentData = content.data(using: .utf8)
             
-            //recreate deck with current values
+            //create deck with current values
             if (FileManager.default.createFile(atPath: (deckFolderPath?.path)!, contents: contentData, attributes: nil)) {
 
                 //inform user and reset file 
@@ -313,7 +318,7 @@ class ManualInputViewController: UIViewController, UIPickerViewDelegate, UIPicke
             let question = self.questionTextView.text
             let answer = self.answerTextView.text
             
-            //check if languages is existend currently
+            //check if languages is existing currently
             let checkResult = checkForLanguageExistence(languageName: languageName!)
             
             //if language does exist load data

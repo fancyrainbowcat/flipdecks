@@ -14,17 +14,19 @@ class ImportMainViewController: UIViewController {
     // current deck and language (filled via segue)
     var deck : Deck = Deck(name: "", languageName: "", fileEnding: "")
     var language : Language = Language(name: "")
+    
+    //list of all languages for picker view (filled via segue)
     var listOfLanguages = [Language]()
     
     @IBOutlet weak var toUnitButton: UIBarButtonItem!
     
-    //you can only exit to unit if you came from a unit -> deckname should be filled
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // DESIGN - Background
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background.jpg")!)
         
+        //you can only exit to unit if you came from a unit -> deckname should be filled
         if (self.deck.getName() == "") {
             toUnitButton.isEnabled = false
             toUnitButton.title = ""
@@ -39,7 +41,7 @@ class ImportMainViewController: UIViewController {
     }
     
 
-    //cancel button action
+    //cancel button action to main import controller 
     @IBAction func cancelToImportMainViewController(segue:UIStoryboardSegue) {
     }
     

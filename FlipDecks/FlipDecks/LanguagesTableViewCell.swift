@@ -8,6 +8,7 @@
 
 import UIKit
 
+//cell for language table view controller
 class LanguagesTableViewCell: UITableViewCell {
     @IBOutlet weak var Label: UILabel!
     @IBOutlet weak var ProgressBar: UIProgressView!

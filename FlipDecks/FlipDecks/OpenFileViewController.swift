@@ -15,7 +15,10 @@ class OpenFileViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     var deck : Deck = Deck(name: "", languageName: "", fileEnding: "")
     var language : Language = Language(name: "")
     
-    //list of languages for PickerView
+    //contains the currently selected file (will be filled via segue)
+    var selectedFile : String = ""
+    
+    //list of languages for PickerView (listOfLanguagesPV contains <new> as well
     var listOfLanguages = [Language]()
     var listOfLanguagesPV = ["<new>"]
     
@@ -30,17 +33,12 @@ class OpenFileViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBOutlet weak var languageNameField: UITextField!
     @IBOutlet weak var pickerView: UIPickerView!
     
-    //contains the currently selected file (will be filled via segue)
-    var selectedFile : String = ""
-    
     //change buttons and add event listener
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //ok button is disabled
         okButton.isEnabled = false
-        okButton.layer.borderWidth = 2
-        okButton.layer.borderColor = UIColor.lightGray.cgColor
-        browseButton.layer.borderWidth = 2
-        browseButton.layer.borderColor = UIColor.blue.cgColor
         
         // DESIGN - Background
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background.jpg")!)
@@ -51,12 +49,12 @@ class OpenFileViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         pickerView.delegate = self
 
-        //pre-set language if given through segue
+        //pre-set language name field if given through segue and hide picker view
         if (self.language.getName() != "") {
             self.languageNameField.text = self.language.getName()
             pickerView.isHidden = true
         } else {
-            //set entries for UI Picker View
+            //set entries for UI Picker View and show it
             listOfLanguagesPV = ["<new>"]
             
             for language in self.listOfLanguages {
@@ -85,7 +83,7 @@ class OpenFileViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         return self.listOfLanguagesPV.count
     }
     
-    //change font size of pickerView
+    //change design of pickerView
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView
     {
         let pickerLabel = UILabel()
@@ -96,25 +94,18 @@ class OpenFileViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         return pickerLabel
     }
     
-    //select row of dropdown menu and hide pickerView
+    //select row of pickerview and hide pickerView
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        //if the selected row is not <new> the languageNameField value will be set to the selected language and pickerview will be hidden
         if self.listOfLanguagesPV[row] != "<new>" {
             self.languageNameField.text = self.listOfLanguagesPV[row]
             editingChanged(self.languageNameField)
             self.pickerView.isHidden = true
-        } else {
+        } //if selected language is <new>, pickerview will be hidden and user can enter his custom language name
+        else {
             self.languageNameField.text = ""
             editingChanged(self.languageNameField)
             self.pickerView.isHidden = true
-        }
-    }
-    
-    //start editing text field will remove dropdown menu
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        //stop suggestions when editing is starting
-        if textField == self.languageNameField {
-            self.pickerView.isHidden = false
-            textField.endEditing(true)
         }
     }
     
@@ -133,30 +124,26 @@ class OpenFileViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         //when the fields are not empty okButton should be enabled
         if(self.fileNameField.text != "" && languageNameField.text != "") {
             okButton.isEnabled = true
-            okButton.layer.borderColor = UIColor.blue.cgColor
             loadedLabel.text = ""
         } //when the fields are empty okButton should be disabled
         else {
             okButton.isEnabled = false
             loadedLabel.text = ""
-            okButton.layer.borderColor = UIColor.lightGray.cgColor
         }
         return
     }
     
-    //cancel button action > go back to openFileViewController
+    //cancel button action to openFileViewController
     @IBAction func cancelToOpenFileViewController(segue:UIStoryboardSegue) {
-        self.fileNameField.text = ""
-        okButton.isEnabled = false
-        okButton.layer.borderColor = UIColor.lightGray.cgColor
-        loadedLabel.text = ""
+        viewDidLoad()
     }
     
-    //sets selectedFile and enables button
+    //sets selectedFile and enables button (segue from fileDialog)
     @IBAction func useFile(segue:UIStoryboardSegue) {
         if (selectedFile != "") {
             self.fileNameField.text = selectedFile
             
+            //if language is given ok button should be enabled
             if(self.languageNameField.text != "") {
                 okButton.isEnabled = true
                 okButton.layer.borderColor = UIColor.blue.cgColor
@@ -189,9 +176,11 @@ class OpenFileViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         //content that will be written into internal storage
         var newContent = ""
-            
+        
+        //correct language folder path
         let currentLanguageFolderPath = languagesFolderPath?.appendingPathComponent(languageName, isDirectory: true)
         
+        //current deck path
         let deckFolderPath = currentLanguageFolderPath?.appendingPathComponent(filename)
         
         do {
@@ -203,6 +192,7 @@ class OpenFileViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
             for line in lines {
                 if line != "" {
                     var newLine = line
+                    //at the end of the line append empty counts
                     newLine = newLine.appending(";0;0;0\n")
                     newContent.append(newLine)
                 }
@@ -247,17 +237,19 @@ class OpenFileViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                 //name of the given language
                 let languageName = languageNameField.text
             
-                //check if the file it in a valid format e.g. .txt or .csv
+                //check if the file it in a valid format
                 var valid = false
         
                 //if the given filename is not a valid .txt file
                 if (filename!.contains(".") && !filename!.contains("txt")) {
                     print("OpenFileViewController: File Ending is not valid, please use .txt files")
-                } else {
+                } //file has no ending or is a valid .txt file
+                else {
                     do {
                         //loop over all files and check if the given fileName is valid
                         let allFiles = try FileManager.default.contentsOfDirectory(atPath: documentsPath.path)
                         for file in allFiles {
+                            //if there is a file that contains the filename use this file
                             if (file.lowercased().contains(filename!.lowercased())) {
                                 filename = file
                                 fileURL = fileURL.appendingPathComponent(file)
@@ -297,7 +289,6 @@ class OpenFileViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
                 fileNameField.text = ""
                 languageNameField.text = ""
                 okButton.isEnabled = false
-                okButton.layer.borderColor = UIColor.lightGray.cgColor
             } catch {
                 print("OpenFileViewController: Documents Folder does not exist")
             }

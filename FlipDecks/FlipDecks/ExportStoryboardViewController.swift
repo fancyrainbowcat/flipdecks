@@ -8,22 +8,22 @@
 
 import UIKit
 
-//View Controller for exporting
+//View Controller for export
 class ExportStoryboardViewController: UIViewController {
+    
+    //current deck and language
+    var deck : Deck = Deck(name: "", languageName: "", fileEnding: "")
+    var language : Language = Language(name: "")
     
     //IBOutlets
     @IBOutlet weak var allCardsButton: UIButton!
     @IBOutlet weak var mostIntenseCardsButton: UIButton!
     @IBOutlet weak var messageLabel: UILabel!
     
-    //current deck and language 
-    var deck : Deck = Deck(name: "", languageName: "", fileEnding: "")
-    var language : Language = Language(name: "")
-    
-    
-    //set title
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //set title Export - Deck
         self.title = "Export - \(self.deck.getName())"
         
         // DESIGN - Background
@@ -34,19 +34,10 @@ class ExportStoryboardViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    //exports the given list of cards
+    //exports the given list of cards for given modus
     func export(listOfCards : [Card], modus: String) {
-        //Directory Documents
+        //documents folder
         let documentsFolderURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        
-        //check if export directory exists at this point
-        if (!FileManager.default.fileExists(atPath: documentsFolderURL.path)) {
-            do {
-                try FileManager.default.createDirectory(atPath: documentsFolderURL.path, withIntermediateDirectories: true, attributes: nil)
-            } catch let error as NSError {
-                print(error.localizedDescription);
-            }
-        }
         
         //file name is always deckName_modus e.g. Unit1_All or Unit1_Intense
         let fileURL = documentsFolderURL.appendingPathComponent("\(self.deck.getName())_\(modus)").appendingPathExtension("txt")
@@ -54,7 +45,7 @@ class ExportStoryboardViewController: UIViewController {
         //writes all cards into content
         var content = ""
         
-        //loop through all cards and append question and answer
+        //loop through all cards and append question and answer sorted by question ascending
         for card in listOfCards.sorted(by: {$0.getQuestion() < $1.getQuestion()}) {
             content = content.appending("\(card.getQuestion());\(card.getAnswer())\n")
         }

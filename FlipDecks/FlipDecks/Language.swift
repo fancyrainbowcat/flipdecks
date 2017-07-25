@@ -30,8 +30,8 @@ class Language {
             //loop over all files in this directory and append it as decks into listOfDecks (without fileEnding)
             let allFiles = try FileManager.default.contentsOfDirectory(atPath: (currentLanguageFolderPath?.path)!)
             for file in allFiles {
-                //if it is really a file
-                if file.contains(".") {
+                //if it is really a txt file
+                if file.contains(".txt") {
                     let index = file.index(file.endIndex, offsetBy: -4)
                     let fileWithoutEnding = file.substring(to: index)
                     let fileEnding = file.substring(from: index)

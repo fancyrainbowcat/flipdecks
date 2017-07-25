@@ -8,6 +8,7 @@
 
 import UIKit
 
+//cell for units table view 
 class UnitsTableViewCell: UITableViewCell {
     @IBOutlet weak var Label: UILabel!
     @IBOutlet weak var ProgressBar: UIProgressView!

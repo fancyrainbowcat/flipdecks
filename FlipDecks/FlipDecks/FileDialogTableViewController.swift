@@ -36,6 +36,7 @@ class FileDialogTableViewController: UITableViewController {
             //loop over all files in FlipDecks directory and append all .txt files
             let allFiles = try FileManager.default.contentsOfDirectory(atPath: documentsFolderURL.path)
             for file in allFiles {
+                //only .txt files will be shown
                 if (file.contains(".txt")) {
                     files.append(file)
                 }
@@ -60,6 +61,7 @@ class FileDialogTableViewController: UITableViewController {
     
     //show available files in tableView
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //current cell 
         let cell = tableView.dequeueReusableCell(withIdentifier: "fileCell", for: indexPath)
         cell.textLabel?.text = files[indexPath.row]
         return cell

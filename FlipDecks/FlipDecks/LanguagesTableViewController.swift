@@ -13,9 +13,12 @@ class LanguagesTableViewController: UITableViewController {
 
     //contains all languages
     var listOfLanguages = [Language]()
+    
+    //path of languages folder in internal app storage
     var languagesFolderPath = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first?.appendingPathComponent("Languages", isDirectory: true)
     
     override func viewDidLoad() {
+        //get all available languages
         getListOfLanguages()
         super.viewDidLoad()
     }
@@ -30,6 +33,7 @@ class LanguagesTableViewController: UITableViewController {
             for dict in allDicts {
                 //for safety reasons, take only folders (no file ending)
                 if (dict != "" && !(dict.contains("."))) {
+                    //"convert" folder into language
                     let newLanguage = Language(name: dict)
                     let checkLanguageExists = listOfLanguages.contains(where: { $0.getName() == newLanguage.getName() })
                 
@@ -42,6 +46,7 @@ class LanguagesTableViewController: UITableViewController {
             
         } //if there are no languages yet, this is the first start of our app and we have to copy our prepared languages. This should only be reached once.
         catch {
+            //path to lections from our project
             let pathToPreparedLections = Bundle.main.bundleURL.appendingPathComponent("Languages", isDirectory: true)
             
             do {
@@ -49,7 +54,7 @@ class LanguagesTableViewController: UITableViewController {
                 let allLanguageFiles = try FileManager.default.contentsOfDirectory(atPath: (pathToPreparedLections.path))
                 
                 for languageFile in allLanguageFiles {
-                    //create language subfolder
+                    //create language subfolder in the new internal languages path
                     let currentLanguageFolderPath = languagesFolderPath?.appendingPathComponent(languageFile, isDirectory: true)
                     try FileManager.default.createDirectory(atPath: (currentLanguageFolderPath?.path)!, withIntermediateDirectories: true, attributes: nil)
                     
@@ -90,11 +95,18 @@ class LanguagesTableViewController: UITableViewController {
     
     //show available languages in tableView
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> LanguagesTableViewCell {
+        //current cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "languageCell", for: indexPath) as! LanguagesTableViewCell
+        
+        //progress is the percentage of finished decks by all decks of the language
         let progress = Float(listOfLanguages[indexPath.row].getCountOfFinishedDecks()) / Float(listOfLanguages[indexPath.row].getCountOfDecks())
+        
+        //add name of language and progress bar - progress bar's color will switch (<33% red, >66% green, in between: yellow)
         cell.Label?.text = listOfLanguages[indexPath.row].getName()
         cell.ProgressBar?.progress = progress
         cell.ProgressBar?.progressTintColor = cell.returnColor()
+        
+        //hide progress bar if no unit is finished yet
         if progress == 0 {
             cell.ProgressBar.isHidden = true
         } else {
@@ -117,12 +129,12 @@ class LanguagesTableViewController: UITableViewController {
         return listOfLanguages.count
     }
 
-    //functionality for cancel button segue
+    //functionality for cancel button to language controller segue
     @IBAction func cancelToLanguageTableViewController(segue:UIStoryboardSegue) {
     
     }
     
-    //give language to UnitsTableViewController
+    //give language to to unit and import controllers 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "languageToUnit" {
             

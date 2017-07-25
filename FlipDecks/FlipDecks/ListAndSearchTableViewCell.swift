@@ -8,6 +8,7 @@
 
 import UIKit
 
+//custom cell that shows a card with all parameters
 class ListAndSearchTableViewCell: UITableViewCell {
     
     @IBOutlet weak var AnswerLabel: UILabel!
