@@ -43,7 +43,7 @@ class MemoryGameViewController: UIViewController, UICollectionViewDelegate, UICo
     
 
     
-    //timer functionality
+    //time modus functionality
     var timeMode = false
     var timer : Timer?
     var secondsCount = 0
@@ -74,9 +74,10 @@ class MemoryGameViewController: UIViewController, UICollectionViewDelegate, UICo
         // new Cards for new Game
         setupNewCards()
         
-        //starts timer
-        self.timeSpentLabel.isHidden = true
+        //hide time spent label (should only be visible when modus is finished)
+        timeSpentLabel.isHidden = true
         
+        //time is shown and timer is started if time mode is activated
         if (timeMode == true && self.finalMemoryCards.count > 0) {
             //save overall seconds and start counter again
             self.secondsCount = 0
@@ -145,6 +146,7 @@ class MemoryGameViewController: UIViewController, UICollectionViewDelegate, UICo
             }
             //time mode functionality
             if (timeMode == true) {
+                //convert seconds to correct time format 
                 let (secondsStr, minutesStr, hoursStr) = splitSeconds(secondsCount: secondsCount)
                 self.timeSpentLabel.text = "Time spent in modus: \(hoursStr):\(minutesStr):\(secondsStr)"
                 self.timeSpentLabel.isHidden = false

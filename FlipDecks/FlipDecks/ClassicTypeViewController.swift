@@ -20,12 +20,13 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate, U
     var currentCardIndex = 0
     var currentCards = [Card]()
     
-    //timer functionality
+    //time modus functionality
     var timeMode = false
     var timer : Timer?
     var secondsCount = 0
     var previousSecondsCount = 0
     
+    //IBOutlets for time mode
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var timeSpentLabel: UILabel!
     
@@ -39,6 +40,7 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate, U
     //create speech recognizer for english language
     private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))
     
+    //IBOutlets for "siri" modus
     @IBOutlet weak var microphoneButton: UIButton!
     
     override func viewDidLoad() {
@@ -48,8 +50,10 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate, U
         
         self.TextFieldType.delegate = self;
         
+        //enable microphone button and set delegate
         microphoneButton.isEnabled = false
         speechRecognizer?.delegate = self
+        
         PopUpViewType.isHidden = true
         
         // DESIGN - Background
@@ -91,9 +95,10 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate, U
         currentCards = self.deck.returnAllNotFinishedCards()
         currentCards.shuffle()
         
-        //time modus
-        self.timeSpentLabel.isHidden = true
+        //hide time spent label (should only be visible when modus is finished)
+        timeSpentLabel.isHidden = true
         
+        //show time if time modus is activated
         if(timeMode == false) {
             timeLabel.isHidden = true
         } else {
@@ -145,10 +150,10 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate, U
             print("audioSession properties weren't set because of an error.")
         }
         
-        //create new request object
+        //create new recognition request object
         recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
         
-        //check for audio input
+        //check for possibility for audio input
         guard let inputNode = audioEngine.inputNode else {
             fatalError("Audio engine has no input node")
         }
@@ -169,6 +174,8 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate, U
             //if there is a result it will be printed into textFieldType
             if result != nil {
                 self.TextFieldType.text = result?.bestTranscription.formattedString.lowercased()
+                
+                //set a timer - after 2 seconds of no speech input the speech input will be cancelled
                 self.audioTimer.invalidate()
                 self.audioTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.didFinishTalk), userInfo: nil, repeats: false)
                 isFinal = (result?.isFinal)!
@@ -238,7 +245,7 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate, U
     //use speech input instead of text
     @IBAction func useSpeechInput(_ sender: Any) {
 
-        //stop audio engine if already running and start recording
+        //stop audio engine if already running
         if audioEngine.isRunning {
             audioEngine.stop()
             recognitionRequest?.endAudio()
@@ -250,9 +257,6 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate, U
     
     //Print question on label
     @IBAction func printQuestion() {
-        self.microphoneButton.isEnabled = true
-        
-        //stop audio engine if still running
         if (currentCardIndex < currentCards.count) {
             TextFieldType.text = ""
             
@@ -267,7 +271,7 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate, U
             CheckType.isHidden = false
             TextFieldType.isHidden = false
             
-            //starts timer
+            //starts timer for this question
             if (timeMode == true) {
                 timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
             }
@@ -275,6 +279,7 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate, U
         else {
             //time mode functionality
             if (timeMode == true) {
+                //convert seconds to correct time format
                 let (secondsStr, minutesStr, hoursStr) = splitSeconds(secondsCount: secondsCount)
                 self.timeSpentLabel.text = "Time spent in modus: \(hoursStr):\(minutesStr):\(secondsStr)"
                 self.timeSpentLabel.isHidden = false
@@ -342,8 +347,10 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate, U
     
     //Print answer on label
     @IBAction func printAnswer() {
+        //stop speech recognition
         didFinishTalk()
 
+        //stop timer
         if (timeMode == true) {
             timer?.invalidate()
         }
@@ -376,8 +383,10 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate, U
     
     // Shelve cards
     @IBAction func shelveCard() {
+        //stop speech recognition
         didFinishTalk()
 
+        //stop timer
         if (timeMode == true) {
             timer?.invalidate()
         }
@@ -393,8 +402,10 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate, U
     
     // Show previously played card
     @IBAction func PreviousCard() {
+        //stop speech recognition
         didFinishTalk()
 
+        //stop timer
         if (timeMode == true) {
             timer?.invalidate()
         }
@@ -424,9 +435,11 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate, U
     
     // Show Answer When PreviousCard has been selected
     @IBAction func showAnswerForPreviousCard() {
+        //stop timer
         if (timeMode == true) {
             timer?.invalidate()
         }
+        
     printAnswer()
     ShelveType.isHidden = true
     CheckType.isHidden = true
@@ -458,6 +471,7 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate, U
     
     // Play next card
     @IBAction func playNextCard() {
+        //stop timer
         if (timeMode == true) {
             timer?.invalidate()
         }
@@ -487,11 +501,14 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate, U
             PopUpViewType.isHidden = false
             PopUpCorrectLabelType.isHidden = false
             PopUpIncorrectLabelType.isHidden = true
+            
+            //if time mode is activated store result and time
             if (timeMode == true) {
                 let newSecondsCount = secondsCount - previousSecondsCount
                 previousSecondsCount = secondsCount
                 currentCards[currentCardIndex].cardPlayed(result: "correct", seconds: newSecondsCount)
-            } else {
+            } //else store result
+            else {
                 currentCards[currentCardIndex].cardPlayed(result: "correct")
             }
             if (currentCards[currentCardIndex].getCorrectCount() < 3) {
@@ -503,11 +520,14 @@ class ClassicTypeViewController: UIViewController, SFSpeechRecognizerDelegate, U
             PopUpViewType.tintColor = UIColor.red
             PopUpCorrectLabelType.isHidden = true
             PopUpIncorrectLabelType.isHidden = false
+            
+            //if time mode is activated store result and time
             if (timeMode == true) {
                 let newSecondsCount = secondsCount - previousSecondsCount
                 previousSecondsCount = secondsCount
                 currentCards[currentCardIndex].cardPlayed(result: "incorrect", seconds: newSecondsCount)
-            } else {
+            } //else store result
+            else {
                 currentCards[currentCardIndex].cardPlayed(result: "incorrect")
             }
         appendCard()

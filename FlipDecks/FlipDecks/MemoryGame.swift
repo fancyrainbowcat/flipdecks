@@ -17,6 +17,8 @@ class MemoryGame {
     var cardsShown:[MemoryCard] = [MemoryCard]()
     var countCalled = 0
     var cell = MemoryViewCell()
+    
+    //store times for time mode
     var times = [0]
     
     var numberOfMCards: Int {
@@ -31,6 +33,8 @@ class MemoryGame {
             // compare selected card with first picked card
             if mCard.equals(firstCard!) {
                 cardsShown.append(mCard)
+                
+                //if time mode is activated store times for memory cards in times list + store result and time per card
                 if (timeMode) {
                     if (timeMode) {
                         times.append(time)
@@ -38,7 +42,8 @@ class MemoryGame {
                     //Seconds on this card 
                     let secondsSpent = times[times.count-1] - times[times.count-2]
                     mCard.id.cardPlayed(result: "correct", seconds: secondsSpent)
-                } else {
+                } //if time mode is not activated store only result
+                else {
                     mCard.id.cardPlayed(result: "correct")
                 }
                 countCalled = 0
@@ -49,6 +54,8 @@ class MemoryGame {
                     cell.showCard(false, animated: true)
                     self.cell.showCard(false, animated: true)
                     self.countCalled = 0
+                    
+                    //if time mode is activated store times for memory cards in times list + store result and time per card
                     if (timeMode) {
                         if (timeMode) {
                             self.times.append(time)
@@ -56,8 +63,9 @@ class MemoryGame {
                         //Seconds on this card
                         let secondsSpent = self.times[self.times.count-1] - self.times[self.times.count-2]
                         firstCard?.id.cardPlayed(result: "incorrect", seconds: secondsSpent)
-                    } else {
-                        firstCard?.id.cardPlayed(result: "inorrect")
+                    } //if time mode is not activated store only result
+                    else {
+                        firstCard?.id.cardPlayed(result: "incorrect")
                     }
                 }
             }

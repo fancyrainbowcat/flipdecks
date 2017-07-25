@@ -18,12 +18,13 @@ class ClassicQuestionViewController: UIViewController {
     var currentCardIndex = 0
     var currentCards = [Card]()
     
-    //timer functionality
+    //time modus functionality
     var timeMode = false
     var timer : Timer?
     var secondsCount = 0
     var previousSecondsCount = 0
     
+    //Time Modus IBOutlets
     @IBOutlet weak var timeSpentLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     
@@ -39,8 +40,11 @@ class ClassicQuestionViewController: UIViewController {
         currentCards = self.deck.returnAllNotFinishedCards()
         currentCards.shuffle()
         Continue.isHidden = true
-        self.timeSpentLabel.isHidden = true
         
+        //hide time spent label (should only be visible when modus is finished)
+        timeSpentLabel.isHidden = true
+        
+        //if time mode is activated show time, if not don't show time
         if(timeMode == false) {
             timeLabel.isHidden = true
         } else {
@@ -90,13 +94,16 @@ class ClassicQuestionViewController: UIViewController {
             }
         }
         else {
-            //time mode functionality 
+            //show time spent in the modus
             if (timeMode == true) {
+                //convert seconds to correct time format
                 let (secondsStr, minutesStr, hoursStr) = splitSeconds(secondsCount: secondsCount)
                 self.timeSpentLabel.text = "Time spent in modus: \(hoursStr):\(minutesStr):\(secondsStr)"
                 self.timeSpentLabel.isHidden = false
             }
+        
             self.timeLabel.isHidden = true
+            
             strValue = "Congratulations!"
             QuestionLabel.text = strValue
             Correct.isHidden = true
@@ -159,6 +166,7 @@ class ClassicQuestionViewController: UIViewController {
     
     //Print answer on label
     @IBAction func printAnswer() {
+        //stop timer when answer is printed
         if (timeMode == true) {
             timer?.invalidate()
         }
@@ -179,11 +187,13 @@ class ClassicQuestionViewController: UIViewController {
     
     // Card incorrect
     @IBAction func cardIncorrect() {
+        //assign seconds spent to card and store result
         if (timeMode == true) {
             let newSecondsCount = secondsCount - previousSecondsCount
             previousSecondsCount = secondsCount
             currentCards[currentCardIndex].cardPlayed(result: "incorrect", seconds: newSecondsCount)
-        } else {
+        } //store result without time
+        else {
             currentCards[currentCardIndex].cardPlayed(result: "incorrect")
         }
         
@@ -196,11 +206,13 @@ class ClassicQuestionViewController: UIViewController {
     
     // Card correct
     @IBAction func cardCorrect() {
+        //assign seconds spent to card and store result
         if (timeMode == true) {
             let newSecondsCount = secondsCount - previousSecondsCount
             previousSecondsCount = secondsCount
             currentCards[currentCardIndex].cardPlayed(result: "correct", seconds: newSecondsCount)
-        } else {
+        } //store result without time
+        else {
             currentCards[currentCardIndex].cardPlayed(result: "correct")
         }
 
@@ -216,9 +228,11 @@ class ClassicQuestionViewController: UIViewController {
     
     // Shelve cards
     @IBAction func shelveCard() {
+        //stop timer
         if (timeMode == true) {
             timer?.invalidate()
         }
+        
         appendCard()
         currentCards.remove(at:currentCardIndex)
         printQuestion()
@@ -249,9 +263,11 @@ class ClassicQuestionViewController: UIViewController {
    
     // Show previously played card
     @IBAction func PreviousCard() {
+        //stop timer
         if (timeMode == true) {
             timer?.invalidate()
         }
+        
         if Shelve.isHidden == false {
             if currentCardIndex > 0 {
                 currentCardIndex = currentCardIndex-1
